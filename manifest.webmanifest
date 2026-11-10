@@ -1,7 +1,7 @@
 {
-  "name": "Tyres Pressure",
-  "short_name": "Tyres Pressure",
-  "description": "Pressioni gomme a freddo per F4 Tatuus T-421 e BMW M4 GT4",
+  "name": "Engineer Workbook",
+  "short_name": "Workbook",
+  "description": "Engineer Workbook: pressioni gomme, setup, calcolatore, temperature e report di giornata per F4 Tatuus T-421 e BMW M4 GT4",
   "lang": "it",
   "start_url": "./",
   "scope": "./",
@@ -10,8 +10,21 @@
   "background_color": "#001533",
   "theme_color": "#001533",
   "icons": [
-    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
-    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
-    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

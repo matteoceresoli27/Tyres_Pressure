@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Tyres Pressure</title>
+<title>Engineer Workbook</title>
+<meta name="apple-mobile-web-app-title" content="Workbook">
 <meta name="theme-color" content="#001533">
-<meta name="description" content="Pressioni gomme, setup per turno e calcolatore per F4 Tatuus T-421 e BMW M4 GT4">
+<meta name="description" content="Engineer Workbook: pressioni gomme, setup, calcolatore, temperature e report di giornata per F4 Tatuus T-421 e BMW M4 GT4">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -98,7 +99,7 @@ td:first-child,th:first-child{text-align:left}
 /* ---- modulo setup e calcolatore ---- */
 :root{--chg:#f2ad5c;--chg-bg:#3b2f1b}
 .mods{flex-wrap:nowrap}.mods button{font:italic 700 17px var(--f-display);text-transform:uppercase;letter-spacing:.04em;min-height:42px;padding-inline:8px;min-width:0}
-@media (max-width:420px){.mods button{font-size:15px;letter-spacing:.02em}}
+@media (max-width:420px){.mods button{font-size:15px;letter-spacing:.02em}} @media (max-width:460px){.mods button{font-size:13px;letter-spacing:0;padding-inline:5px}}
 .schips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
 .schips button{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:600 14px var(--f-body);padding:8px 16px;cursor:pointer;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);min-height:40px;display:inline-flex;align-items:center;gap:6px}
 .schips button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
@@ -255,11 +256,11 @@ figcaption{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:
 @media (prefers-reduced-motion:reduce){.viz *{transition:none!important}}
 /* vettura stilizzata F4 */
 .viz .wingp2{fill:var(--accent-2);fill-opacity:.7}
-.viz .wingp.ep{fill-opacity:.35} .viz .gtliv{fill:var(--accent);fill-opacity:.55} .viz .gtlite{fill:#dfe8f2;fill-opacity:.85} .viz .gtxray>.body,.viz .gtxray>.pods{fill-opacity:.78} .viz .gtxray>.cockpit{fill-opacity:.85} .viz .gtxrayT>.body{fill-opacity:.5} .viz .gtxrayT>.cockpit,.viz .gtxrayT>.pods{fill-opacity:.7} .viz .gtarch{fill:#03070d} .viz .gtnum{fill:#e9eef4;fill-opacity:.85;stroke:#0b0f15;stroke-width:.6} .viz .gtpil{fill:none;stroke:var(--surface-2);stroke-width:2.4} .viz .gtpyl{fill:none;stroke:#0b0f15;stroke-width:2.2;stroke-linecap:round} .viz .louv{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-opacity:.7} .v-side .floor2,.v-side .louv,.v-side .pods,.v-side .cockpit,.v-side .halo{transition:d .45s cubic-bezier(.3,.7,.2,1)}
+.viz .wingp.ep{fill-opacity:.35} .viz .gtliv{fill:var(--accent);fill-opacity:.55} .viz .gtlite{fill:#dfe8f2;fill-opacity:.85} .viz .gtxray>.body,.viz .gtxray>.pods{fill-opacity:.78} .viz .gtxray>.cockpit{fill-opacity:.85} .viz .gtxrayT>.body{fill-opacity:.5} .viz .gtxrayT>.cockpit,.viz .gtxrayT>.pods{fill-opacity:.7} .viz .gtarch{fill:#03070d} .viz .gtnum{fill:#e9eef4;fill-opacity:.85;stroke:#0b0f15;stroke-width:.6} .viz .gtpil{fill:none;stroke:var(--surface-2);stroke-width:2.4} .viz .gtpyl{fill:none;stroke:#0b0f15;stroke-width:2.2;stroke-linecap:round} .viz .louv{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-opacity:.7} .v-side .floor2,.v-side .louv,.v-side .gtlite,.v-side .light,.v-side .pods,.v-side .cockpit,.v-side .halo{transition:d .45s cubic-bezier(.3,.7,.2,1)}
 .viz .floor2{fill:#0a1a33;stroke:var(--line);stroke-width:1}
 .viz .stripe{fill:none;stroke:var(--accent);stroke-width:2;stroke-opacity:.8}
 .viz .airbox{fill:var(--surface-2);stroke:var(--accent);stroke-width:1.2}
-.viz .light{fill:#e0242b}
+.viz .light{fill:#e0242b} .viz .gthex{fill:none;stroke:var(--muted);stroke-width:.45;stroke-opacity:.7}
 .viz .rimc{fill:#2a3a52;stroke:var(--muted);stroke-width:1}
 .viz .spk{stroke:var(--muted);stroke-width:1.6}
 .v-side .halo,.v-end .halo{fill:none;stroke:var(--muted);stroke-width:3;stroke-linecap:round}
@@ -326,6 +327,50 @@ details.pyro .pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));g
 @media (max-width:620px){.pmat{gap:6px} .pmh{font-size:10.5px} .pc{font-size:11px;min-height:34px}}
 .paxle{font-size:14px;color:var(--muted);margin-bottom:8px}
 .pcfg{margin-bottom:14px}
+
+@media (max-width:620px){ #tyreSeg{display:grid;grid-template-columns:1fr 1fr} #tyreSeg button{white-space:nowrap} }
+.cmpgrp{margin-bottom:12px}
+.cmph{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font:italic 700 15px var(--f-display);text-transform:uppercase;letter-spacing:.03em;margin:4px 0 6px}
+.cmph .muted,.cmph .chip{font-style:normal;text-transform:none;letter-spacing:0}
+.tech .cmpch{border-color:var(--accent-2)} .cmpd{font:600 12px var(--f-num);color:var(--muted);margin-top:2px} .cmpch .cmpd{color:var(--accent-2)}
+/* ---------- note a voce e report ---------- */
+.micbtn{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;flex:0 0 auto}
+.micbtn.on{background:#c00000;border-color:#c00000;color:#fff;animation:pydp 1.4s ease-in-out infinite}
+.h3mic{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.h3mic .micbtn{font:600 13px var(--f-body);text-transform:none;letter-spacing:0}
+.replist{display:grid;gap:8px}
+.repcard{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;text-align:left;width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:4px;color:var(--fg);cursor:pointer;font:inherit}
+.repcard:hover{border-color:var(--accent)}
+.rcd{text-align:center;border-right:1px solid var(--line);padding-right:10px}.rcd b{display:block;font:700 28px var(--f-num);line-height:1}.rcd span{font-size:12px;color:var(--muted);text-transform:uppercase}
+.rct{font:italic 700 18px var(--f-display);text-transform:uppercase}.rcm{font-size:13px;color:var(--muted)}
+.rcl{text-align:right}.rcl b{display:block;font:700 18px var(--f-num)}
+.rep .rephead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--accent);padding-bottom:12px;margin-bottom:14px}
+.rep .rephead h2{margin:2px 0 4px;font-size:30px}
+.repk{font:600 12px var(--f-num);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.repsub{color:var(--muted);font-size:14px}.repsub::first-letter{text-transform:uppercase}
+.repact{display:flex;gap:8px}
+.repkpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:6px}
+.kp{border:1px solid var(--line);border-radius:4px;padding:10px 12px;background:var(--bg);display:flex;flex-direction:column;gap:2px;min-width:0}
+.kp b{font:700 26px var(--f-num);line-height:1.15}.kp b.sm{font-size:17px;padding:4px 0 3px}.kp>span:last-child{font-size:12px;color:var(--muted)}
+.kp.best{border-color:var(--accent)}.kp.best b{color:var(--accent)}
+.rsec{margin-top:20px}.rsec h3{font:italic 700 16px var(--f-display);text-transform:uppercase;letter-spacing:.03em;margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.rturns{list-style:none;margin:0;padding:0}
+.rturns li{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.rtime{font:600 13px var(--f-num);color:var(--muted)}.rtime span{font:500 11px var(--f-body)}
+.rtop{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.rtop b{font-size:15px}
+.lap{font:700 15px var(--f-num);padding:1px 8px;border-radius:3px;background:var(--surface-2)}.lap.is-best{background:var(--accent);color:var(--accent-ink)}
+.rchg{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px;font-size:13px}.rchg i{font-style:normal;color:var(--muted)}.rchg b{color:var(--accent-2)}
+.rnone{font-size:13px;margin-top:4px}.rnote{margin-top:6px;font-size:13px;color:var(--fg);opacity:.85;border-left:2px solid var(--line);padding-left:8px}
+.rtab{width:100%;font-size:13px}.rtab td.num{font-family:var(--f-num);white-space:nowrap}
+.rpyro{margin-top:12px}.rpyro .pmat{max-width:640px}
+.rch{max-width:860px} .rch .repchart{display:block;width:100%;height:auto}
+.rfeed{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+@media (max-width:620px){ .repkpi{grid-template-columns:1fr 1fr} .kp b{font-size:22px} .rep .rephead h2{font-size:24px} .repcard{grid-template-columns:52px 1fr;} .rcl{grid-column:2;text-align:left} .rcl b{display:inline;margin-left:6px} .rfeed{grid-template-columns:1fr;gap:2px} }
+@media print{
+  :root{--bg:#fff;--surface:#fff;--surface-2:#eef2f6;--line:#cfd7e1;--fg:#111;--muted:#555;--accent:#0a6fb0;--accent-2:#b35c00;--accent-ink:#fff}
+  body{background:#fff!important;color:#111} header,.controls,.tabs,.repact,.toast,#garage{display:none!important}
+  .panel{border:0!important;box-shadow:none!important;background:#fff!important} .rsec{break-inside:avoid}
+}
 
 /* ---------- T Track / T Air ---------- */
 .tvtop{display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:space-between;margin-bottom:10px}
@@ -409,8 +454,8 @@ body.garage-open{overflow:hidden}
     <div class="brand">
       <div class="logo"><img id="logoImg" alt="Motorsport Performance Academy" src="data:image/png;base64,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"></div>
       <div class="titlebar">
-        <h1>Tyres <span>Pressure</span></h1>
-        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 10/11 · 17:55</div>
+        <h1>Engineer <span>Workbook</span></h1>
+        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 10/11 · 19:05</div>
       </div>
       <div class="teamsw" role="group" aria-label="Team">
         <button type="button" data-team="mpa" aria-pressed="true">MPA</button>
@@ -430,6 +475,7 @@ body.garage-open{overflow:hidden}
         <div class="row" style="flex-wrap:nowrap"><input type="text" id="newTrack" placeholder="Nome pista" style="font-family:var(--f-body)"><button class="btn sm" id="addTrack" type="button">Aggiungi</button></div></div>
     </div>
     <div class="field" id="condWrap"><div class="lbl">Condizione pista</div><div class="seg" id="condSeg"></div></div>
+    <div class="field" id="tyreWrap"><div class="lbl">Gomme</div><div class="seg" id="tyreSeg"></div></div>
   </section>
   </div>
 
@@ -463,6 +509,10 @@ const DEF_COEF = {
   gt4: {kEnv:-0.05,   kRim:0.07,   ratio:2,   mem:'avg3'}
 };
 const CONDS = {dry:'Asciutta', damp:'Umida', wet:'Bagnata'};
+// Gomme per vettura: la prima è quella di riferimento (basi e run già salvati senza marca)
+const TYRES = { f4:['Pirelli DMA','Pirelli DM','Goodyear','Hankook'], gt4:['Pirelli','Hankook','Michelin'] };
+const tyreOf = (car=S.car) => { const t=S.prefs&&S.prefs.tyre&&S.prefs.tyre[car]; return TYRES[car].includes(t)?t:TYRES[car][0]; };
+const sesTyre = s => s.tyre || TYRES[s.car][0];
 const DEF_TRACKS = ['Monza','Imola','Mugello','Misano','Vallelunga','Paul Ricard','Spa-Francorchamps','Red Bull Ring','Barcellona','Hockenheim','Nürburgring','Zandvoort','Hungaroring'];
 const TABS = {calc:'Calcolo', reg:'Registra run', hist:'Storico', temp:'T Track / T Air', base:'Base pista'};
 
@@ -485,9 +535,11 @@ function toast(t){ const el=$('#toast'); el.textContent=t; el.hidden=false; clea
 function lsGet(k,d){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
 function lsSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 const tracks = () => [...new Set([...DEF_TRACKS, ...(S.prefs.tracks||[])])];
-const baseKey = (car,track) => 'base_'+car+'_'+slug(track);
-function getBase(car=S.car, track=S.track){
-  return S.bases[baseKey(car,track)] || (SEED_BASES[car+'|'+track] ? {...SEED_BASES[car+'|'+track], isSeed:true} : {...CARS[car].def, isDefault:true});
+const baseKey = (car,track,tyre=tyreOf(car)) => tyre===TYRES[car][0] ? 'base_'+car+'_'+slug(track) : 'base_'+car+'_'+slug(tyre)+'_'+slug(track);
+function getBase(car=S.car, track=S.track, tyre=tyreOf(car)){
+  const own=S.bases[baseKey(car,track,tyre)]; if(own) return own;
+  if(tyre!==TYRES[car][0]){ const d=getBase(car,track,TYRES[car][0]); return {cold:[...d.cold], target:[...d.target], fromTyre:TYRES[car][0]}; }
+  return SEED_BASES[car+'|'+track] ? {...SEED_BASES[car+'|'+track], isSeed:true} : {...CARS[car].def, isDefault:true};
 }
 const coef = (car=S.car) => ({...DEF_COEF[car], ...((S.prefs.coef||{})[car]||{})});
 const tol = d => Math.abs(d)<=0.02 ? 'ok' : Math.abs(d)<=0.05 ? 'warn' : 'bad';
@@ -498,8 +550,8 @@ const tol = d => Math.abs(d)<=0.02 ? 'ok' : Math.abs(d)<=0.05 ? 'warn' : 'bad';
    Dopo un run: Freddo corretto = Freddo messo − (Caldo − Target)/rapporto,
    riportato a 20/20 e al target base: diventa la nuova Base 20/20 per quella pista e condizione.
 */
-function history(car=S.car, track=S.track, cond=S.cond){
-  return S.sessions.filter(s=>s.car===car && s.track===track && s.cond===cond).sort((a,b)=>b.date-a.date);
+function history(car=S.car, track=S.track, cond=S.cond, tyre=tyreOf(car)){
+  return S.sessions.filter(s=>s.car===car && s.track===track && s.cond===cond && sesTyre(s)===tyre).sort((a,b)=>b.date-a.date);
 }
 const tenvOf = (car,tt,ta) => CARS[car].air ? (tt+ta)/2 : tt;
 const envCorr = (k,tenv,trim) => (tenv-20)*k.kEnv/10 + (trim-20)*k.kRim/10;
@@ -584,9 +636,11 @@ function renderSel(){
   $('#carSeg').innerHTML = `<button type="button" aria-pressed="true" data-garage="1">${CARS[S.car].name}</button><button type="button" data-garage="1">Cambia vettura</button>`;
   $('#condSeg').innerHTML = Object.entries(CONDS).map(([k,c])=>`<button type="button" data-cond="${k}" aria-pressed="${S.cond===k}">${c}</button>`).join('');
   $('#trackSel').innerHTML = tracks().map(t=>`<option ${t===S.track?'selected':''}>${esc(t)}</option>`).join('');
-  $('#modSeg').innerHTML = [['press','Pressioni'],['setup','Setup'],['calc','Calcolatore']].map(([k,t])=>`<button type="button" data-mod="${k}" aria-pressed="${S.mod===k}">${t}</button>`).join('');
-  $('#condWrap').hidden = S.mod!=='press'; $('#trackWrap').hidden = S.mod!=='press';
-  if(S.mod==='press') $('#tabs').innerHTML = Object.entries(TABS).map(([k,t])=>`<button type="button" role="tab" data-tab="${k}" aria-selected="${S.tab===k}">${t}</button>`).join('');
+  $('#modSeg').innerHTML = [['press','Pressioni'],['setup','Setup'],['calc','Calcolatore'],['report','Report']].map(([k,t])=>`<button type="button" data-mod="${k}" aria-pressed="${S.mod===k}">${t}</button>`).join('');
+  $('#tyreSeg').innerHTML = TYRES[S.car].map(t=>`<button type="button" data-tyre="${esc(t)}" aria-pressed="${tyreOf()===t}">${esc(t)}</button>`).join('');
+  $('#condWrap').hidden = S.mod!=='press'; $('#tyreWrap').hidden = S.mod!=='press'; $('#trackWrap').hidden = S.mod!=='press';
+  if(S.mod==='report') $('#tabs').innerHTML = '';
+  else if(S.mod==='press') $('#tabs').innerHTML = Object.entries(TABS).map(([k,t])=>`<button type="button" role="tab" data-tab="${k}" aria-selected="${S.tab===k}">${t}</button>`).join('');
   else { const T=S.mod==='setup'?SET_TABS:CALC_TABS, cur=S.stab[S.mod]; $('#tabs').innerHTML = Object.entries(S.mod==='calc'&&S.car==='gt4'?CALC_TABS_GT:T).map(([k,t])=>`<button type="button" role="tab" data-stab="${k}" aria-selected="${cur===k}">${t}</button>`).join(''); }
 }
 const inp = (id,val,extra='') => `<input type="text" inputmode="decimal" id="${id}" value="${isFinite(val)?val:''}" ${extra}>`;
@@ -615,12 +669,13 @@ function renderCalc(){
   const k=coef();
   const amb = `${car.air?'media aria+pista':'T pista'} <span id="ambTxt">${f1(meta.tenv)}</span> °C`;
   const info = (meta.n
-    ? `Base 20/20 aggiornata da ${meta.n===1?'l\'ultimo run':'una media pesata degli ultimi '+meta.n+' run'} su ${esc(S.track)} (${CONDS[S.cond].toLowerCase()}).`
-    : `Nessun run registrato su ${esc(S.track)} in condizione ${CONDS[S.cond].toLowerCase()}: parto dalla Base 20/20 della pista.`)
+    ? `Base 20/20 aggiornata da ${meta.n===1?'l\'ultimo run':'una media pesata degli ultimi '+meta.n+' run'} su ${esc(S.track)} (${CONDS[S.cond].toLowerCase()}, ${esc(tyreOf())}).`
+    : `Nessun run registrato su ${esc(S.track)} con ${esc(tyreOf())} in condizione ${CONDS[S.cond].toLowerCase()}: parto dalla Base 20/20 della pista.`)
     + ` Correzione per ${amb} (${sgn(k.kEnv)} bar/10 °C) e T cerchio (${sgn(k.kRim)} bar/10 °C), rapporto caldo/freddo ${f2(k.ratio)}.`;
   return `<div class="panel">
     <h2>Pressioni a freddo consigliate</h2>
     ${b.isDefault?`<div class="note">La base di ${esc(S.track)} usa valori di esempio. Inserisci i tuoi nella scheda <b>Base pista</b>.</div>`:''}
+    ${b.fromTyre?`<div class="note">Nessuna base ${esc(tyreOf())} per ${esc(S.track)}: parto da quella ${esc(b.fromTyre)}. Dopo il primo run con queste gomme la base si aggiorna da sola.</div>`:''}
     ${b.isSeed?`<div class="note">Base 20/20 di ${esc(S.track)} presa dal tuo file ${S.car==='f4'?'MPA':'GT'}: target ${f2(b.target[0])} ant. / ${f2(b.target[2])} post.</div>`:''}
     <div class="pwide"><div class="pin">
     ${condInputs('c', I, car.air)}
@@ -655,14 +710,14 @@ function renderReg(){
       </div></div>`).join('');
   return `<div class="panel">
     <h2>Registra run</h2>
-    <div class="note">${esc(car.name)} · ${esc(S.track)} · ${CONDS[S.cond]}. Inserisci le pressioni a caldo misurate: il prossimo calcolo si correggerà da solo.</div>
+    <div class="note">${esc(car.name)} · ${esc(tyreOf())} · ${esc(S.track)} · ${CONDS[S.cond]}. Inserisci le pressioni a caldo misurate: il prossimo calcolo si correggerà da solo.</div>
     <div class="pwide"><div class="pin">
     <div class="grid3">
       <div class="field"><label class="lbl" for="rtt">T pista °C</label>${inp('rtt',D.tt)}</div>
       ${car.air?`<div class="field"><label class="lbl" for="rta">T aria °C</label>${inp('rta',D.ta)}</div>`:''}
       <div class="field"><label class="lbl" for="rTgF">Target caldo anteriore</label>${inp('rTgF',D.target[0])}</div>
     <div class="field"><label class="lbl" for="rTgR">Target caldo posteriore</label>${inp('rTgR',D.target[2])}</div>
-      <div class="field"><label class="lbl" for="rnote">Note</label><input type="text" id="rnote" value="${esc(D.note)}" placeholder="FP1, gomme nuove…" style="font-family:var(--f-body)"></div>
+      <div class="field"><label class="lbl" for="rnote">Note</label><div class="row" style="flex-wrap:nowrap;gap:6px"><input type="text" id="rnote" value="${esc(D.note)}" placeholder="FP1, gomme nuove…" style="font-family:var(--f-body)">${micBtn('rnote')}</div></div>
     </div>
     <div class="row"><button class="btn primary" type="button" id="saveRun">Salva run</button><button class="btn" type="button" id="resetRun">Ricarica dai consigliati</button></div>
     </div><div class="car">${tyres}<div class="body" aria-hidden="true"></div></div></div>
@@ -672,7 +727,7 @@ function renderReg(){
 /* ---------- temperature battistrada (pirometro): interno / centro / esterno ---------- */
 const PYRO_K=['i','c','o'], PYRO_N={i:'Int.',c:'Centro',o:'Est.'};
 function pyroCfg(){ const p=(S.prefs&&S.prefs.pyro)||{}, g=(k,d)=>isFinite(num(p[k]))?num(p[k]):d;
-  return {opt:g('opt',10), alarm:g('alarm',20), wmin:g('wmin_'+S.car,75), wmax:g('wmax_'+S.car,95)}; }
+  return {opt:g('opt',10), alarm:g('alarm',20), wmin:g('wmin_'+S.car+'_'+tyreOf(),g('wmin_'+S.car,75)), wmax:g('wmax_'+S.car+'_'+tyreOf(),g('wmax_'+S.car,95))}; }
 function pyroEval(t){
   const [I,Cc,O]=t||[], cfg=pyroCfg();
   if(![I,Cc,O].every(isFinite)) return null;
@@ -712,7 +767,7 @@ function pyroPanel(D){
       <div class="pin3">${order.map(k=>`<div class="field"><label class="lbl" for="p${k}${i}">${PYRO_N[k]}<span class="u"> °C</span></label>${inp('p'+k+i, t[PYRO_K.indexOf(k)])}</div>`).join('')}</div>
       <div id="pyB${i}">${pyroBars(t,side)}</div></div>`; }).join('');
   return `<details class="pyro"${has?' open':''}><summary><span>Temperature battistrada · interno / centro / esterno</span><span class="muted">facoltativo</span></summary>
-    <div class="note">Misura con il pirometro appena la vettura rientra, sempre nello stesso ordine. Inflation: centro più caldo dei lati = OVER, più freddo = UNDER. Camber: ΔT interno − esterno ottimale ${f1(cfg.opt)} ±5 °C, TOO MUCH da ${f1(cfg.alarm)} °C. Window: media dei tre valori fra ${f1(cfg.wmin)} e ${f1(cfg.wmax)} °C.</div>
+    <div class="note">Misura con il pirometro appena la vettura rientra, sempre nello stesso ordine. Inflation: centro più caldo dei lati = OVER, più freddo = UNDER. Camber: ΔT interno − esterno ottimale ${f1(cfg.opt)} ±5 °C, TOO MUCH da ${f1(cfg.alarm)} °C. Window ${esc(tyreOf())}: media dei tre valori fra ${f1(cfg.wmin)} e ${f1(cfg.wmax)} °C.</div>
     ${pydBar()}
     <div id="pyM">${pyroMatrix(D.pyro.map(pyroEval))}</div>
     <div class="pgrid">${cards}</div>
@@ -849,11 +904,11 @@ function updateRegChips(){
 
 function renderHist(){
   const car=CARS[S.car];
-  const all=S.sessions.filter(s=>s.car===S.car && s.track===S.track).sort((a,b)=>b.date-a.date);
-  if(!all.length) return `<div class="panel"><h2>Storico</h2><div class="note">Nessun run salvato per ${esc(car.name)} a ${esc(S.track)}. Registra il primo dalla scheda <b>Registra run</b>.</div></div>`;
-  return `<div class="panel"><h2>Storico · ${esc(S.track)}</h2><div class="hist">${all.map(s=>{
+  const all=S.sessions.filter(s=>s.car===S.car && s.track===S.track && sesTyre(s)===tyreOf()).sort((a,b)=>b.date-a.date);
+  if(!all.length) return `<div class="panel"><h2>Storico</h2><div class="note">Nessun run salvato per ${esc(car.name)} con ${esc(tyreOf())} a ${esc(S.track)}. Registra il primo dalla scheda <b>Registra run</b>.</div></div>`;
+  return `<div class="panel"><h2>Storico · ${esc(S.track)} · ${esc(tyreOf())}</h2><div class="hist">${all.map(s=>{
     const dt=new Date(s.date);
-    return `<div class="hcard"><div class="top"><div><b>${dt.toLocaleDateString('it-IT')} ${dt.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})}</b> <span class="chip">${CONDS[s.cond]}</span> <span class="muted">${esc(s.note||'')}</span></div>
+    return `<div class="hcard"><div class="top"><div><b>${dt.toLocaleDateString('it-IT')} ${dt.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})}</b> <span class="chip">${CONDS[s.cond]}</span> <span class="chip">${esc(sesTyre(s))}</span> <span class="muted">${esc(s.note||'')}</span></div>
       <button class="btn sm danger" type="button" data-del="${s.id}">Elimina</button></div>
       <div class="muted" style="font-size:13px">T pista ${f1(s.tt)}°C${car.air?` · T aria ${f1(s.ta)}°C`:''}</div>
       <div class="tbl-wrap"><table><thead><tr><th></th>${C.map(c=>`<th>${CN[c]}</th>`).join('')}</tr></thead><tbody>
@@ -868,7 +923,7 @@ function renderHist(){
 
 function renderBase(){
   const car=CARS[S.car], b=getBase(), k=coef();
-  return `<div class="panel"><h2>Base 20/20 · ${esc(S.track)}</h2>
+  return `<div class="panel"><h2>Base 20/20 · ${esc(S.track)} · ${esc(tyreOf())}</h2>
     <div class="note">Pressioni a freddo con cerchio a 20 °C e ${car.air?'media aria+pista':'T pista'} a 20 °C che danno il target a caldo. Vale finché non registri run per la condizione scelta: da lì la base si aggiorna da sola.</div>
     <div class="tbl-wrap"><table><thead><tr><th></th>${C.map(c=>`<th>${CN[c]}</th>`).join('')}</tr></thead><tbody>
       <tr><td>Base 20/20 bar</td>${C.map((_,i)=>`<td>${inp('bc'+i,b.cold[i],'style="width:78px"')}</td>`).join('')}</tr>
@@ -900,6 +955,7 @@ function renderBase(){
 function render(){
   renderSel();
   if(S.mod==='setup'){ $('#view').innerHTML=renderSetup(); const ev=curEvent(), ses=ev&&curSession(ev); if(ses && document.querySelector('.viz')){ const pv=prevSession(ev,ses); updateViz(ses.setup, pv?pv.setup:null); } return; }
+  if(S.mod==='report'){ $('#view').innerHTML=renderReport(); return; }
   if(S.mod==='calc'){ $('#view').innerHTML=renderCalcMod(); if(S.car==='f4'&&S.stab.calc==='conv') updateConv(); return; }
   const v = {calc:renderCalc, reg:renderReg, hist:renderHist, temp:renderTemps, base:renderBase}[S.tab]();
   $('#view').innerHTML=v;
@@ -912,6 +968,7 @@ document.addEventListener('click', async e=>{
   const t=e.target.closest('button'); if(!t) return;
   if(t.dataset.car){ S.car=t.dataset.car; S.inp.target=null; draft=null; render(); }
   else if(t.dataset.cond){ S.cond=t.dataset.cond; draft=null; render(); }
+  else if(t.dataset.tyre){ S.prefs.tyre={...(S.prefs.tyre||{}), [S.car]:t.dataset.tyre}; S.inp.target=null; draft=null; render(); persist('prefs',{...S.prefs, kind:'prefs'}); }
   else if(t.dataset.tab){ S.tab=t.dataset.tab; render(); }
   else if(t.id==='addTrack'){ const n=$('#newTrack').value.trim(); if(!n) return;
     if(!tracks().includes(n)){ S.prefs.tracks=[...(S.prefs.tracks||[]),n]; await persist('prefs',{...S.prefs, kind:'prefs'}); }
@@ -929,7 +986,7 @@ document.addEventListener('click', async e=>{
     if(bad){ toast('Compila tutti i valori, incluse le pressioni a caldo'); return; }
     const id='s_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
     const py=(D.pyro||[]).some(t=>t.some(isFinite)) ? D.pyro.map(t=>t.map(v=>isFinite(v)?v:null)) : null;
-    const ok=await persist(id,{kind:'session', car:S.car, track:S.track, cond:S.cond, date:Date.now(), tt:D.tt, ta:CARS[S.car].air?D.ta:null, trim:D.trim, cold:D.cold, hot:D.hot, target:D.target, note:D.note, ...(py?{pyro:py}:{})});
+    const ok=await persist(id,{kind:'session', car:S.car, tyre:tyreOf(), track:S.track, cond:S.cond, date:Date.now(), tt:D.tt, ta:CARS[S.car].air?D.ta:null, trim:D.trim, cold:D.cold, hot:D.hot, target:D.target, note:D.note, ...(py?{pyro:py}:{})});
     if(ok){ toast('Run salvato'); draft=null; S.inp.tt=D.tt; S.inp.ta=D.ta; S.tab='calc'; render(); }
   }
   else if(t.dataset.del){ if(t.dataset.armed){ await remove(t.dataset.del); toast('Run eliminato'); } else { t.dataset.armed='1'; t.textContent='Conferma'; } }
@@ -966,7 +1023,7 @@ document.addEventListener('input', e=>{
     else if(id==='rTgR'){ draft.target[2]=draft.target[3]=v; }
     else if(/^r[cht]\d$/.test(id)){ const k={c:'cold',h:'hot',t:'trim',g:'target'}[id[1]]; draft[k][+id[2]]=v; }
     else if(/^p[ico]\d$/.test(id)){ if(!draft.pyro) draft.pyro=C.map(()=>[NaN,NaN,NaN]); draft.pyro[+id[2]][PYRO_K.indexOf(id[1])]=v; updatePyro(); return; }
-    else if(['pyOpt','pyAlarm','pyWmin','pyWmax'].includes(id)){ const key={pyOpt:'opt',pyAlarm:'alarm',pyWmin:'wmin_'+S.car,pyWmax:'wmax_'+S.car}[id]; S.prefs.pyro={...(S.prefs.pyro||{}), [key]:v}; updatePyro();
+    else if(['pyOpt','pyAlarm','pyWmin','pyWmax'].includes(id)){ const key={pyOpt:'opt',pyAlarm:'alarm',pyWmin:'wmin_'+S.car+'_'+tyreOf(),pyWmax:'wmax_'+S.car+'_'+tyreOf()}[id]; S.prefs.pyro={...(S.prefs.pyro||{}), [key]:v}; updatePyro();
       clearTimeout(window.__pyT); window.__pyT=setTimeout(()=>persist('prefs',{...S.prefs, kind:'prefs'}),800); return; }
     updateRegChips();
   }
@@ -1009,6 +1066,7 @@ const SG = {info:'Vettura', pesi:'Pesi', freni:'Freni', ant:'Anteriore', post:'P
 let SF = [
   {g:'info', k:'chassis', l:'Telaio #', t:'text'},
   {g:'info', k:'driver',  l:'Pilota', t:'text'},
+  {g:'info', k:'tyre',    l:'Gomme', t:'sel', o:TYRES.f4},
   {g:'pesi', k:'driverKg',l:'Peso pilota', t:'num', u:'kg'},
   {g:'pesi', k:'fuelKg',  l:'Carburante', t:'num', u:'kg'},
   {g:'pesi', k:'ballast1',l:'Zavorra pos. 1 (max 15)', t:'num', u:'kg'},
@@ -1048,7 +1106,7 @@ let SF = [
 let SFK = Object.fromEntries(SF.map(f=>[f.k,f]));
 // Setup base dal foglio "SETUP" (Base Setup MPA)
 let BASE_SETUP = {
-  chassis:'', engine:'', gearbox:'', driver:'', dampers:'Andreani FLD', blanking:'Nessuna',
+  chassis:'', engine:'', gearbox:'', driver:'', tyre:'Pirelli DMA', dampers:'Andreani FLD', blanking:'Nessuna',
   driverKg:'70', fuelKg:'20', ballast1:'', ballast2:'', cwF:['98.5','132'], cwR:['174','143'],
   bias:'54', mcF:'19.05', mcR:'20.64', discs:'TM', pads:'Ferodo',
   rhF:['18','18'], umpF:['STD','STD'], springF:['700','700'], preloadF:['1','1'], camberF:['4','4'], toeF:['1out','1out'],
@@ -1131,7 +1189,7 @@ function mrbOf(p){
 function mrbOfSetup(st){
   const ve=vehicle(st);
   const r=mechModel({arbF:st.arbF,bladeF:st.bladeF,arbR:st.arbR,bladeR:st.bladeR,springF:avg2(st.springF),springR:avg2(st.springR),pickup:st.pickup,frh:avg2(st.rhF),rrh:avg2(st.rhR),fw:st.fw,rw:st.rw,ta:20}, ve);
-  return {arb:r.pArb, tot:r.pTot, lltd:r.lltd, grad:r.grad};
+  return {arb:r.pArb, sus:r.pSus, tot:r.pTot, lltd:r.lltd, grad:r.grad, vpct:r.vPct, fqF:r.fqF, fqR:r.fqR, rakeS:r.rakeS, rakeD:r.rakeD};
 }
 function weightsOf(st){
   const c=[...(st.cwF||[]),...(st.cwR||[])].map(num);
@@ -1241,6 +1299,18 @@ function techBlock(st, ref, refName){
   ];
   return `<div class="tech">${tiles.map(([k,v])=>`<div><div class="lbl">${k}</div><div class="tv">${v}</div></div>`).join('')}</div>`;
 }
+// riquadro confronto "prima → dopo" con differenza; v può essere un numero o una coppia [ant, post]
+function cmpTile(label, va, vb, dd, unit){
+  const A=[].concat(va), B=[].concat(vb), f=x=>isFinite(x)?x.toFixed(dd):'–';
+  const ch=A.some((x,i)=>f(x)!==f(B[i]));
+  const dl=A.map((x,i)=>{ const v=(+f(B[i]))-(+f(x)); return isFinite(v)?(v>0?'+':'')+v.toFixed(dd):'–'; }).join(' / ');
+  return `<div class="${ch?'cmpch':''}"><div class="lbl">${label}</div><div class="tv">${A.map(f).join(' / ')} → ${B.map(f).join(' / ')} ${unit}</div><div class="cmpd">${ch?'Δ '+dl:'invariato'}</div></div>`;
+}
+function mechTrend(d){
+  if(!isFinite(d)||Math.abs(d)<0.03) return '<span class="chip">tendenza invariata</span>';
+  const w=Math.abs(d)<0.3?'leggermente ':'';
+  return d>0?`<span class="chip warn">${w}più sottosterzo in percorrenza (LLTD ${d>0?'+':''}${d.toFixed(2)} %)</span>`:`<span class="chip warn">${w}più sovrasterzo in percorrenza (LLTD ${d.toFixed(2)} %)</span>`;
+}
 function renderCompare(){
   const ev=curEvent(); const ss=ev.sessions;
   if(ss.length<2) return `<div class="panel"><div class="note">Servono almeno due turni per il confronto.</div></div>`;
@@ -1254,13 +1324,22 @@ function renderCompare(){
     <div class="grid3"><div class="field"><label class="lbl" for="cmpA">Da</label><select id="cmpA">${opt(a.id)}</select></div>
     <div class="field"><label class="lbl" for="cmpB">A</label><select id="cmpB">${opt(b.id)}</select></div>
     <div class="field"><div class="lbl">Righe</div><div class="seg"><button type="button" data-cmpall="0" aria-pressed="${!S.cmp.all}">Solo modifiche</button><button type="button" data-cmpall="1" aria-pressed="${S.cmp.all}">Tutto</button></div></div></div>
-    ${gt?compareTilesGT(a.setup,b.setup,d):`<div class="tech">
-      <div><div class="lbl">Modifiche</div><div class="tv">${d.length}</div></div>
+    ${gt?compareTilesGT(a.setup,b.setup,d):`
+    <div class="cmpgrp"><div class="cmph">Bilancio aerodinamico <span class="muted">· ${d.length} modifiche</span></div><div class="tech">
       <div><div class="lbl">Δ bilancio aero %F</div><div class="tv">${ad?pct(ad.dF):'–'}</div></div>
       <div><div class="lbl">Δ carico SCz</div><div class="tv">${ad?pct(ad.dZ):'–'}</div></div>
       <div><div class="lbl">Δ resistenza SCx</div><div class="tv">${ad?pct(ad.dX):'–'}</div></div>
-      <div><div class="lbl">Bilancio rollio barre</div><div class="tv">${isFinite(ma.arb)?ma.arb.toFixed(1):'–'} → ${isFinite(mb.arb)?mb.arb.toFixed(1)+' %':'–'}</div></div>
-    </div>`}
+      ${cmpTile('Rake statico / dinamico', [ma.rakeS,ma.rakeD], [mb.rakeS,mb.rakeD], 1, 'mm')}
+    </div></div>
+    <div class="cmpgrp"><div class="cmph">Bilancio meccanico ${mechTrend(mb.lltd-ma.lltd)}</div><div class="tech">
+      ${cmpTile('LLTD (trasferimento carico) ant.', ma.lltd, mb.lltd, 1, '%')}
+      ${cmpTile('Rigidezza a rollio con gomme ant.', ma.tot, mb.tot, 1, '%')}
+      ${cmpTile('Molle + barre ant.', ma.sus, mb.sus, 1, '%')}
+      ${cmpTile('Solo barre ant.', ma.arb, mb.arb, 1, '%')}
+      ${cmpTile('Gradiente di rollio', ma.grad, mb.grad, 2, '°/g')}
+      ${cmpTile('Rigidezza verticale ant.', ma.vpct, mb.vpct, 1, '%')}
+      ${cmpTile('Frequenze ant. / post.', [ma.fqF,ma.fqR], [mb.fqF,mb.fqR], 2, 'Hz')}
+    </div></div>`}
     ${rows.length?`<div class="tbl-wrap"><table class="cmp"><thead><tr><th>Parametro</th><th>${esc(a.name)}</th><th>${esc(b.name)}</th></tr></thead><tbody>
       ${rows.map(({f,sd})=>{ const va=sd==null?a.setup[f.k]:(a.setup[f.k]||[])[sd], vb=sd==null?b.setup[f.k]:(b.setup[f.k]||[])[sd]; const ch=norm(va)!==norm(vb);
         return `<tr class="${ch?'chg':''}"><td>${esc(dLabel({f,sd}))}</td><td>${fmtVal(f,va)}</td><td>${fmtVal(f,vb)}</td></tr>`;}).join('')}
@@ -1605,7 +1684,7 @@ let CORNER_FIELDS = {
 };
 let AXLE_FIELDS = { F:['fw','fwGurney','arbF','bladeF'], R:['rw','arbR','bladeR','pickup'] };
 let GEN_GROUPS = [
-  ['Vettura',['chassis','driver']],
+  ['Vettura',['chassis','driver','tyre']],
   ['Pesi',['driverKg','fuelKg','ballast1','ballast2']],
   ['Freni',['bias','mcF','mcR','discs','pads']]
 ];
@@ -1929,7 +2008,7 @@ function renderSheet(){
     </div>
     <div class="gens">
       ${GEN_GROUPS.slice(3).map(g=>genPanel(g[0],g[1],st,prev)).join('')}
-      <section class="gen notes"><h3>Note e feedback pilota</h3><textarea id="sesNotes" rows="5" placeholder="Bilanciamento, sovrasterzo in ingresso, gomme…">${esc(ses.notes||'')}</textarea></section>
+      <section class="gen notes"><h3 class="h3mic">Note e feedback pilota ${micBtn('sesNotes')}</h3><textarea id="sesNotes" rows="5" placeholder="Bilanciamento, sovrasterzo in ingresso, gomme…">${esc(ses.notes||'')}</textarea></section>
     </div>
   </div>`;
 }
@@ -1958,6 +2037,7 @@ const GT = {
 const SF_GT = [
   {g:'info', k:'chassis', l:'Telaio #', t:'text'},
   {g:'info', k:'driver',  l:'Pilota', t:'text'},
+  {g:'info', k:'tyre',    l:'Gomme', t:'sel', o:TYRES.gt4},
   {g:'pesi', k:'driverKg',l:'Peso pilota', t:'num', u:'kg'},
   {g:'pesi', k:'fuelKg',  l:'Carburante', t:'num', u:'kg'},
   {g:'pesi', k:'ballast', l:'Zavorra', t:'num', u:'kg'},
@@ -1996,7 +2076,7 @@ const SF_GT = [
 ];
 // Setup di consegna (manuale §5.6.2). Ala posteriore e ripartizione freno non indicati: da compilare.
 const BASE_GT = {
-  chassis:'', driver:'', driverKg:'80', fuelKg:'45', ballast:'', cwF:['',''], cwR:['',''],
+  chassis:'', driver:'', tyre:'Pirelli', driverKg:'80', fuelKg:'45', ballast:'', cwF:['',''], cwR:['',''],
   bias:'', mcF:'22.4', mcR:'25.4', pedal:'4.55', pads:'Sprint', tc:'', abs:'',
   ramps:'D40/C30', faces:'8FF', preload:'70',
   rhF:['97','97'], springF:['200','200'], camberF:['-3.5','-3.5'], toeF:['-3.0','-3.0'],
@@ -2010,7 +2090,7 @@ const CORNER_GT = {
 };
 const AXLE_GT = { F:['arbF','dive'], R:['rw','arbR'] };
 const GEN_GT = [
-  ['Vettura',['chassis','driver']],
+  ['Vettura',['chassis','driver','tyre']],
   ['Pesi',['driverKg','fuelKg','ballast']],
   ['Freni',['bias','mcF','mcR','pedal','pads']],
   ['Differenziale',['ramps','faces','preload']],
@@ -2059,14 +2139,25 @@ function techBlockGT(st, ref, refName){
   return `<div class="tech">${tiles.map(([k,v])=>`<div><div class="lbl">${k}</div><div class="tv">${v}</div></div>`).join('')}</div>`;
 }
 function compareTilesGT(a, b, d){
-  const r=s=>avg2(s.rhR)-avg2(s.rhF), f=(x,dd=1)=>isFinite(x)?x.toFixed(dd):'–';
-  return `<div class="tech">
-    <div><div class="lbl">Modifiche</div><div class="tv">${d.length}</div></div>
-    <div><div class="lbl">Rake</div><div class="tv">${f(r(a))} → ${f(r(b))} mm</div></div>
-    <div><div class="lbl">Ala posteriore</div><div class="tv">${esc(a.rw||'–')}° → ${esc(b.rw||'–')}°</div></div>
-    <div><div class="lbl">Ripartizione freno</div><div class="tv">${esc(a.bias||'–')} → ${esc(b.bias||'–')} % ant.</div></div>
-    <div><div class="lbl">Barre ant. / post.</div><div class="tv">${esc(a.arbF||'–')}/${esc(a.arbR||'–')} → ${esc(b.arbF||'–')}/${esc(b.arbR||'–')}</div></div>
-  </div>`;
+  const r=s=>avg2(s.rhR)-avg2(s.rhF);
+  const m=s=>{ const x=mechGT(avg2(s.springF), avg2(s.springR), vehGT(s)); const TF=GT.trackF, TR=GT.trackR; x.roll=x.kwF*TF*TF/(x.kwF*TF*TF+x.kwR*TR*TR)*100; return x; };
+  const ma=m(a), mb=m(b), arbCh=norm(a.arbF)!==norm(b.arbF)||norm(a.arbR)!==norm(b.arbR);
+  const dRoll=mb.roll-ma.roll;
+  const trend=arbCh?'<span class="chip warn">barre cambiate: il manuale non dà le rigidezze per posizione</span>'
+    : !isFinite(dRoll)||Math.abs(dRoll)<0.2 ? '<span class="chip">tendenza invariata</span>'
+    : dRoll>0 ? '<span class="chip warn">più sottosterzo in percorrenza</span>' : '<span class="chip warn">più sovrasterzo in percorrenza</span>';
+  return `<div class="cmpgrp"><div class="cmph">Bilancio aerodinamico <span class="muted">· ${d.length} modifiche</span></div><div class="tech">
+    ${cmpTile('Rake', r(a), r(b), 1, 'mm')}
+    <div class="${norm(a.rw)!==norm(b.rw)?'cmpch':''}"><div class="lbl">Ala posteriore</div><div class="tv">${esc(a.rw||'–')}° → ${esc(b.rw||'–')}°</div></div>
+    <div class="${norm(a.dive)!==norm(b.dive)?'cmpch':''}"><div class="lbl">Dive plane</div><div class="tv">${esc(a.dive||'–')} → ${esc(b.dive||'–')}</div></div>
+  </div></div>
+  <div class="cmpgrp"><div class="cmph">Bilancio meccanico ${trend}</div><div class="tech">
+    ${cmpTile('Rollio da molle ant.', ma.roll, mb.roll, 1, '%')}
+    <div class="${arbCh?'cmpch':''}"><div class="lbl">Barre ant. / post. (posizione)</div><div class="tv">${esc(a.arbF||'–')} / ${esc(a.arbR||'–')} → ${esc(b.arbF||'–')} / ${esc(b.arbR||'–')}</div></div>
+    ${cmpTile('Rigidezza verticale ant.', ma.pct, mb.pct, 1, '%')}
+    ${cmpTile('Frequenze ant. / post.', [ma.fqF,ma.fqR], [mb.fqF,mb.fqR], 2, 'Hz')}
+    ${cmpTile('Ripartizione freno ant.', num(a.bias), num(b.bias), 1, '%')}
+  </div></div>`;
 }
 
 /* ---------- parametri vettura per il calcolatore (stime modificabili) ---------- */
@@ -2194,21 +2285,46 @@ const gtY=mm=>26+mm*0.1, gtX=dx=>150+dx*0.1, GT_FA=GT.ovF, GT_RA=GT.ovF+GT.L;
 const gtMirror=half=>{ const L=half.map(([dx,y])=>`${gtX(dx).toFixed(1)} ${gtY(y).toFixed(1)}`), R=half.slice().reverse().map(([dx,y])=>`${gtX(-dx).toFixed(1)} ${gtY(y).toFixed(1)}`); return 'M'+L.join(' L')+' L'+R.join(' L')+' Z'; };
 // Vista dall'alto: [dx, y dal muso dello splitter] mm, lato sinistro (dx<0) dal centro anteriore al centro posteriore
 const gtSmT=half=>{ const full=half.concat(half.slice(1,-1).reverse().map(([x,y,c])=>[-x,y,c])); return gtSmooth(full, ([x,y])=>[gtX(x),gtY(y)]); };
-const GT_TOP_BODY=[[0,69,'c'],[-360,78],[-660,112],[-840,190],[-915,330],[-940,520],[-946,860],[-940,1150],[-912,1420],[-898,1750],[-902,2350],[-928,2900],[-946,3350],[-946,3950],[-932,4280],[-892,4540],[-800,4700],[-600,4800],[-260,4840],[0,4842,'c']];
+// Sagome ricavate dal disegno di riferimento fornito (linee generiche, nessun logo), in scala sulle quote del manuale
+const GD_SIDE_BODY=[[51,116,'c'],[34,273],[43,497],[107,631],[215,720],[472,788],[816,832],[1246,886],[1611,922,'c'],[1847,1078],[2105,1235],[2363,1334],[2620,1378],[2964,1378],[3222,1347],[3523,1257],[3823,1155],[4081,1065],[4253,1020],[4511,1002],[4639,976,'c'],[4661,788],[4682,586],[4725,430],[4734,251],[4704,161,'c'],[4597,116],[4167,107,'c'],[1246,94,'c'],[472,107],[215,116]];
+const GD_SIDE_GLASS=[[1675,877,'c'],[1976,1110],[2298,1271],[2577,1325],[2921,1325],[3308,1257],[3587,1092],[3660,1020,'c'],[2964,931],[2363,895]];
+const GD_SIDE_MIR=[[1783,877],[1804,989],[1933,1011],[1976,931],[1954,877]];
+const GD_SIDE_LAMPF=[[107,644,'c'],[472,676],[610,618,'c'],[386,541],[150,510,'c']];
+const GD_SIDE_LAMPR=[[4210,855,'c'],[4425,899],[4639,832,'c'],[4597,720,'c'],[4253,765]];
+const GD_SIDE_LINES=[[[1568,855],[1546,564],[1589,206]],[[2930,899],[2921,286]],[[1589,206],[2921,286]],[[1332,586],[2363,653],[3222,689]],[[3179,832],[4210,877]],[[1246,161],[3394,161]],[[129,430],[137,116]],[[322,421],[335,116]],[[2599,752],[2827,752]]];
+const GD_SIDE_HANDLE=[[2599,779],[2827,779],[2827,720],[2599,720]];
+const GD_TOP_BODY=[[0,65,'c'],[-197,69],[-536,174],[-724,278],[-845,383],[-896,488],[-921,592],[-937,697],[-942,906],[-942,1325],[-925,1429],[-912,1534],[-921,1743],[-921,2458],[-921,3208],[-925,3313],[-937,3417],[-946,3522],[-946,4045],[-925,4150],[-904,4255],[-879,4359],[-858,4464],[-837,4569],[-774,4673],[-628,4778],[-335,4848],[0,4865,'c']];
+const GD_TOP_GREEN=[[0,1690,'c'],[-335,1707],[-670,1759],[-762,1862],[-711,2078],[-636,2294],[-582,2494],[-569,2969],[-586,3431],[-611,3918],[-619,4184],[-460,4268],[0,4290,'c']];
+const GD_TOP_ROOF=[[0,2450,'c'],[-377,2463],[-569,2494],[-561,2969],[-578,3431],[-335,3443],[0,3450,'c']];
+const GD_TOP_LINES=[[[-745,542],[-770,1168],[-787,1690]],[[-343,235],[-402,714],[-469,1237]],[[-795,1862],[-787,2652],[-795,3285],[-804,4236]],[[795,4452],[0,4508],[-795,4452]],[[-619,4290],[-753,4412]]];
+const GD_TOP_MIR=[[-921,1874],[-1030,1918],[-1038,2022],[-971,2092],[-921,2066]];
+const GD_F_CAB=[[0,1278,'c'],[-297,1274],[-509,1248],[-584,1165],[-679,1004],[-764,832],[-785,800,'c'],[0,811,'c']];
+const GD_F_GLASS=[[0,1193,'c'],[-488,1188],[-541,1154],[-647,982],[-743,841,'c'],[0,849,'c']];
+const GD_F_BODY=[[0,837,'c'],[-403,828],[-785,794],[-839,747],[-913,682],[-938,618],[-945,425],[-938,125],[-892,7],[-700,-15],[0,0,'c']];
+const GD_F_LAMP=[[-881,586,'c'],[-722,607],[-424,511,'c'],[-467,446,'c'],[-807,468],[-887,521]];
+const GD_F_GRILLE=[[0,258,'c'],[-584,253,'c'],[-662,150,'c'],[-626,77,'c'],[0,71,'c']];
+const GD_F_INTAKE=[[-870,350],[-828,339],[-828,82],[-866,92]];
+const GD_F_SPLIT=[[0,43,'c'],[-743,39],[-913,17],[-892,-21],[0,-26,'c']];
+const GD_F_MIR=[[-998,918],[-839,940],[-790,907],[-796,811],[-977,800],[-1002,864]];
+const GD_F_LINES=[[[-456,828],[-382,682],[-314,532],[0,528]],[[-849,371],[-403,386],[0,369]],[[-584,575],[-340,601],[0,592]],[[-569,350],[-637,210]]];
+const GD_R_CAB=[[0,1202,'c'],[-190,1210],[-518,1183],[-582,1100],[-688,942],[-762,833],[-794,799,'c'],[0,799,'c']];
+const GD_R_GLASS=[[0,1115,'c'],[-529,1110],[-582,1040],[-592,902],[-550,882,'c'],[0,882,'c']];
+const GD_R_BODY=[[0,799,'c'],[-614,803],[-804,784],[-868,744],[-921,645],[-942,468],[-942,152],[-910,63],[-635,53],[-508,13],[0,10,'c']];
+const GD_R_TRUNK=[[0,867,'c'],[-550,863],[-614,833],[-603,606],[-561,497],[-465,458],[0,448,'c']];
+const GD_R_LAMP=[[-836,724,'c'],[-614,734],[-286,685,'c'],[-614,606],[-825,596,'c'],[-846,665]];
+const GD_R_DIFF=[[0,280,'c'],[-614,276,'c'],[-645,221],[-645,73],[-508,53],[-487,13],[0,10,'c']];
+const GD_R_PLATE=[[-201,260],[0,260],[0,92],[-201,92]];
+const GD_R_REFL=[[-825,408],[-787,408],[-787,152],[-825,162]];
+const GD_R_MIR=[[-984,873],[-825,898],[-800,863],[-808,784],[-952,774],[-990,823]];
+const GD_R_LINES=[[[-624,839],[0,853]],[[-825,557],[-402,566],[-338,507],[0,497]],[[-688,294],[-338,345],[0,359]],[[-476,260],[-476,92]],[[-201,260],[-201,92]]];
+const GD_R_EXH=[[-413, 132], [-296, 132], 47];
+const GT_TOP_BODY=GD_TOP_BODY, GT_TOP_GREEN=GD_TOP_GREEN, GT_TOP_ROOF=GD_TOP_ROOF;
 const GT_TOP_SPLIT=[[0,0,'c'],[-600,8],[-880,60],[-905,150],[-860,260],[0,260,'c']];
-const GT_TOP_GREEN=[[0,1780,'c'],[-560,1800],[-760,1880],[-735,2300],[-735,3180],[-700,3620],[-560,3860],[0,3900,'c']];
-const GT_TOP_ROOF=[[0,2280,'c'],[-560,2300],[-610,2700],[-600,3200],[-520,3300],[0,3310,'c']];
 function GT_TOP_LINES(){
-  const L=(a)=>gtSmooth(a, ([x,y])=>[gtX(x),gtY(y)], false);
-  return [L([[-520,260],[-560,800],[-600,1400],[-660,1790]]), L([[520,260],[560,800],[600,1400],[660,1790]]),
-          L([[-180,350],[-160,1000],[-150,1760]]), L([[180,350],[160,1000],[150,1760]]),
-          L([[-720,3980],[-300,4000],[300,4000],[720,3980]]), L([[-760,4520],[0,4560],[760,4520]]),
-          L([[-900,1300],[-880,2400]]), L([[900,1300],[880,2400]])].join(' ');
+  const L=a=>gtSmooth(a, ([x,y])=>[gtX(x),gtY(y)], false);
+  return GD_TOP_LINES.map((l,i)=>i===3?L(l):L(l)+' '+L(l.map(([x,y])=>[-x,y]))).join(' ');
 }
-function GT_TOP_VENTS(){
-  const v=(x1,x2,y1,y2)=>`M${gtX(x1)} ${gtY(y1)} L${gtX(x2)} ${gtY(y1+40)} L${gtX(x2)} ${gtY(y2)} L${gtX(x1)} ${gtY(y2-40)} Z`;
-  return [v(-470,-230,700,1050), v(470,230,700,1050), v(-760,-640,1250,1520), v(760,640,1250,1520)].join(' ');
-}
+function GT_TOP_MIRRORS(){ const m=GD_TOP_MIR; return gtSmooth(m,([x,y])=>[gtX(x),gtY(y)])+' '+gtSmooth(m.map(([x,y])=>[-x,y]),([x,y])=>[gtX(x),gtY(y)]); }
 function carSVGsGT(){
   const GOTO={FL:'sf_rhF_0',FR:'sf_rhF_1',RL:'sf_rhR_0',RR:'sf_rhR_1'};
   const wheel=(k,x,y,w,h)=>`<rect class="ghost" id="g${k}" x="${(x-w/2).toFixed(1)}" y="${(y-h/2).toFixed(1)}" width="${w}" height="${h}" rx="6"/>
@@ -2233,8 +2349,7 @@ function carSVGsGT(){
     <path class="louv" d="${GT_TOP_LINES()}"/>
     <path class="cockpit" d="${gtSmT(GT_TOP_GREEN)}"/>
     <path class="pods" d="${gtSmT(GT_TOP_ROOF)}"/>
-    <path class="cockpit" d="${GT_TOP_VENTS()}"/>
-    <path class="pods" d="M${gtX(-930)} ${gtY(1840)} L${gtX(-1010)} ${gtY(1870)} L${gtX(-1000)} ${gtY(1960)} L${gtX(-925)} ${gtY(1950)} Z M${gtX(930)} ${gtY(1840)} L${gtX(1010)} ${gtY(1870)} L${gtX(1000)} ${gtY(1960)} L${gtX(925)} ${gtY(1950)} Z"/>
+    <path class="pods" d="${GT_TOP_MIRRORS()}"/>
     </g>
     <path class="louv" d="${arch(yF,GT.trackF/2*1)} ${arch(yR,GT.trackR/2*1)}" style="stroke-opacity:.9"/>
     <g class="tap" data-goto="sf_rw"><title>Modifica ala posteriore</title>
@@ -2258,6 +2373,7 @@ function carSVGsGT(){
     <path class="louv" id="sLouv" d=""/>
     <path class="gtnum" id="sNum" d=""/>
     <path class="cockpit" id="sCock" d=""/>
+    <path class="gtlite" id="sLampF" d=""/><path class="light" id="sLampR" d=""/>
     <path class="gtpil" id="sPil" d=""/>
     <path class="pods" id="sMir" d=""/>
     <path class="floor2" id="sDiff" d=""/>
@@ -2289,8 +2405,7 @@ function gtSideWheel(cx){ const r=GT_R*GS, cy=186-r;
     <circle class="hub" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(r*0.16).toFixed(1)}"/></g>`; }
 const GT_OFF=GT.ovF-GT.ovFbody; // splitter davanti al corpo
 // Profilo GT generico sulle quote del manuale: [x dal frontale del corpo, h da terra] mm; 'c' = spigolo (non smussato)
-const GT_SIDE_BODY=[[0,250,'c'],[-8,330],[0,430],[40,510],[150,580],[400,632],[800,676],[1300,724],[1760,792,'c'],[2000,958],[2250,1150],[2450,1248],[2700,1290],[2950,1280],[3250,1206],[3600,1070],[3880,978],[4100,946],[4400,930],[4560,936,'c'],[4610,900],[4700,838],[4770,720],[4795,560],[4790,400],[4760,300],[4700,232,'c'],[4500,202],[4250,186,'c'],[3330,180,'c'],[1290,180,'c'],[400,206],[120,216],[30,232]];
-const GT_SIDE_GLASS=[[1840,818,'c'],[2050,975],[2280,1155],[2460,1228],[2700,1256],[2950,1244],[3230,1174],[3480,1040],[3610,972,'c'],[3380,938],[2700,905],[1960,852,'c']];
+const GT_SIDE_BODY=GD_SIDE_BODY, GT_SIDE_GLASS=GD_SIDE_GLASS;
 const GT_SIDE_LIV=[[300,420],[1500,470],[3200,600],[4690,700],[4690,780],[3200,690],[1500,548],[300,486]];
 function gtSmooth(pts, toXY, closed=true){
   // Catmull-Rom → Bézier, con spigoli dove indicato
@@ -2321,18 +2436,16 @@ function gtSideGeom(frh, rrh){
   return { d:sm(GT_SIDE_BODY), cock:sm(GT_SIDE_GLASS),
     arch:arch(fa,392,178)+' '+arch(ra,396,178),
     liv:sm(GT_SIDE_LIV),
-    num:path([[2060,450],[2500,450],[2500,720],[2060,720]]),
-    mir:path([[1860,868],[2020,880],[2012,938],[1866,930]])+' '+path([[1930,868],[1960,868],[1985,840],[1950,838]]),
+    num:path([[1760,330],[2420,330],[2420,640],[1760,640]]),
+    mir:sm(GD_SIDE_MIR)+' '+path(GD_SIDE_HANDLE),
+    lampF:sm(GD_SIDE_LAMPF), lampR:sm(GD_SIDE_LAMPR),
     floor:path([[1290,176],[3330,170],[3330,226],[1300,236]]),
     fep:path([[-69,92],[760,92],[760,132],[-40,150]]),
     diff:path([[4380,178],[4800,178],[4800,330],[4720,330],[4560,212]]),
-    louv:[flare(fa,440,250), flare(ra,446,250), sm([[350,560],[1500,602],[3000,690],[4300,760]],false),
-      path([[1690,800],[1640,330]],false), path([[2960,890],[2990,330]],false), path([[1640,330],[2990,330]],false),
-      path([[1290,430],[1350,560]],false), path([[1340,430],[1400,560]],false), path([[1390,430],[1450,560]],false),
-      path([[4600,200],[4630,320]],false), path([[4690,200],[4715,320]],false), path([[180,110],[180,140]],false), path([[420,104],[420,136]],false)].join(' '),
-    pillar:path([[2640,905],[2610,1252]],false),
+    louv:[flare(fa,440,250), flare(ra,446,250), ...GD_SIDE_LINES.map(l=>sm(l,false))].join(' '),
+    pillar:path([[2950,931],[2935,1325]],false),
     rep:path([[4190,1225],[4660,1245],[4660,1385],[4250,1375]]),
-    pyl:sm([[4200,940],[4270,1100],[4330,1230],[4380,1330]],false),
+    pyl:sm([[4300,1015],[4350,1120],[4400,1235],[4430,1330]],false),
     y, rw:[gsX(4430+GT_OFF), y(gsX(4430+GT_OFF))-1345*GS], fw:[gsX(60+GT_OFF), y(gsX(60+GT_OFF))-330*GS] };
 }
 // Viste frontale e posteriore: 0,13 px/mm; corpo in coordinate [dx, h dal piano di riferimento]
@@ -2345,30 +2458,38 @@ const GT_LIFT=(ax,h)=>{ const d=GT_END[ax].rh0; return Math.max(0, d*GE + ((isFi
 // Fronte e retro: sagome GT generiche (nessun elemento di stile BMW); [dx, h dal piano di riferimento] mm
 const geS=(half,cl=true)=>{ const full=cl?half.concat(half.slice(1,-1).reverse().map(([x,h,c])=>[-x,h,c])):half; return gtSmooth(full, ([x,h])=>[geX(x),geH(h)], cl); };
 const geMir=pts=>geP(pts)+' '+geP(pts.map(([x,h])=>[-x,h]));
+const geXY=([x,h])=>[geX(x),geH(h)];
+const geSm2=pts=>gtSmooth(pts,geXY)+' '+gtSmooth(pts.map(([x,h,c])=>[-x,h,c]),geXY);
+const geLn=ls=>ls.map(l=>gtSmooth(l,geXY,false)+' '+gtSmooth(l.map(([x,h])=>[-x,h]),geXY,false)).join(' ');
+const geHex=()=>{ let d=''; const w=34, hh=30; for(let r=0;r<7;r++) for(let c=-20;c<=20;c++){ const cx=c*w+(r%2?w/2:0), cy=90+r*hh*0.85; d+=`M${geX(cx-w*0.42).toFixed(1)} ${geH(cy).toFixed(1)} L${geX(cx-w*0.2).toFixed(1)} ${geH(cy+hh*0.4).toFixed(1)} L${geX(cx+w*0.2).toFixed(1)} ${geH(cy+hh*0.4).toFixed(1)} L${geX(cx+w*0.42).toFixed(1)} ${geH(cy).toFixed(1)} L${geX(cx+w*0.2).toFixed(1)} ${geH(cy-hh*0.4).toFixed(1)} L${geX(cx-w*0.2).toFixed(1)} ${geH(cy-hh*0.4).toFixed(1)} Z`; } return d; };
 function gtBodyF(){ return `
-  <path class="body" d="${geS([[0,712,'c'],[-660,700],[-600,900],[-530,1110],[-450,1172],[0,1188,'c']])}"/>
-  <path class="cockpit" d="${geS([[0,742,'c'],[-600,736],[-545,920],[-482,1108],[-420,1146],[0,1158,'c']])}"/>
-  <path class="body" d="${geS([[0,10,'c'],[-700,10],[-900,30],[-940,150],[-946,420],[-930,560],[-860,640],[-700,690],[-400,712],[0,716,'c']])}"/>
-  <path class="louv" d="${gtSmooth([[-640,690],[-300,700],[300,700],[640,690]],([x,h])=>[geX(x),geH(h)],false)} ${gtSmooth([[-420,560],[-200,600],[200,600],[420,560]],([x,h])=>[geX(x),geH(h)],false)}"/>
-  <path class="gtlite" d="${geS([[-880,470,'c'],[-720,472],[-560,500],[-520,536,'c'],[-600,542],[-860,522,'c']],false)} ${geS([[880,470,'c'],[720,472],[560,500],[520,536,'c'],[600,542],[860,522,'c']],false)}"/>
-  <path class="cockpit" d="${geS([[0,170,'c'],[-430,170],[-485,250],[-445,392],[0,402,'c']])}"/>
-  <path class="louv" d="M${geX(-440)} ${geH(230)} H${geX(440)} M${geX(-455)} ${geH(290)} H${geX(455)} M${geX(-450)} ${geH(350)} H${geX(450)}"/>
-  <path class="cockpit" d="${geMir([[-905,150],[-660,170],[-620,330],[-880,352]])}"/>
-  <path class="pods" d="${geMir([[-990,770],[-890,760],[-880,850],[-982,846]])}"/><path class="arms2" d="M${geX(-885)} ${geH(790)} L${geX(-760)} ${geH(730)} M${geX(885)} ${geH(790)} L${geX(760)} ${geH(730)}"/>
-  <path class="floor2" d="${geS([[0,-25,'c'],[-880,-25],[-905,-5],[-890,12],[0,12,'c']])}"/>`; }
+  <path class="body" d="${geS(GD_F_CAB)}"/>
+  <path class="cockpit" d="${geS(GD_F_GLASS)}"/>
+  <path class="body" d="${geS(GD_F_BODY)}"/>
+  <path class="louv" d="${geLn(GD_F_LINES)}"/>
+  <path class="gtlite" d="${geSm2(GD_F_LAMP)}"/>
+  <clipPath id="gtGrille"><path d="${geS(GD_F_GRILLE)}"/></clipPath>
+  <path class="cockpit" d="${geS(GD_F_GRILLE)}"/>
+  <path class="gthex" d="${geHex()}" clip-path="url(#gtGrille)"/>
+  <path class="cockpit" d="${geSm2(GD_F_INTAKE)}"/>
+  <path class="pods" d="${geSm2(GD_F_MIR)}"/>
+  <path class="floor2" d="${geS(GD_F_SPLIT)}"/>`; }
 function gtDiveF(){ return `<path class="wingp2" d="${geMir([[-955,270],[-800,300],[-800,322],[-955,296]])} ${geMir([[-950,360],[-820,382],[-820,400],[-950,384]])}"/>`; }
-function gtBodyR(){ return `
-  <path class="body" d="${geS([[0,770,'c'],[-600,765],[-540,950],[-470,1110],[-400,1166],[0,1182,'c']])}"/>
-  <path class="cockpit" d="${geS([[0,800,'c'],[-520,795],[-470,960],[-420,1100],[-360,1136],[0,1147,'c']])}"/>
-  <path class="body" d="${geS([[0,10,'c'],[-700,10],[-900,40],[-943,200],[-946,480],[-920,610],[-820,690],[-620,750],[-300,770],[0,772,'c']])}"/>
-  <path class="louv" d="${gtSmooth([[-820,690],[-400,700],[400,700],[820,690]],([x,h])=>[geX(x),geH(h)],false)} M${geX(-520)} ${geH(470)} H${geX(520)} M${geX(-520)} ${geH(470)} L${geX(-560)} ${geH(690)} M${geX(520)} ${geH(470)} L${geX(560)} ${geH(690)}"/>
-  <path class="light" d="${geS([[-912,600,'c'],[-740,618],[-580,640],[-560,682,'c'],[-740,672],[-902,660,'c']],false)} ${geS([[912,600,'c'],[740,618],[580,640],[560,682,'c'],[740,672],[902,660,'c']],false)}"/>
-  <path class="cockpit" d="${geMir([[-935,210],[-800,215],[-790,330],[-930,340]])}"/>
-  <path class="floor2" d="${geS([[0,-5,'c'],[-760,-5],[-745,190],[-640,232],[0,234,'c']])}"/>
-  <path class="arms2" d="M${geX(-450)} ${geH(0)} L${geX(-450)} ${geH(220)} M${geX(-150)} ${geH(0)} L${geX(-150)} ${geH(232)} M${geX(150)} ${geH(0)} L${geX(150)} ${geH(232)} M${geX(450)} ${geH(0)} L${geX(450)} ${geH(220)}"/>
-  <rect class="light" x="${geX(-40)}" y="${geH(150)}" width="${80*GE}" height="5" rx="1"/>`; }
+function gtBodyR(){ const [e1,e2,er]=GD_R_EXH, circ=(x,h,r)=>`M${geX(x-r)} ${geH(h)} a${r*GE} ${r*GE} 0 1 0 ${2*r*GE} 0 a${r*GE} ${r*GE} 0 1 0 ${-2*r*GE} 0 Z`;
+  const ex=[e1,e2].flatMap(([x,h])=>[[x,h],[-x,h]]);
+  return `
+  <path class="body" d="${geS(GD_R_CAB)}"/>
+  <path class="cockpit" d="${geS(GD_R_GLASS)}"/>
+  <path class="body" d="${geS(GD_R_BODY)}"/>
+  <path class="louv" d="${geS(GD_R_TRUNK)} ${geLn(GD_R_LINES)}"/>
+  <path class="light" d="${geSm2(GD_R_LAMP)}"/>
+  <path class="floor2" d="${geS(GD_R_DIFF)}"/>
+  <path class="pods" d="${geP([[GD_R_PLATE[0][0],GD_R_PLATE[0][1]],[-GD_R_PLATE[0][0],GD_R_PLATE[0][1]],[-GD_R_PLATE[3][0],GD_R_PLATE[3][1]],[GD_R_PLATE[3][0],GD_R_PLATE[3][1]]])}"/>
+  <path class="cockpit" d="${geSm2(GD_R_REFL)}"/>
+  <path class="pods" d="${geSm2(GD_R_MIR)}"/>
+  <path class="pods" d="${ex.map(([x,h])=>circ(x,h,er)).join(' ')}"/><path class="cockpit" d="${ex.map(([x,h])=>circ(x,h,er*0.7)).join(' ')}"/>`; }
 function gtWingR(){ return `
-  <path class="gtpyl" d="${gtSmooth([[-280,772],[-285,980],[-270,1200]],([x,h])=>[geX(x),geH(h)],false)} ${gtSmooth([[280,772],[285,980],[270,1200]],([x,h])=>[geX(x),geH(h)],false)}"/>
+  <path class="gtpyl" d="${gtSmooth([[-280,867],[-285,1020],[-270,1200]],([x,h])=>[geX(x),geH(h)],false)} ${gtSmooth([[280,867],[285,1020],[270,1200]],([x,h])=>[geX(x),geH(h)],false)}"/>
   <path class="wingp" d="${geS([[0,1195,'c'],[-400,1192],[-800,1182,'c'],[-800,1236,'c'],[-400,1244],[0,1246,'c']])}"/>
   <path class="wingp2" d="${geP([[-800,1262],[800,1262],[800,1294],[-800,1294]])}"/>
   <path class="wingp" d="${geMir([[-822,1010],[-800,1010],[-800,1360],[-822,1350]])}"/>`; }
@@ -2434,7 +2555,7 @@ function updateVizGT(st, prev){
   });
   const frh=avg2(st.rhF), rrh=avg2(st.rhR), pf=avg2(P.rhF), pr=avg2(P.rhR);
   const cur=gtSideGeom(isFinite(frh)?frh:97, isFinite(rrh)?rrh:156), old=gtSideGeom(isFinite(pf)?pf:97, isFinite(pr)?pr:156);
-  setD(q('sBody'),cur.d); setD(q('gSide'),old.d); setD(q('sCock'),cur.cock); setD(q('sFloor'),cur.floor); setD(q('sFEP'),cur.fep); setD(q('sREP'),cur.rep); setD(q('sLouv'),cur.louv); setD(q('sPyl'),cur.pyl); setD(q('sLiv'),cur.liv); setD(q('sClip'),cur.d); setD(q('sArch'),cur.arch); setD(q('sNum'),cur.num); setD(q('sPil'),cur.pillar); setD(q('sMir'),cur.mir); setD(q('sDiff'),cur.diff);
+  setD(q('sBody'),cur.d); setD(q('gSide'),old.d); setD(q('sCock'),cur.cock); setD(q('sFloor'),cur.floor); setD(q('sFEP'),cur.fep); setD(q('sREP'),cur.rep); setD(q('sLouv'),cur.louv); setD(q('sPyl'),cur.pyl); setD(q('sLiv'),cur.liv); setD(q('sClip'),cur.d); setD(q('sArch'),cur.arch); setD(q('sNum'),cur.num); setD(q('sPil'),cur.pillar); setD(q('sMir'),cur.mir); setD(q('sLampF'),cur.lampF); setD(q('sLampR'),cur.lampR); setD(q('sDiff'),cur.diff);
   q('gSide').style.opacity=(prev&&(Math.abs(frh-pf)>0.01||Math.abs(rrh-pr)>0.01))?1:0;
   q('sBody').classList.toggle('chg', !!(cp('rhF',0)||cp('rhF',1)||cp('rhR',0)||cp('rhR',1)));
   const rwA=num(st.rw); const srw=q('sRW'), sfw=q('sFW');
@@ -2525,14 +2646,14 @@ function gArtGT(){
   return gStage(id, car).replace('<defs>','<defs><linearGradient id="gWhite" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".35" stop-color="#e9edf1"/><stop offset=".7" stop-color="#bfc6cf"/><stop offset="1" stop-color="#8e97a2"/></linearGradient>');
 }
 const G_INFO = {
-  f4:  {sub:'Monoposto · Formula 4', feat:'Pressioni · Setup · Calcolatore', art:gArtF4},
-  gt4: {sub:'Gran Turismo · GT4',     feat:'Pressioni · Setup · Calcolatore',               art:gArtGT}
+  f4:  {sub:'Monoposto · Formula 4', feat:'Pressioni · Setup · Calcolatore · Report', art:gArtF4},
+  gt4: {sub:'Gran Turismo · GT4',     feat:'Pressioni · Setup · Calcolatore · Report',               art:gArtGT}
 };
 function openGarage(){
   const g=document.getElementById('garage'); if(!g) return;
   const logo=(document.getElementById('logoImg')||{}).src||'';
   g.innerHTML=`<div class="ghead">${logo?`<img src="${logo}" alt="" class="glogo">`:''}
-      <div class="gtitle"><h1>Tyres <span>Pressure</span></h1><p>Scegli la vettura con cui lavori oggi</p></div></div>
+      <div class="gtitle"><h1>Engineer <span>Workbook</span></h1><p>Scegli la vettura con cui lavori oggi</p></div></div>
     <div class="gcards">${Object.entries(CARS).map(([k,c])=>{ const img=gImg(k); return `<div class="gwrap">
       <button type="button" class="gcard${S.car===k?' last':''}" data-pick="${k}">
         ${img?`<span class="gstage photo"><img src="${img}" alt="${esc(c.name)}"></span>`:`<span class="gstage">${G_INFO[k].art()}</span>`}
@@ -2761,13 +2882,137 @@ document.addEventListener('click', async e=>{
     S.prefs.trackGeo={...(S.prefs.trackGeo||{}), [track]:p}; await persist('prefs',{...S.prefs, kind:'prefs'}); TV.last[track]=0; toast('Coordinate salvate'); wxFetch(true); }
 });
 document.addEventListener('change', e=>{ if(e.target.id==='tvDate'){ TV.date=e.target.value; render(); } });
+
+
+/* =================== NOTE A VOCE + REPORT DI GIORNATA =================== */
+// --- dettatura note: un pulsante microfono accanto ai campi note (setup e run) ---
+const NOTE={on:false, target:null, sr:null, bound:false};
+function micBtn(target){ return `<button class="btn sm micbtn" type="button" data-dictto="${target}" title="Detta con la voce"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zm-7 9a7 7 0 0 0 14 0M12 19v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Detta</span></button>`; }
+function noteAppend(text){
+  const el=NOTE.target&&document.getElementById(NOTE.target); if(!el||!text) return;
+  let t=text.replace(/\s*\b(a capo|nuova riga)\b[.,]?\s*/gi,'\n').trim(); if(!t) return;
+  const v=el.value, sep=!v?'':(/\n$/.test(v)?'':(el.tagName==='TEXTAREA'&&/[.!?]$/.test(v.trim())?' ':' '));
+  if(!v || /[.!?\n]\s*$/.test(v)) t=t.charAt(0).toUpperCase()+t.slice(1);
+  el.value=v+sep+t; el.dispatchEvent(new Event('input',{bubbles:true}));
+}
+function noteUI(){ document.querySelectorAll('[data-dictto]').forEach(b=>{ const on=NOTE.on&&b.dataset.dictto===NOTE.target; b.classList.toggle('on',on); b.querySelector('span').textContent=on?'Stop':'Detta'; }); }
+function noteStop(){ NOTE.on=false; if(PYD.eng) PYD.eng.stop().catch(()=>{}); if(NOTE.sr){ try{ NOTE.sr.stop(); }catch(e){} NOTE.sr=null; } noteUI(); }
+function noteStart(target){
+  if(PYD.on) pydStop();
+  NOTE.on=true; NOTE.target=target;
+  if(PYD.eng){
+    if(!NOTE.bound){ NOTE.bound=true;
+      PYD.eng.onFinal(({text})=>{ if(NOTE.on) noteAppend(text); });
+      PYD.eng.onState(({state,reason})=>{ if(state==='idle'&&NOTE.on){ NOTE.on=false; if(reason&&!/stopped/.test(reason)) toast(reason==='not_granted'?'Microfono non autorizzato':'Dettatura interrotta'); noteUI(); } }); }
+    PYD.eng.start().catch(err=>{ NOTE.on=false; noteUI(); toast(err&&err.code==='not_granted'?'Microfono non autorizzato':'Dettatura non disponibile'); });
+  } else {
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition; if(!SR){ NOTE.on=false; toast('Dettatura non disponibile in questo browser'); return; }
+    const r=new SR(); r.lang='it-IT'; r.continuous=false; r.interimResults=false;
+    r.onresult=ev=>{ if(r.__done) return; for(let j=0;j<ev.results.length;j++){ const x=ev.results[j]; if(x.isFinal){ r.__done=true; noteAppend(x[0].transcript); break; } } };
+    r.onerror=ev=>{ if(/not-allowed|service-not-allowed/.test(ev.error)){ NOTE.on=false; toast('Microfono non autorizzato'); noteUI(); } };
+    r.onend=()=>{ if(NOTE.on){ r.__done=false; try{ r.start(); }catch(e){ NOTE.on=false; noteUI(); } } };
+    NOTE.sr=r; try{ r.start(); }catch(e){ NOTE.on=false; toast('Dettatura non disponibile'); }
+  }
+  noteUI();
+}
+document.addEventListener('click', e=>{ const b=e.target.closest&&e.target.closest('[data-dictto]'); if(!b) return; e.preventDefault();
+  if(NOTE.on&&NOTE.target===b.dataset.dictto) noteStop(); else { if(NOTE.on) noteStop(); noteStart(b.dataset.dictto); } });
+
+// --- report di giornata ---
+const RP={day:null};
+const lapSec=s=>{ if(!s) return NaN; const t=String(s).trim().replace(/['’]/g,':').replace(',','.'); const p=t.split(':').map(Number); if(p.some(x=>!isFinite(x))) return NaN; return p.length===2?p[0]*60+p[1]:p.length===3?p[0]*3600+p[1]*60+p[2]:p[0]; };
+const lapFmt=x=>{ if(!isFinite(x)) return '–'; const m=Math.floor(x/60), s=x-m*60; return (m?m+':':'')+(m&&s<10?'0':'')+s.toFixed(3); };
+const dayLong=d=>new Date(d+'T12:00:00').toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+const hm=ts=>new Date(ts).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'});
+function repDays(car=S.car){
+  const days={}, key=(d,t)=>d+'|'+t, add=(d,t)=>(days[key(d,t)]=days[key(d,t)]||{date:d, track:t, turni:[], runs:[], events:new Set()});
+  Object.values(S.events||{}).forEach(ev=>{ if((ev.car||'f4')!==car) return; (ev.sessions||[]).forEach((s,i)=>{ if(!s.created) return; const d=ymd(new Date(s.created)), g=add(d,ev.track||'–'); g.turni.push({...s, ev, prev:i>0?ev.sessions[i-1]:null}); g.events.add(ev.name); }); });
+  S.sessions.forEach(s=>{ if(s.car!==car) return; add(ymd(new Date(s.date)), s.track).runs.push(s); });
+  return Object.values(days).map(g=>{ g.turni.sort((a,b)=>a.created-b.created); g.runs.sort((a,b)=>a.date-b.date);
+    const laps=g.turni.map(t=>({t, s:lapSec(t.lap)})).filter(x=>isFinite(x.s)); const best=laps.sort((a,b)=>a.s-b.s)[0];
+    g.best=best?best.s:NaN; g.bestTurn=best?best.t.name:''; g.tyres=[...new Set([...g.runs.map(sesTyre), ...g.turni.map(t=>t.setup&&t.setup.tyre).filter(Boolean)])];
+    g.id=g.date+'|'+g.track; return g; }).sort((a,b)=>b.date.localeCompare(a.date)||a.track.localeCompare(b.track));
+}
+function repChanges(a,b){ if(!a||!b) return []; return diffs(a,b).map(x=>{ const va=x.sd==null?a[x.f.k]:(a[x.f.k]||[])[x.sd], vb=x.sd==null?b[x.f.k]:(b[x.f.k]||[])[x.sd]; return {l:dLabel(x), a:fmtVal(x.f,va), b:fmtVal(x.f,vb)}; }); }
+function renderReport(){
+  useSchema(S.car);
+  const days=repDays(), g=RP.day&&days.find(d=>d.id===RP.day);
+  if(!g) return renderRepList(days);
+  return renderRepDay(g);
+}
+function renderRepList(days){
+  const car=CARS[S.car];
+  return `<div class="panel"><h2>Report di giornata · ${esc(car.name)}</h2>
+    ${days.length?`<div class="replist">${days.map(g=>`<button type="button" class="repcard" data-repday="${esc(g.id)}">
+      <div class="rcd"><b>${new Date(g.date+'T12:00:00').getDate()}</b><span>${new Date(g.date+'T12:00:00').toLocaleDateString('it-IT',{month:'short',year:'numeric'})}</span></div>
+      <div class="rcb"><div class="rct">${esc(g.track)}</div>
+        <div class="rcm">${g.tyres.length?esc(g.tyres.join(' · '))+' · ':''}${g.turni.length} turni · ${g.runs.length} run</div></div>
+      <div class="rcl"><span class="lbl">Best lap</span><b>${lapFmt(g.best)}</b></div></button>`).join('')}</div>`
+    :`<div class="note">Nessuna giornata da mostrare. Il report si crea da solo con i turni del Setup (miglior giro, note, modifiche) e i run di Pressioni dello stesso giorno.</div>`}
+  </div>`;
+}
+function repMiniChart(track,date){
+  const pts=tlPoints(track,date), wx=tlWx(track,date), tt=pts.filter(p=>p.tt!=null), ta=pts.filter(p=>p.ta!=null);
+  const air=wx?Array.from({length:12*4+1},(_,i)=>({m:7*60+i*15})).map(p=>({m:p.m,v:hAt(wx.t,p.m)})).filter(p=>isFinite(p.v)):[];
+  const vals=[...tt.map(p=>p.tt),...ta.map(p=>p.ta),...air.map(p=>p.v)]; if(!vals.length) return '';
+  let x0=8*60,x1=18*60; pts.forEach(p=>{ x0=Math.min(x0,Math.floor(p.m/60)*60); x1=Math.max(x1,Math.ceil(p.m/60)*60); });
+  const W=640,H=190,L=34,R=10,T=10,B=24, y0=Math.floor((Math.min(...vals)-2)/5)*5, y1=Math.max(y0+10,Math.ceil((Math.max(...vals)+2)/5)*5);
+  const X=m=>L+(m-x0)/(x1-x0)*(W-L-R), Y=v=>T+(y1-v)/(y1-y0)*(H-T-B), path=a=>a.map((p,i)=>(i?'L':'M')+X(p.m).toFixed(1)+' '+Y(p.v).toFixed(1)).join('');
+  let s=`<svg viewBox="0 0 ${W} ${H}" class="repchart" role="img" aria-label="Temperature della giornata">`;
+  for(let v=y0;v<=y1;v+=(y1-y0>30?10:5)) s+=`<line class="g" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ax" x="${L-6}" y="${Y(v)+4}" text-anchor="end">${v}</text>`;
+  for(let m=x0;m<=x1;m+=120) s+=`<text class="ax" x="${X(m)}" y="${H-6}" text-anchor="middle">${pad2(m/60)}</text>`;
+  const airIn=air.filter(p=>p.m>=x0&&p.m<=x1);
+  if(airIn.length>1) s+=`<path class="ln ta" d="${path(airIn)}"/>`;
+  if(tt.length>1) s+=`<path class="ln tt" d="${path(tt.map(p=>({m:p.m,v:p.tt})))}"/>`;
+  s+=ta.filter(p=>p.src!=='web').map(p=>`<circle class="dt ta" cx="${X(p.m)}" cy="${Y(p.ta)}" r="4"/>`).join('')+tt.map(p=>`<circle class="dt tt" cx="${X(p.m)}" cy="${Y(p.tt)}" r="4.5"/>`).join('');
+  return s+'</svg>';
+}
+function renderRepDay(g){
+  const car=CARS[S.car], tt=tlPoints(g.track,g.date).filter(p=>p.tt!=null).map(p=>p.tt), taPts=tlPoints(g.track,g.date).filter(p=>p.ta!=null).map(p=>p.ta);
+  const wx=tlWx(g.track,g.date), airW=wx?wx.t.slice(8,19).filter(isFinite):[], airs=[...taPts,...airW];
+  const rng=a=>a.length?`${Math.round(Math.min(...a))}–${Math.round(Math.max(...a))}`:'–';
+  const conds=[...new Set(g.runs.map(r=>CONDS[r.cond]))];
+  const tur=g.turni, first=tur[0], last=tur[tur.length-1];
+  const startSetup=first?(first.prev?first.prev.setup:first.setup):null, endSetup=last?last.setup:null;
+  const total=first&&last&&first!==last||first&&first.prev?repChanges(startSetup,endSetup):[];
+  const chart=repMiniChart(g.track,g.date);
+  const noted=[...tur.filter(t=>(t.notes||'').trim()).map(t=>({when:t.created, who:t.name, txt:t.notes})), ...g.runs.filter(r=>(r.note||'').trim()).map(r=>({when:r.date, who:'Run pressioni', txt:r.note}))].sort((a,b)=>a.when-b.when);
+  return `<article class="panel rep">
+    <div class="rephead"><div><div class="repk">Report giornata</div><h2>${esc(g.track)}</h2>
+      <div class="repsub">${esc(dayLong(g.date))} · ${esc(car.name)}${g.events.size?` · ${[...g.events].map(esc).join(', ')}`:''}${conds.length?` · ${conds.join(', ')}`:''}</div></div>
+      <div class="repact"><button class="btn sm" type="button" data-rep="back">Tutte le giornate</button><button class="btn sm" type="button" data-rep="print">Stampa / PDF</button></div></div>
+    <div class="repkpi">
+      <div class="kp best"><span class="lbl">Best lap</span><b>${lapFmt(g.best)}</b><span>${g.bestTurn?esc(g.bestTurn):'inserisci il miglior giro nei turni'}</span></div>
+      <div class="kp"><span class="lbl">Gomme</span><b class="sm">${g.tyres.length?esc(g.tyres.join(' · ')):'–'}</b><span>${g.runs.length} run pressioni</span></div>
+      <div class="kp"><span class="lbl">Turni</span><b>${tur.length}</b><span>${total.length} modifiche setup in giornata</span></div>
+      <div class="kp"><span class="lbl">T pista / T aria</span><b class="sm">${rng(tt)} / ${rng(airs)} °C</b><span>minimo – massimo</span></div>
+    </div>
+    ${tur.length?`<section class="rsec"><h3>Turni</h3><ol class="rturns">${tur.map(t=>{ const ch=repChanges(t.prev&&t.prev.setup,t.setup), ls=lapSec(t.lap), isBest=isFinite(ls)&&ls===g.best;
+      return `<li><div class="rtime">${hm(t.created)}</div><div class="rbody"><div class="rtop"><b>${esc(t.name)}</b>${t.lap?`<span class="lap ${isBest?'is-best':''}">${esc(t.lap)}</span>`:''}${t.temps?`<span class="muted">${esc(t.temps)} °C</span>`:''}${t.setup&&t.setup.tyre?`<span class="chip">${esc(t.setup.tyre)}</span>`:''}</div>
+        ${ch.length?`<div class="rchg">${ch.slice(0,8).map(c=>`<span><i>${esc(c.l)}</i> ${c.a} → <b>${c.b}</b></span>`).join('')}${ch.length>8?`<span class="muted">+${ch.length-8} altre</span>`:''}</div>`:`<div class="muted rnone">${t.prev?'nessuna modifica':'setup di partenza'}</div>`}
+        ${(t.notes||'').trim()?`<div class="rnote">${(()=>{ const n=t.notes.trim(), l=n.split('\n')[0], cut=l.length>160?l.slice(0,160):l; return esc(cut)+(cut!==n?' …':''); })()}</div>`:''}</div></li>`; }).join('')}</ol></section>`:''}
+    ${g.runs.length?`<section class="rsec"><h3>Pressioni</h3><div class="tbl-wrap"><table class="rtab"><thead><tr><th>Ora</th><th>Gomme</th><th>T pista</th><th>Freddo AS · AD / PS · PD</th><th>Caldo</th><th>Scarto dal target</th></tr></thead><tbody>
+      ${g.runs.map(r=>`<tr><td>${hm(r.date)}</td><td>${esc(sesTyre(r))}</td><td>${f1(r.tt)}</td><td class="num">${f2(r.cold[0])} · ${f2(r.cold[1])} / ${f2(r.cold[2])} · ${f2(r.cold[3])}</td><td class="num">${f2(r.hot[0])} · ${f2(r.hot[1])} / ${f2(r.hot[2])} · ${f2(r.hot[3])}</td><td>${r.hot.map((v,i)=>`<span class="chip ${tol(v-r.target[i])}">${sgn(v-r.target[i])}</span>`).join(' ')}</td></tr>`).join('')}
+      </tbody></table></div>
+      ${g.runs.filter(r=>r.pyro).map(r=>`<div class="rpyro"><div class="lbl">Temperature battistrada · run delle ${hm(r.date)}</div>${pyroMatrix(r.pyro.map(t=>pyroEval(t.map(x=>x==null?NaN:x))))}</div>`).join('')}</section>`:''}
+    ${chart?`<section class="rsec"><h3>Temperature</h3><div class="tvlegend"><span><i class="sw tt"></i>T pista</span><span><i class="sw ta"></i>T aria</span></div><div class="tvchart rch">${chart}</div></section>`:''}
+    ${total.length?`<section class="rsec"><h3>Setup · inizio → fine giornata</h3><div class="tbl-wrap"><table class="rtab"><thead><tr><th>Parametro</th><th>Inizio</th><th>Fine</th></tr></thead><tbody>${total.map(c=>`<tr><td>${esc(c.l)}</td><td>${c.a}</td><td><b>${c.b}</b></td></tr>`).join('')}</tbody></table></div></section>`:''}
+    ${noted.length?`<section class="rsec"><h3>Note e feedback pilota</h3>${noted.map(n=>`<div class="rfeed"><div class="rtime">${hm(n.when)}<br><span>${esc(n.who)}</span></div><div>${esc(n.txt).replace(/\n/g,'<br>')}</div></div>`).join('')}</section>`:''}
+  </article>`;
+}
+document.addEventListener('click', e=>{
+  const d=e.target.closest&&e.target.closest('[data-repday],[data-rep]'); if(!d) return;
+  if(d.dataset.repday){ RP.day=d.dataset.repday; render(); window.scrollTo({top:0}); }
+  else if(d.dataset.rep==='back'){ RP.day=null; render(); }
+  else if(d.dataset.rep==='print'){ window.print(); }
+});
 /* ---------- backup e installazione (versione app) ---------- */
 document.addEventListener('click', e=>{
   if(e.target.id!=='expData') return;
   const data={app:'tyres-pressure', version:2, exported:new Date().toISOString(), docs:lsGet('pg_docs',{})};
   const blob=new Blob([JSON.stringify(data,null,1)],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-  a.download='tyres-pressure-backup-'+new Date().toISOString().slice(0,10)+'.json';
+  a.download='engineer-workbook-backup-'+new Date().toISOString().slice(0,10)+'.json';
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);
   toast('Backup esportato');
 });
@@ -2778,7 +3023,7 @@ document.addEventListener('change', e=>{
       const d=JSON.parse(fr.result); if(!d.docs || typeof d.docs!=='object') throw 0;
       const all={...lsGet('pg_docs',{}), ...d.docs}; lsSet('pg_docs',all); ingest(all);
       const v=Object.values(d.docs); toast('Backup importato: '+v.filter(x=>x&&x.kind==='session').length+' run, '+v.filter(x=>x&&x.kind==='event').length+' eventi');
-    }catch(err){ toast('File non valido: scegli un backup di Tyres Pressure'); } };
+    }catch(err){ toast('File non valido: scegli un backup di Engineer Workbook'); } };
   fr.readAsText(e.target.files[0]); e.target.value='';
 });
 try{ navigator.storage && navigator.storage.persist && navigator.storage.persist(); }catch(e){}
