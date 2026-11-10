@@ -255,7 +255,7 @@ figcaption{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:
 @media (prefers-reduced-motion:reduce){.viz *{transition:none!important}}
 /* vettura stilizzata F4 */
 .viz .wingp2{fill:var(--accent-2);fill-opacity:.7}
-.viz .wingp.ep{fill-opacity:.35} .viz .louv{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-opacity:.7} .v-side .floor2,.v-side .louv,.v-side .pods,.v-side .cockpit,.v-side .halo{transition:d .45s cubic-bezier(.3,.7,.2,1)}
+.viz .wingp.ep{fill-opacity:.35} .viz .gtliv{fill:var(--accent);fill-opacity:.55} .viz .gtlite{fill:#dfe8f2;fill-opacity:.85} .viz .gtxray>.body,.viz .gtxray>.pods{fill-opacity:.78} .viz .gtxray>.cockpit{fill-opacity:.85} .viz .gtxrayT>.body{fill-opacity:.5} .viz .gtxrayT>.cockpit,.viz .gtxrayT>.pods{fill-opacity:.7} .viz .gtarch{fill:#03070d} .viz .gtnum{fill:#e9eef4;fill-opacity:.85;stroke:#0b0f15;stroke-width:.6} .viz .gtpil{fill:none;stroke:var(--surface-2);stroke-width:2.4} .viz .gtpyl{fill:none;stroke:#0b0f15;stroke-width:2.2;stroke-linecap:round} .viz .louv{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-opacity:.7} .v-side .floor2,.v-side .louv,.v-side .pods,.v-side .cockpit,.v-side .halo{transition:d .45s cubic-bezier(.3,.7,.2,1)}
 .viz .floor2{fill:#0a1a33;stroke:var(--line);stroke-width:1}
 .viz .stripe{fill:none;stroke:var(--accent);stroke-width:2;stroke-opacity:.8}
 .viz .airbox{fill:var(--surface-2);stroke:var(--accent);stroke-width:1.2}
@@ -333,7 +333,7 @@ body.garage-open{overflow:hidden}
       <div class="logo"><img id="logoImg" alt="Motorsport Performance Academy" src="data:image/png;base64,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"></div>
       <div class="titlebar">
         <h1>Tyres <span>Pressure</span></h1>
-        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 10/11 · 16:00</div>
+        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 10/11 · 16:40</div>
       </div>
       <div class="teamsw" role="group" aria-label="Team">
         <button type="button" data-team="mpa" aria-pressed="true">MPA</button>
@@ -1933,9 +1933,23 @@ document.addEventListener('click', e=>{ const b=e.target.closest && e.target.clo
 // Vista dall'alto: 0,1 px/mm, muso (splitter) a y=26. [dx, x dal muso] mm, lato sinistro.
 const gtY=mm=>26+mm*0.1, gtX=dx=>150+dx*0.1, GT_FA=GT.ovF, GT_RA=GT.ovF+GT.L;
 const gtMirror=half=>{ const L=half.map(([dx,y])=>`${gtX(dx).toFixed(1)} ${gtY(y).toFixed(1)}`), R=half.slice().reverse().map(([dx,y])=>`${gtX(-dx).toFixed(1)} ${gtY(y).toFixed(1)}`); return 'M'+L.join(' L')+' L'+R.join(' L')+' Z'; };
-const GT_TOP_BODY=[[0,40],[-420,52],[-760,95],[-880,180],[-925,400],[-943,700],[-943,1150],[-915,1550],[-895,1850],[-900,2400],[-930,2950],[-943,3400],[-943,3950],[-925,4300],[-870,4600],[-760,4760],[-520,4800],[0,4806]];
-const GT_TOP_GLASS=[[-640,1720],[-700,1980],[-690,2300],[-660,3150],[-640,3600],[-560,3820]];
-const GT_TOP_ROOF=[[-600,2300],[-610,3150]];
+// Vista dall'alto: [dx, y dal muso dello splitter] mm, lato sinistro (dx<0) dal centro anteriore al centro posteriore
+const gtSmT=half=>{ const full=half.concat(half.slice(1,-1).reverse().map(([x,y,c])=>[-x,y,c])); return gtSmooth(full, ([x,y])=>[gtX(x),gtY(y)]); };
+const GT_TOP_BODY=[[0,69,'c'],[-360,78],[-660,112],[-840,190],[-915,330],[-940,520],[-946,860],[-940,1150],[-912,1420],[-898,1750],[-902,2350],[-928,2900],[-946,3350],[-946,3950],[-932,4280],[-892,4540],[-800,4700],[-600,4800],[-260,4840],[0,4842,'c']];
+const GT_TOP_SPLIT=[[0,0,'c'],[-600,8],[-880,60],[-905,150],[-860,260],[0,260,'c']];
+const GT_TOP_GREEN=[[0,1780,'c'],[-560,1800],[-760,1880],[-735,2300],[-735,3180],[-700,3620],[-560,3860],[0,3900,'c']];
+const GT_TOP_ROOF=[[0,2280,'c'],[-560,2300],[-610,2700],[-600,3200],[-520,3300],[0,3310,'c']];
+function GT_TOP_LINES(){
+  const L=(a)=>gtSmooth(a, ([x,y])=>[gtX(x),gtY(y)], false);
+  return [L([[-520,260],[-560,800],[-600,1400],[-660,1790]]), L([[520,260],[560,800],[600,1400],[660,1790]]),
+          L([[-180,350],[-160,1000],[-150,1760]]), L([[180,350],[160,1000],[150,1760]]),
+          L([[-720,3980],[-300,4000],[300,4000],[720,3980]]), L([[-760,4520],[0,4560],[760,4520]]),
+          L([[-900,1300],[-880,2400]]), L([[900,1300],[880,2400]])].join(' ');
+}
+function GT_TOP_VENTS(){
+  const v=(x1,x2,y1,y2)=>`M${gtX(x1)} ${gtY(y1)} L${gtX(x2)} ${gtY(y1+40)} L${gtX(x2)} ${gtY(y2)} L${gtX(x1)} ${gtY(y2-40)} Z`;
+  return [v(-470,-230,700,1050), v(470,230,700,1050), v(-760,-640,1250,1520), v(760,640,1250,1520)].join(' ');
+}
 function carSVGsGT(){
   const GOTO={FL:'sf_rhF_0',FR:'sf_rhF_1',RL:'sf_rhR_0',RR:'sf_rhR_1'};
   const wheel=(k,x,y,w,h)=>`<rect class="ghost" id="g${k}" x="${(x-w/2).toFixed(1)}" y="${(y-h/2).toFixed(1)}" width="${w}" height="${h}" rx="6"/>
@@ -1951,21 +1965,25 @@ function carSVGsGT(){
   const top = `<svg viewBox="0 0 300 560" class="v-top" role="img" aria-label="GT vista dall'alto">
     <defs><linearGradient id="bodyGgt" x1="0" x2="1"><stop offset="0" class="s1"/><stop offset=".5" class="s2"/><stop offset="1" class="s1"/></linearGradient></defs>
     <g class="arms"><path d="${arms}"/></g>
-    <g class="tap" data-goto="sf_dive"><title>Modifica dive plane</title><path class="wingp ep" d="M${gtX(-905)} ${gtY(0)} L${gtX(905)} ${gtY(0)} L${gtX(905)} ${gtY(70)} L${gtX(-905)} ${gtY(70)} Z"/></g>
-    <path class="body" style="fill:var(--surface-2)" d="${gtMirror(GT_TOP_BODY)}"/>
-    <path class="body" fill="url(#bodyGgt)" d="${gtMirror(GT_TOP_BODY)}"/>
-    <path class="cockpit" d="${gtMirror([[-640,1720],[-700,1990],[-610,2260]])}"/>
-    <path class="pods" d="${gtMirror([[-610,2260],[-640,2700],[-620,3150]])}"/>
-    <path class="cockpit" d="${gtMirror([[-620,3150],[-640,3600],[-560,3820]])}"/>
-    <path class="louv" d="M${gtX(-260)} ${gtY(500)} L${gtX(-200)} ${gtY(1250)} M${gtX(260)} ${gtY(500)} L${gtX(200)} ${gtY(1250)} M${gtX(-120)} ${gtY(700)} L${gtX(120)} ${gtY(700)} M${gtX(-130)} ${gtY(900)} L${gtX(130)} ${gtY(900)} M${gtX(-500)} ${gtY(3950)} L${gtX(500)} ${gtY(3950)}"/>
-    <path class="pods" d="M${gtX(-1000)} ${gtY(1780)} L${gtX(-930)} ${gtY(1760)} L${gtX(-930)} ${gtY(1880)} L${gtX(-1000)} ${gtY(1870)} Z M${gtX(1000)} ${gtY(1780)} L${gtX(930)} ${gtY(1760)} L${gtX(930)} ${gtY(1880)} L${gtX(1000)} ${gtY(1870)} Z"/>
+    <g class="tap" data-goto="sf_dive"><title>Modifica dive plane</title><path class="floor2" d="${gtSmT(GT_TOP_SPLIT)}"/>
+      <path class="wingp2" id="tDive" d="M${gtX(-930)} ${gtY(300)} L${gtX(-1000)} ${gtY(330)} L${gtX(-990)} ${gtY(380)} L${gtX(-930)} ${gtY(370)} Z M${gtX(930)} ${gtY(300)} L${gtX(1000)} ${gtY(330)} L${gtX(990)} ${gtY(380)} L${gtX(930)} ${gtY(370)} Z"/></g>
     ${wheel('FL',150-xF,yF,tw,td)}${wheel('FR',150+xF,yF,tw,td)}${wheel('RL',150-xR,yR,tw,td)}${wheel('RR',150+xR,yR,tw,td)}
+    <g class="gtxrayT">
+    <path class="body" style="fill:var(--surface-2)" d="${gtSmT(GT_TOP_BODY)}"/>
+    <path class="body" fill="url(#bodyGgt)" d="${gtSmT(GT_TOP_BODY)}"/>
+    <path class="louv" d="${GT_TOP_LINES()}"/>
+    <path class="cockpit" d="${gtSmT(GT_TOP_GREEN)}"/>
+    <path class="pods" d="${gtSmT(GT_TOP_ROOF)}"/>
+    <path class="cockpit" d="${GT_TOP_VENTS()}"/>
+    <path class="pods" d="M${gtX(-930)} ${gtY(1840)} L${gtX(-1010)} ${gtY(1870)} L${gtX(-1000)} ${gtY(1960)} L${gtX(-925)} ${gtY(1950)} Z M${gtX(930)} ${gtY(1840)} L${gtX(1010)} ${gtY(1870)} L${gtX(1000)} ${gtY(1960)} L${gtX(925)} ${gtY(1950)} Z"/>
+    </g>
     <path class="louv" d="${arch(yF,GT.trackF/2*1)} ${arch(yR,GT.trackR/2*1)}" style="stroke-opacity:.9"/>
     <g class="tap" data-goto="sf_rw"><title>Modifica ala posteriore</title>
-      <path class="arms2" d="M${gtX(-260)} ${gtY(4560)} L${gtX(-260)} ${gtY(4700)} M${gtX(260)} ${gtY(4560)} L${gtX(260)} ${gtY(4700)}"/>
-      <path class="wingp ep" d="M${gtX(-790)} ${gtY(4560)} H${gtX(790)} V${gtY(4862)} H${gtX(-790)} Z"/>
-      <path class="wingp" d="M${gtX(-790)} ${gtY(4560)} H${gtX(790)} V${gtY(4700)} H${gtX(-790)} Z"/><path class="wingp2" d="M${gtX(-790)} ${gtY(4760)} H${gtX(790)} V${gtY(4862)} H${gtX(-790)} Z"/>
-      <rect class="wingp" x="${gtX(-806)}" y="${gtY(4520)}" width="2.4" height="38"/><rect class="wingp" x="${gtX(790)}" y="${gtY(4520)}" width="2.4" height="38"/></g>
+      <path class="gtpyl" d="M${gtX(-280)} ${gtY(4420)} L${gtX(-280)} ${gtY(4640)} M${gtX(280)} ${gtY(4420)} L${gtX(280)} ${gtY(4640)}"/>
+      <path class="wingp ep" d="M${gtX(-800)} ${gtY(4560)} Q150 ${gtY(4530)} ${gtX(800)} ${gtY(4560)} L${gtX(800)} ${gtY(4862)} L${gtX(-800)} ${gtY(4862)} Z"/>
+      <path class="wingp" d="M${gtX(-800)} ${gtY(4560)} Q150 ${gtY(4530)} ${gtX(800)} ${gtY(4560)} L${gtX(800)} ${gtY(4700)} Q150 ${gtY(4675)} ${gtX(-800)} ${gtY(4700)} Z"/>
+      <path class="wingp2" d="M${gtX(-800)} ${gtY(4760)} H${gtX(800)} V${gtY(4855)} H${gtX(-800)} Z"/>
+      <rect class="wingp" x="${gtX(-822)}" y="${gtY(4500)}" width="2.2" height="38"/><rect class="wingp" x="${gtX(800)}" y="${gtY(4500)}" width="2.2" height="38"/></g>
     <text class="vt" id="tFL" x="6" y="${yF+50}" text-anchor="start"></text><text class="vt" id="tFR" x="294" y="${yF+50}" text-anchor="end"></text>
     <text class="vt" id="tRL" x="6" y="${yR+50}" text-anchor="start"></text><text class="vt" id="tRR" x="294" y="${yR+50}" text-anchor="end"></text>
     <text class="vt big" id="tWB" x="150" y="552" text-anchor="middle"></text>
@@ -1975,10 +1993,17 @@ function carSVGsGT(){
     <path class="ghost" id="gSide" d=""/>
     <path class="floor2" id="sFloor" d=""/>
     <path class="body" id="sBody" d=""/>
-    <path class="cockpit" id="sCock" d=""/>
+    <clipPath id="gtClip"><path id="sClip" d=""/></clipPath>
+    <path class="gtliv" id="sLiv" d="" clip-path="url(#gtClip)"/>
+    <path class="gtarch" id="sArch" d=""/>
     <path class="louv" id="sLouv" d=""/>
+    <path class="gtnum" id="sNum" d=""/>
+    <path class="cockpit" id="sCock" d=""/>
+    <path class="gtpil" id="sPil" d=""/>
+    <path class="pods" id="sMir" d=""/>
+    <path class="floor2" id="sDiff" d=""/>
     <path class="wingp ep" id="sFEP" d=""/>
-    <path class="arms2" id="sPyl" d=""/>
+    <path class="gtpyl" id="sPyl" d=""/>
     <path class="wingp ep" id="sREP" d=""/>
     <g id="sRW" class="tap" data-goto="sf_rw"><title>Modifica ala posteriore</title><path class="wingp2" d="M-14 0 C-6 -4 6 -4 14 -1 L14 1.8 C6 0 -6 1.8 -14 2.2 Z"/></g>
     <g id="sFW" class="tap" data-goto="sf_dive"><title>Modifica dive plane</title><path class="wingp2" d="M-4 0 L5 -1.5 L5 0.6 L-4 1.6 Z"/></g>
@@ -2004,19 +2029,52 @@ function gtSideWheel(cx){ const r=GT_R*GS, cy=186-r;
     ${[0,72,144,216,288].map(a=>`<line class="spk" x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${(cx+Math.cos(a*Math.PI/180)*r*0.64).toFixed(1)}" y2="${(cy+Math.sin(a*Math.PI/180)*r*0.64).toFixed(1)}"/>`).join('')}
     <circle class="hub" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(r*0.16).toFixed(1)}"/></g>`; }
 const GT_OFF=GT.ovF-GT.ovFbody; // splitter davanti al corpo
-const GT_SIDE_BODY=[[0,215],[-6,300],[12,420],[80,530],[280,600],[680,655],[1200,715],[1760,785],[2080,1040],[2380,1170],[2700,1180],[3080,1120],[3500,990],[3900,920],[4260,900],[4520,880],[4660,845],[4745,720],[4790,560],[4780,380],[4710,250],[4560,195],[4300,170],[3300,165],[1500,165],[900,180],[400,195],[120,205]];
-const GT_SIDE_GLASS=[[1835,805],[2105,1030],[2390,1150],[2700,1158],[3060,1100],[3400,985],[3300,895],[2620,872],[1930,826]];
+// Profilo GT generico sulle quote del manuale: [x dal frontale del corpo, h da terra] mm; 'c' = spigolo (non smussato)
+const GT_SIDE_BODY=[[0,250,'c'],[-8,330],[0,430],[40,510],[150,580],[400,632],[800,676],[1300,724],[1760,792,'c'],[2000,958],[2250,1150],[2450,1248],[2700,1290],[2950,1280],[3250,1206],[3600,1070],[3880,978],[4100,946],[4400,930],[4560,936,'c'],[4610,900],[4700,838],[4770,720],[4795,560],[4790,400],[4760,300],[4700,232,'c'],[4500,202],[4250,186,'c'],[3330,180,'c'],[1290,180,'c'],[400,206],[120,216],[30,232]];
+const GT_SIDE_GLASS=[[1840,818,'c'],[2050,975],[2280,1155],[2460,1228],[2700,1256],[2950,1244],[3230,1174],[3480,1040],[3610,972,'c'],[3380,938],[2700,905],[1960,852,'c']];
+const GT_SIDE_LIV=[[300,420],[1500,470],[3200,600],[4690,700],[4690,780],[3200,690],[1500,548],[300,486]];
+function gtSmooth(pts, toXY, closed=true){
+  // Catmull-Rom → Bézier, con spigoli dove indicato
+  const P=pts.map(p=>({xy:toXY(p), c:p[2]==='c'})), n=P.length, g=i=>P[(i+n)%n];
+  let d=`M${P[0].xy[0].toFixed(1)} ${P[0].xy[1].toFixed(1)}`;
+  const last=closed?n:n-1;
+  for(let i=0;i<last;i++){
+    const p0=closed?g(i-1):P[Math.max(0,i-1)], p1=g(i), p2=g(i+1), p3=closed?g(i+2):P[Math.min(n-1,i+2)];
+    const t=0.18;
+    const c1=p1.c?p1.xy:[p1.xy[0]+(p2.xy[0]-p0.xy[0])*t, p1.xy[1]+(p2.xy[1]-p0.xy[1])*t];
+    const c2=p2.c?p2.xy:[p2.xy[0]-(p3.xy[0]-p1.xy[0])*t, p2.xy[1]-(p3.xy[1]-p1.xy[1])*t];
+    d+=` C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2.xy[0].toFixed(1)} ${p2.xy[1].toFixed(1)}`;
+  }
+  return d+(closed?' Z':'');
+}
 function gtSideGeom(frh, rrh){
   // spostamento verticale ingrandito rispetto alla base di consegna 97 / 156 mm
   const K=0.35, oF=(frh-97)*K, oR=(rrh-156)*K, xF=gsX(GT_FA), xR=gsX(GT_RA);
   const off=x=> oF+(oR-oF)*(x-xF)/(xR-xF);
-  const P=([m,h])=>{ const x=gsX(m+GT_OFF); return `${x.toFixed(1)} ${(186-h*GS-off(x)).toFixed(1)}`; };
+  const XY=([m,h])=>{ const x=gsX(m+GT_OFF); return [x, 186-h*GS-off(x)]; };
+  const P=p=>{ const [x,y]=XY(p); return `${x.toFixed(1)} ${y.toFixed(1)}`; };
   const path=(a,cl=true)=>'M'+a.map(P).join(' L')+(cl?' Z':'');
+  const sm=(a,cl=true)=>gtSmooth(a,XY,cl);
+  const arch=(cx,r,hc)=>{ const dx=Math.sqrt(r*r-(340-hc)**2); return `M${P([cx-dx,hc])} A${(r*GS).toFixed(1)} ${(r*GS).toFixed(1)} 0 1 1 ${P([cx+dx,hc])} Z`; };
+  const flare=(cx,r,hc)=>{ const dx=Math.sqrt(r*r-(340-hc)**2); return `M${P([cx-dx,hc])} A${(r*GS).toFixed(1)} ${(r*GS).toFixed(1)} 0 1 1 ${P([cx+dx,hc])}`; };
+  const fa=GT.ovFbody, ra=GT.ovFbody+GT.L;
   const y=x=>186-off(x);
-  return { d:path(GT_SIDE_BODY), cock:path(GT_SIDE_GLASS), floor:path([[1250,165],[3300,160],[3300,215],[1260,222]]),
-    fep:path([[-69,150],[760,150],[760,195],[-40,205]]), louv:path([[500,560],[2200,610],[3550,720]],false)+' '+path([[1720,845],[1650,330]],false)+' '+path([[2600,870],[2620,330]],false),
-    rep:path([[4680,1220],[4730,1220],[4730,1390],[4680,1390]]), pyl:path([[4180,905],[4300,1180],[4360,1310]],false),
-    y, rw:[gsX(4390+GT_OFF), y(gsX(4390+GT_OFF))-1340*GS], fw:[gsX(60+GT_OFF), y(gsX(60+GT_OFF))-330*GS] };
+  return { d:sm(GT_SIDE_BODY), cock:sm(GT_SIDE_GLASS),
+    arch:arch(fa,392,178)+' '+arch(ra,396,178),
+    liv:sm(GT_SIDE_LIV),
+    num:path([[2060,450],[2500,450],[2500,720],[2060,720]]),
+    mir:path([[1860,868],[2020,880],[2012,938],[1866,930]])+' '+path([[1930,868],[1960,868],[1985,840],[1950,838]]),
+    floor:path([[1290,176],[3330,170],[3330,226],[1300,236]]),
+    fep:path([[-69,92],[760,92],[760,132],[-40,150]]),
+    diff:path([[4380,178],[4800,178],[4800,330],[4720,330],[4560,212]]),
+    louv:[flare(fa,440,250), flare(ra,446,250), sm([[350,560],[1500,602],[3000,690],[4300,760]],false),
+      path([[1690,800],[1640,330]],false), path([[2960,890],[2990,330]],false), path([[1640,330],[2990,330]],false),
+      path([[1290,430],[1350,560]],false), path([[1340,430],[1400,560]],false), path([[1390,430],[1450,560]],false),
+      path([[4600,200],[4630,320]],false), path([[4690,200],[4715,320]],false), path([[180,110],[180,140]],false), path([[420,104],[420,136]],false)].join(' '),
+    pillar:path([[2640,905],[2610,1252]],false),
+    rep:path([[4190,1225],[4660,1245],[4660,1385],[4250,1375]]),
+    pyl:sm([[4200,940],[4270,1100],[4330,1230],[4380,1330]],false),
+    y, rw:[gsX(4430+GT_OFF), y(gsX(4430+GT_OFF))-1345*GS], fw:[gsX(60+GT_OFF), y(gsX(60+GT_OFF))-330*GS] };
 }
 // Viste frontale e posteriore: 0,13 px/mm; corpo in coordinate [dx, h dal piano di riferimento]
 const GE=0.13, geX=dx=>150+dx*GE, geH=h=>-h*GE;
@@ -2025,42 +2083,51 @@ const geM=pts=>pts.concat(pts.slice().reverse().map(([x,h])=>[-x,h]));
 const GT_END={ F:{track:GT.trackF, rh0:97, up:[[560,620],[690,520]], lo:[[380,120],[700,175]], pr:[[690,460],[560,640]]},
                R:{track:GT.trackR, rh0:156, up:[[420,380],[700,470]], lo:[[380,90],[720,170]], pr:[[700,260],[430,250]]} };
 const GT_LIFT=(ax,h)=>{ const d=GT_END[ax].rh0; return Math.max(0, d*GE + ((isFinite(h)?h:d)-d)*0.5); };
+// Fronte e retro: sagome GT generiche (nessun elemento di stile BMW); [dx, h dal piano di riferimento] mm
+const geS=(half,cl=true)=>{ const full=cl?half.concat(half.slice(1,-1).reverse().map(([x,h,c])=>[-x,h,c])):half; return gtSmooth(full, ([x,h])=>[geX(x),geH(h)], cl); };
+const geMir=pts=>geP(pts)+' '+geP(pts.map(([x,h])=>[-x,h]));
 function gtBodyF(){ return `
-  <path class="body" d="${geP(geM([[-930,20],[-943,380],[-905,540],[-760,610],[-420,640]]))}"/>
-  <path class="cockpit" d="${geP(geM([[-650,640],[-520,1060],[-300,1110]]))}"/>
-  <path class="pods" d="${geP(geM([[-520,1060],[-470,1130],[-200,1150]]))}"/>
-  <path class="cockpit" d="${geP(geM([[-600,170],[-640,360],[-200,380]]))}"/>
-  <path class="light" d="${geP([[-880,450],[-600,470],[-620,510],[-870,500]])} ${geP([[880,450],[600,470],[620,510],[870,500]])}" style="fill:#dfe8f2;opacity:.85"/>
-  <path class="pods" d="${geP([[-1000,780],[-930,780],[-930,860],[-1000,850]])} ${geP([[1000,780],[930,780],[930,860],[1000,850]])}"/>
-  <path class="wingp ep" d="${geP([[-905,-30],[905,-30],[905,10],[-905,10]])}"/>`; }
-function gtDiveF(){ return `<path class="wingp2" d="${geP([[-940,300],[-780,330],[-780,350],[-940,330]])} ${geP([[940,300],[780,330],[780,350],[940,330]])}"/>`; }
+  <path class="body" d="${geS([[0,712,'c'],[-660,700],[-600,900],[-530,1110],[-450,1172],[0,1188,'c']])}"/>
+  <path class="cockpit" d="${geS([[0,742,'c'],[-600,736],[-545,920],[-482,1108],[-420,1146],[0,1158,'c']])}"/>
+  <path class="body" d="${geS([[0,10,'c'],[-700,10],[-900,30],[-940,150],[-946,420],[-930,560],[-860,640],[-700,690],[-400,712],[0,716,'c']])}"/>
+  <path class="louv" d="${gtSmooth([[-640,690],[-300,700],[300,700],[640,690]],([x,h])=>[geX(x),geH(h)],false)} ${gtSmooth([[-420,560],[-200,600],[200,600],[420,560]],([x,h])=>[geX(x),geH(h)],false)}"/>
+  <path class="gtlite" d="${geS([[-880,470,'c'],[-720,472],[-560,500],[-520,536,'c'],[-600,542],[-860,522,'c']],false)} ${geS([[880,470,'c'],[720,472],[560,500],[520,536,'c'],[600,542],[860,522,'c']],false)}"/>
+  <path class="cockpit" d="${geS([[0,170,'c'],[-430,170],[-485,250],[-445,392],[0,402,'c']])}"/>
+  <path class="louv" d="M${geX(-440)} ${geH(230)} H${geX(440)} M${geX(-455)} ${geH(290)} H${geX(455)} M${geX(-450)} ${geH(350)} H${geX(450)}"/>
+  <path class="cockpit" d="${geMir([[-905,150],[-660,170],[-620,330],[-880,352]])}"/>
+  <path class="pods" d="${geMir([[-990,770],[-890,760],[-880,850],[-982,846]])}"/><path class="arms2" d="M${geX(-885)} ${geH(790)} L${geX(-760)} ${geH(730)} M${geX(885)} ${geH(790)} L${geX(760)} ${geH(730)}"/>
+  <path class="floor2" d="${geS([[0,-25,'c'],[-880,-25],[-905,-5],[-890,12],[0,12,'c']])}"/>`; }
+function gtDiveF(){ return `<path class="wingp2" d="${geMir([[-955,270],[-800,300],[-800,322],[-955,296]])} ${geMir([[-950,360],[-820,382],[-820,400],[-950,384]])}"/>`; }
 function gtBodyR(){ return `
-  <path class="body" d="${geP(geM([[-935,40],[-943,450],[-900,620],[-720,690],[-480,710]]))}"/>
-  <path class="cockpit" d="${geP(geM([[-560,720],[-470,1040],[-260,1080]]))}"/>
-  <path class="pods" d="${geP(geM([[-470,1040],[-430,1130],[-200,1150]]))}"/>
-  <path class="light" d="${geP([[-900,600],[-600,640],[-600,670],[-890,640]])} ${geP([[900,600],[600,640],[600,670],[890,640]])}"/>
-  <path class="floor2" d="${geP([[-720,0],[720,0],[700,170],[-700,170]])}"/>
-  <path class="arms2" d="M${geX(-420)} 0 L${geX(-420)} ${geH(170)} M${geX(-140)} 0 L${geX(-140)} ${geH(170)} M${geX(140)} 0 L${geX(140)} ${geH(170)} M${geX(420)} 0 L${geX(420)} ${geH(170)}"/>`; }
+  <path class="body" d="${geS([[0,770,'c'],[-600,765],[-540,950],[-470,1110],[-400,1166],[0,1182,'c']])}"/>
+  <path class="cockpit" d="${geS([[0,800,'c'],[-520,795],[-470,960],[-420,1100],[-360,1136],[0,1147,'c']])}"/>
+  <path class="body" d="${geS([[0,10,'c'],[-700,10],[-900,40],[-943,200],[-946,480],[-920,610],[-820,690],[-620,750],[-300,770],[0,772,'c']])}"/>
+  <path class="louv" d="${gtSmooth([[-820,690],[-400,700],[400,700],[820,690]],([x,h])=>[geX(x),geH(h)],false)} M${geX(-520)} ${geH(470)} H${geX(520)} M${geX(-520)} ${geH(470)} L${geX(-560)} ${geH(690)} M${geX(520)} ${geH(470)} L${geX(560)} ${geH(690)}"/>
+  <path class="light" d="${geS([[-912,600,'c'],[-740,618],[-580,640],[-560,682,'c'],[-740,672],[-902,660,'c']],false)} ${geS([[912,600,'c'],[740,618],[580,640],[560,682,'c'],[740,672],[902,660,'c']],false)}"/>
+  <path class="cockpit" d="${geMir([[-935,210],[-800,215],[-790,330],[-930,340]])}"/>
+  <path class="floor2" d="${geS([[0,-5,'c'],[-760,-5],[-745,190],[-640,232],[0,234,'c']])}"/>
+  <path class="arms2" d="M${geX(-450)} ${geH(0)} L${geX(-450)} ${geH(220)} M${geX(-150)} ${geH(0)} L${geX(-150)} ${geH(232)} M${geX(150)} ${geH(0)} L${geX(150)} ${geH(232)} M${geX(450)} ${geH(0)} L${geX(450)} ${geH(220)}"/>
+  <rect class="light" x="${geX(-40)}" y="${geH(150)}" width="${80*GE}" height="5" rx="1"/>`; }
 function gtWingR(){ return `
-  <path class="arms2" d="M${geX(-260)} ${geH(760)} L${geX(-260)} ${geH(1200)} M${geX(260)} ${geH(760)} L${geX(260)} ${geH(1200)}"/>
-  <path class="wingp" d="${geP([[-790,1190],[790,1190],[790,1240],[-790,1240]])}"/>
-  <path class="wingp2" d="${geP([[-790,1260],[790,1260],[790,1290],[-790,1290]])}"/>
-  <path class="wingp" d="${geP([[-810,1000],[-790,1000],[-790,1340],[-810,1340]])} ${geP([[810,1000],[790,1000],[790,1340],[810,1340]])}"/>`; }
+  <path class="gtpyl" d="${gtSmooth([[-280,772],[-285,980],[-270,1200]],([x,h])=>[geX(x),geH(h)],false)} ${gtSmooth([[280,772],[285,980],[270,1200]],([x,h])=>[geX(x),geH(h)],false)}"/>
+  <path class="wingp" d="${geS([[0,1195,'c'],[-400,1192],[-800,1182,'c'],[-800,1236,'c'],[-400,1244],[0,1246,'c']])}"/>
+  <path class="wingp2" d="${geP([[-800,1262],[800,1262],[800,1294],[-800,1294]])}"/>
+  <path class="wingp" d="${geMir([[-822,1010],[-800,1010],[-800,1360],[-822,1350]])}"/>`; }
 function gtEndView(ax){
   const F=ax==='F', E=GT_END[ax], wW=GT.tyreW*GE, wH=GT.tyreD*GE, xL=150-E.track/2*GE, xR=150+E.track/2*GE;
-  return `<svg viewBox="0 -28 300 234" class="v-end" role="img" aria-label="Vista ${F?'frontale':'posteriore'}">
+  return `<svg viewBox="0 -40 300 246" class="v-end" role="img" aria-label="Vista ${F?'frontale':'posteriore'}">
       <line class="ground" x1="6" y1="186" x2="294" y2="186"/>
-      <g id="e${ax}body" class="ebody">${F?gtBodyF():gtBodyR()}<rect class="floor" x="${geX(-300)}" y="-1.5" width="${600*GE}" height="3"/></g>
-      <path class="susp" id="ar${ax}" d=""/>
       <rect class="ghost e" id="xg${ax}L" x="${xL-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="7"/>
       <rect class="ghost e" id="xg${ax}R" x="${xR-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="7"/>
       <rect class="whl e tap" data-goto="sf_camber${ax}_${F?1:0}" id="e${ax}L" x="${xL-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="7"><title>Modifica camber</title></rect>
       <rect class="whl e tap" data-goto="sf_camber${ax}_${F?0:1}" id="e${ax}R" x="${xR-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="7"><title>Modifica camber</title></rect>
+      <path class="susp" id="ar${ax}" d=""/>
+      <g id="e${ax}body" class="ebody gtxray">${F?gtBodyF():gtBodyR()}<rect class="floor" x="${geX(-300)}" y="-1.5" width="${600*GE}" height="3"/></g>
       <g id="e${ax}wing" class="ebody">${F?`<g id="eFdive">${gtDiveF()}</g>`:gtWingR()}</g>
       <line class="dim" id="d${ax}" x1="150" y1="186" x2="150" y2="186"/>
       <text class="vt" id="et${ax}L" x="${xL}" y="${186-wH-6}" text-anchor="middle"></text>
       <text class="vt" id="et${ax}R" x="${xR}" y="${186-wH-6}" text-anchor="middle"></text>
-      <text class="vt big" id="t${ax}H" x="150" y="-14" text-anchor="middle"></text>
+      <text class="vt big" id="t${ax}H" x="150" y="-27" text-anchor="middle"></text>
       <text class="vt" x="${xL}" y="200" text-anchor="middle">${F?'Dx':'Sx'}</text><text class="vt" x="${xR}" y="200" text-anchor="middle">${F?'Sx':'Dx'}</text>
     </svg>`;
 }
@@ -2108,7 +2175,7 @@ function updateVizGT(st, prev){
   });
   const frh=avg2(st.rhF), rrh=avg2(st.rhR), pf=avg2(P.rhF), pr=avg2(P.rhR);
   const cur=gtSideGeom(isFinite(frh)?frh:97, isFinite(rrh)?rrh:156), old=gtSideGeom(isFinite(pf)?pf:97, isFinite(pr)?pr:156);
-  setD(q('sBody'),cur.d); setD(q('gSide'),old.d); setD(q('sCock'),cur.cock); setD(q('sFloor'),cur.floor); setD(q('sFEP'),cur.fep); setD(q('sREP'),cur.rep); setD(q('sLouv'),cur.louv); setD(q('sPyl'),cur.pyl);
+  setD(q('sBody'),cur.d); setD(q('gSide'),old.d); setD(q('sCock'),cur.cock); setD(q('sFloor'),cur.floor); setD(q('sFEP'),cur.fep); setD(q('sREP'),cur.rep); setD(q('sLouv'),cur.louv); setD(q('sPyl'),cur.pyl); setD(q('sLiv'),cur.liv); setD(q('sClip'),cur.d); setD(q('sArch'),cur.arch); setD(q('sNum'),cur.num); setD(q('sPil'),cur.pillar); setD(q('sMir'),cur.mir); setD(q('sDiff'),cur.diff);
   q('gSide').style.opacity=(prev&&(Math.abs(frh-pf)>0.01||Math.abs(rrh-pr)>0.01))?1:0;
   q('sBody').classList.toggle('chg', !!(cp('rhF',0)||cp('rhF',1)||cp('rhR',0)||cp('rhR',1)));
   const rwA=num(st.rw); const srw=q('sRW'), sfw=q('sFW');
