@@ -227,7 +227,41 @@ figcaption{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:
 .viz .vt .chg,.viz .vt.chg{fill:var(--chg)}
 .vleg{font-size:11.5px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .lg{display:inline-block;width:18px;border-top:2px solid var(--accent)} .lg.prv{border-top:2px dashed var(--muted);margin-left:8px}
+.viz .tap{cursor:pointer}
+.viz .lv-blue{fill:#1f4fd8} .viz .lv-dark{fill:#123aa8} .viz .lv-sky{fill:#5bc8f5} .viz .lv-orange{fill:#f2701d}
+.viz .lv-black{fill:#101214} .viz .lv-white{fill:#f2f3f5} .viz .lv-red{fill:#e0242b}
+.viz .lv-halo{fill:none;stroke:#101214;stroke-width:5;stroke-linecap:round} .viz .lv-strut{fill:none;stroke:#101214;stroke-width:3}
+.viz .lv-helmet{fill:#f2f3f5;stroke:#101214;stroke-width:1}
+.viz .lv-logo{fill:#fff;font-family:var(--f-display);font-weight:800;font-style:italic;letter-spacing:.02em}
+.viz .tyre{fill:#121417;stroke:#2b3038;stroke-width:1.2}
+.viz .pz{fill:none;stroke:#f5c400;stroke-width:1.4}
+.viz .rim{fill:#c9ced6;stroke:#868c95} .viz .spk{stroke:#5d636b;stroke-width:2.4} .viz .hubc{fill:#2e3238}
+.viz .wout{fill:none;stroke:transparent;stroke-width:5} .viz .whl.chg .wout{stroke:var(--chg)}
+.viz .whl.e.chg{stroke:var(--chg);stroke-width:2.5}
+.viz .hit{fill:transparent}
+.viz .sgrp{transition:transform .45s cubic-bezier(.3,.7,.2,1)} #sGhost{opacity:0;transition:opacity .3s,transform .45s}
+#sGhost .ghost{opacity:1;transform:none}
+#sFW.chg .lv-black,#sRW.chg .lv-black{fill:var(--chg)}
+.v-top .vt{font-size:30px} .v-top .vt.big{font-size:28px}
+.v-top .ghost{stroke-width:3}
+.viz .tap:hover{filter:brightness(1.25)}
+
+.corner.flash,.axle.flash{animation:flash 1s ease}
+@keyframes flash{0%{box-shadow:0 0 0 2px var(--accent)}100%{box-shadow:0 0 0 2px transparent}}
 @media (prefers-reduced-motion:reduce){.viz *{transition:none!important}}
+/* vettura stilizzata F4 */
+.viz .wingp2{fill:var(--accent-2);fill-opacity:.7}
+.viz .floor2{fill:#0a1a33;stroke:var(--line);stroke-width:1}
+.viz .stripe{fill:none;stroke:var(--accent);stroke-width:2;stroke-opacity:.8}
+.viz .airbox{fill:var(--surface-2);stroke:var(--accent);stroke-width:1.2}
+.viz .light{fill:#e0242b}
+.viz .rimc{fill:#2a3a52;stroke:var(--muted);stroke-width:1}
+.viz .spk{stroke:var(--muted);stroke-width:1.6}
+.v-side .halo,.v-end .halo{fill:none;stroke:var(--muted);stroke-width:3;stroke-linecap:round}
+#sPod,#sHalo,#sFEP,#sREP{transition:d .45s cubic-bezier(.3,.7,.2,1)}
+#sFW.chg .wingp2,#sRW.chg .wingp2{fill:var(--chg);fill-opacity:1}
+.v-top .vt{font-size:11px} .v-top .vt.big{font-size:12px}
+.viz .susp{fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;transition:d .45s}
 </style>
 </head>
 <body>
@@ -378,6 +412,7 @@ function ingest(docs){
     else if(id==='prefs') prefs=d;
   });
   ses.sort((a,b)=>a.id<b.id?-1:1);
+  if(typeof evDirty==='function' && S.events){ Object.keys(S.events).forEach(id=>{ if(evDirty(id)) events[id]=S.events[id]; }); Object.keys(events).forEach(id=>{ if(!S.events[id] && evDirty(id)) delete events[id]; }); }
   const nextPrefs = prefs ? {...S.prefs, ...prefs} : S.prefs;
   const sig = x => stable({s:[...x.s].sort((a,b)=>a.id<b.id?-1:1), b:x.b, e:x.e, p:(({kind,...r})=>r)(x.p||{})});
   // salta il ridisegno se arriva solo l'eco di un nostro salvataggio (non perdi il campo in cui scrivi)
@@ -791,11 +826,28 @@ const pct = (v,d=1) => isFinite(v) ? (v>0?'+':'')+(v*100).toFixed(d)+' %' : '–
 const sg3 = v => isFinite(v) ? (v>0?'+':'')+v.toFixed(3) : '–';
 
 /* ---------- salvataggio eventi ---------- */
-const evTimers={};
+// Salvataggio eventi: uno alla volta per evento, sempre con l'ultimo stato.
+// Mentre un evento ha modifiche in attesa, i dati in arrivo dal server non lo sovrascrivono.
+const evQ={};
+function evDirty(id){ const q=evQ[id]; return !!q && (q.inflight||q.pending||q.waiting); }
 function saveEvent(ev, now=false){
-  clearTimeout(evTimers[ev.id]);
-  const go=()=>{ const {id,...data}=ev; persist(id,{...data, kind:'event'}); };
-  if(now) go(); else evTimers[ev.id]=setTimeout(go,600);
+  const q=evQ[ev.id]||(evQ[ev.id]={});
+  clearTimeout(q.timer); q.waiting=true;
+  const go=()=>{ q.waiting=false; flushEvent(ev.id); };
+  if(now) go(); else q.timer=setTimeout(go,800);
+}
+async function flushEvent(id){
+  const q=evQ[id]||(evQ[id]={});
+  if(q.inflight){ q.pending=true; return; }
+  const ev=S.events[id]; if(!ev){ q.pending=false; return; }
+  q.inflight=true; q.pending=false;
+  const {id:_omit, ...data}=ev;
+  const ok=await persist(id, {...JSON.parse(JSON.stringify(data)), kind:'event'});
+  if(!ok){ q.failed=(q.failed||0)+1; if(q.failed<5){ q.pending=true; await new Promise(r=>setTimeout(r,1200*q.failed)); } }
+  else q.failed=0;
+  q.inflight=false;
+  if(q.pending) flushEvent(id);
+  else if(S.mode==='cloud') setSync('Salvato nel tuo account');
 }
 
 /* ---------- viste setup ---------- */
@@ -833,8 +885,17 @@ function renderEvents(){
 function sesChips(ev, cur){
   return `<div class="schips" role="tablist">${ev.sessions.map((s,i)=>{
     const p=i>0?ev.sessions[i-1]:null, n=p?diffs(p.setup,s.setup).length:0;
-    return `<button type="button" data-ses="${s.id}" aria-pressed="${s===cur}">${esc(s.name)}${p?`<span class="cnt">${n}</span>`:''}</button>`;}).join('')}
+    return `<button type="button" data-ses="${s.id}" aria-pressed="${s===cur}"><span class="nm">${esc(s.name)}</span>${p?`<span class="cnt" ${n?'':'hidden'}>${n}</span>`:''}</button>`;}).join('')}
     <button type="button" id="sesAdd" class="add">+ Nuovo turno</button></div>`;
+}
+// aggiorna nomi e contatori dei turni senza ricreare i pulsanti (un clic in corso non va perso)
+function updateChips(ev){
+  document.querySelectorAll('.schips [data-ses]').forEach(b=>{
+    const i=ev.sessions.findIndex(s=>s.id===b.dataset.ses); if(i<0) return; const s=ev.sessions[i];
+    const nm=b.querySelector('.nm'); if(nm && nm.textContent!==s.name) nm.textContent=s.name;
+    const c=b.querySelector('.cnt'); if(c){ const n=diffs(ev.sessions[i-1].setup,s.setup).length; c.textContent=n; c.hidden=!n; }
+  });
+  const a=$('#sesAdd2'); const cur=curSession(ev); if(a && cur) a.textContent='Nuovo turno da '+cur.name;
 }
 function fieldInput(f, v, sd){
   const id=`sf_${f.k}${sd!=null?'_'+sd:''}`;
@@ -848,7 +909,7 @@ function techBlock(st, ref, refName){
   const w=weightsOf(st), m=mrbOfSetup(st), a=aeroOfSetup(st), pk=PICKUP[st.pickup];
   const bal=MC_BAL[st.mcF+'|'+st.mcR];
   let aeroTxt='–';
-  if(ref){ const d=aeroDelta(aeroOfSetup(ref), a); if(d) aeroTxt=`<span class="${d.out?'warn':''}">Δ%F ${sg3(d.dF)} · SCz ${pct(d.dZ)} · SCx ${pct(d.dX)}</span> <span class="muted">vs ${esc(refName)}</span>`; }
+  if(ref){ const d=aeroDelta(aeroOfSetup(ref), a); if(d) aeroTxt=`<span class="${d.out?'warn':''}">Δ%F ${pct(d.dF)} · SCz ${pct(d.dZ)} · SCx ${pct(d.dX)}</span> <span class="muted">vs ${esc(refName)}</span>`; }
   else if(a) aeroTxt='riferimento';
   const tiles=[
     ['Peso totale', w?w.tot.toFixed(1)+' kg':'–'],
@@ -877,7 +938,7 @@ function renderCompare(){
     <div class="field"><div class="lbl">Righe</div><div class="seg"><button type="button" data-cmpall="0" aria-pressed="${!S.cmp.all}">Solo modifiche</button><button type="button" data-cmpall="1" aria-pressed="${S.cmp.all}">Tutto</button></div></div></div>
     <div class="tech">
       <div><div class="lbl">Modifiche</div><div class="tv">${d.length}</div></div>
-      <div><div class="lbl">Δ bilancio aero %F</div><div class="tv">${ad?sg3(ad.dF):'–'}</div></div>
+      <div><div class="lbl">Δ bilancio aero %F</div><div class="tv">${ad?pct(ad.dF):'–'}</div></div>
       <div><div class="lbl">Δ carico SCz</div><div class="tv">${ad?pct(ad.dZ):'–'}</div></div>
       <div><div class="lbl">Δ resistenza SCx</div><div class="tv">${ad?pct(ad.dX):'–'}</div></div>
       <div><div class="lbl">Bilancio rollio barre</div><div class="tv">${isFinite(ma.arb)?ma.arb.toFixed(1):'–'} → ${isFinite(mb.arb)?mb.arb.toFixed(1)+' %':'–'}</div></div>
@@ -927,7 +988,7 @@ function aeroOut(){
   const big=(l,v,hint)=>`<div class="ctile"><div class="lbl">${l}</div><div class="big">${v}</div><div class="delta">${hint}</div></div>`;
   return `${d.out?`<div class="note warn">Una o più altezze sono fuori mappa: uso il valore al bordo.</div>`:''}
   <div class="ctiles">
-    ${big('Δ bilancio aero', sg3(d.dF), '%F, positivo = più carico davanti')}
+    ${big('Δ bilancio aero', pct(d.dF), '%F ant., positivo = più carico davanti')}
     ${big('Δ carico totale', pct(d.dZ), 'SCz')}
     ${big('Δ resistenza', pct(d.dX), 'SCx')}
     ${big('Δ efficienza', pct(d.eff), 'SCz / SCx')}
@@ -936,8 +997,8 @@ function aeroOut(){
 }
 function aeroBars(A,B){
   // barre orizzontali: contributo ali vs altezze non disponibile separato qui; mostro valori di mappa
-  const rows=[['%F (mappa)',A.F,B.F,-1,1],['SCz (mappa)',A.Z,B.Z,1.6,2.2],['SCx (mappa)',A.X,B.X,1.8,2.2]];
-  return `<div class="tbl-wrap"><table><thead><tr><th>Valore mappa</th><th>Attuale</th><th>Modifica</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1].toFixed(3)}</td><td>${r[2].toFixed(3)}</td></tr>`).join('')}</tbody></table></div>`;
+  const rows=[['Δ%F dal riferimento (mappa)',A.F,B.F,-1,1],['SCz (mappa)',A.Z,B.Z,1.6,2.2],['SCx (mappa)',A.X,B.X,1.8,2.2]];
+  return `<div class="tbl-wrap"><table><thead><tr><th>Valore mappa</th><th>Attuale</th><th>Modifica</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td>${r[0]}</td><td>${i?r[1].toFixed(3):(r[1]*100).toFixed(1)+' %'}</td><td>${i?r[2].toFixed(3):(r[2]*100).toFixed(1)+' %'}</td></tr>`).join('')}</tbody></table></div>`;
 }
 function renderMechCalc(){
   const c=S.calc, t=S.prefs.track||{};
@@ -1052,7 +1113,7 @@ function onSetupField(el){
   if(prev){ const pv=f.lr?(prev.setup[k]||[])[+sd]:prev.setup[k]; const cell=$('#c_'+k+(f.lr?'_'+sd:'')); const ch=norm(el.value)!==norm(pv);
     if(cell){ cell.classList.toggle('chg',ch); cell.querySelector('.was').innerHTML=ch?'prima '+fmtVal(f,pv):''; } }
   $('#sesSummary').innerHTML=sessionSummary(ev,ses);
-  const chips=document.querySelector('.schips'); if(chips) chips.outerHTML=sesChips(ev,ses);
+  updateChips(ev);
   updateViz(ses.setup, prev?prev.setup:null);
   const aF=$('#axinfoF'), aR=$('#axinfoR'); if(aF) aF.textContent=axleInfoF(ses.setup); if(aR) aR.textContent=axleInfoR(ses.setup);
   CORNERS.forEach(c=>{ const el=document.querySelector('#corner'+c.id+' .ncnt'); if(!el) return;
@@ -1068,13 +1129,19 @@ function onCalcField(el){
   else if(S.stab.calc==='mech') $('#calcOut').innerHTML=mechOut();
   else updateConv();
 }
+document.addEventListener('click', e=>{
+  const g=e.target.closest && e.target.closest('[data-goto]'); if(!g) return;
+  const el=document.getElementById(g.dataset.goto); if(!el) return;
+  el.scrollIntoView({behavior:'smooth', block:'center'}); setTimeout(()=>{ try{ el.focus({preventScroll:true}); }catch(_){} },350);
+  const box=el.closest('.corner,.axle'); if(box){ box.classList.remove('flash'); void box.offsetWidth; box.classList.add('flash'); }
+});
 ['input','change'].forEach(evn=>document.addEventListener(evn, e=>{
   const el=e.target; if(S.mod==='press') return;
   if(el.dataset && el.dataset.sf){ onSetupField(el); return; }
   if(el.id==='sesName'||el.id==='sesLap'||el.id==='sesTa'||el.id==='sesNotes'){
     const ev=curEvent(), ses=curSession(ev); if(!ses) return;
     const key={sesName:'name',sesLap:'lap',sesTa:'temps',sesNotes:'notes'}[el.id]; ses[key]=el.value;
-    if(el.id==='sesName' && evn==='change'){ const chips=document.querySelector('.schips'); if(chips) chips.outerHTML=sesChips(ev,ses); }
+    if(el.id==='sesName') updateChips(ev);
     saveEvent(ev); return;
   }
   if(el.id==='cmpA'||el.id==='cmpB'){ if(evn==='change'){ S.cmp[el.id==='cmpA'?'a':'b']=el.value; render(); } return; }
@@ -1083,6 +1150,7 @@ function onCalcField(el){
   if(el.id==='cv_w'){ S.calc.conv[S.calc.conv.axle==='F'?'wF':'wR']=el.value; updateConv(); return; }
   if(el.dataset && (el.dataset.ck||el.dataset.cv)) onCalcField(el);
 }));
+
 
 /* =================== SCHEDA TURNO A VETTURA + VISUALIZZAZIONE =================== */
 const CORNERS = [
@@ -1136,56 +1204,93 @@ function toeDeg(v){ // "1out" / "0.5in" / numero (positivo = chiusa)  → gradi,
   return Math.atan(mm/330)*180/Math.PI; // al cerchio da 13"
 }
 const camDeg = v => { const n=num(v); return isFinite(n) ? -Math.abs(n) : 0; }; // camber negativo
+// Vettura stilizzata F4 Tatuus T-421 (proporzioni dai disegni tecnici)
 function carSVGs(){
-  const wheel=(id,x,y,w,h)=>`<g class="whl" id="${id}"><rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="5"/><line x1="${x-w/2+4}" y1="${y}" x2="${x+w/2-4}" y2="${y}"/></g>`;
-  const ghost=(id,x,y,w,h)=>`<rect class="ghost" id="${id}" x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="5"/>`;
-  const top = `<svg viewBox="0 0 300 520" class="v-top" role="img" aria-label="Vettura vista dall'alto">
+  const GOTO={FL:'sf_rhF_0',FR:'sf_rhF_1',RL:'sf_rhR_0',RR:'sf_rhR_1'};
+  const wheel=(k,x,y,w,h)=>`<rect class="ghost" id="g${k}" x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="7"/>
+    <g class="whl tap" id="w${k}" data-goto="${GOTO[k]}"><title>Modifica ${k}</title>
+      <rect x="${x-w/2}" y="${y-h/2}" width="${w}" height="${h}" rx="7"/>
+      <line x1="${x-w/2+3}" y1="${y-h*0.18}" x2="${x+w/2-3}" y2="${y-h*0.18}"/><line x1="${x-w/2+3}" y1="${y+h*0.18}" x2="${x+w/2-3}" y2="${y+h*0.18}"/></g>`;
+  const top = `<svg viewBox="0 0 300 560" class="v-top" role="img" aria-label="F4 Tatuus T-421 vista dall'alto">
     <defs><linearGradient id="bodyG" x1="0" x2="1"><stop offset="0" class="s1"/><stop offset=".5" class="s2"/><stop offset="1" class="s1"/></linearGradient></defs>
     <g class="arms">
-      <path d="M128 112 L74 104 M128 132 L74 128 M172 112 L226 104 M172 132 L226 128"/>
-      <path d="M118 372 L70 362 M118 396 L70 392 M182 372 L230 362 M182 396 L230 392"/>
+      <path d="M134 98 L76 112 L134 130 M136 140 L76 118"/><path d="M166 98 L224 112 L166 130 M164 140 L224 118"/>
+      <path d="M118 410 L74 424 L120 444 M124 452 L74 432"/><path d="M182 410 L226 424 L180 444 M176 452 L226 432"/>
     </g>
-    <path class="wingp" d="M34 26 H266 V36 H34 Z M40 38 H260 V46 H40 Z"/>
-    <path class="body" fill="url(#bodyG)" d="M150 34 C141 34 138 60 136 96 L132 150 C124 168 120 190 114 214 L106 250 C102 280 104 318 110 342 L118 400 C122 428 128 446 134 458 L166 458 C172 446 178 428 182 400 L190 342 C196 318 198 280 194 250 L186 214 C180 190 176 168 168 150 L164 96 C162 60 159 34 150 34 Z"/>
-    <path class="pods" d="M114 222 C96 228 86 250 86 290 C86 320 92 336 106 346 L112 300 Z M186 222 C204 228 214 250 214 290 C214 320 208 336 194 346 L188 300 Z"/>
-    <ellipse class="cockpit" cx="150" cy="218" rx="15" ry="30"/>
-    <path class="halo" d="M150 168 L150 186 M136 196 C136 178 164 178 164 196"/>
-    <path class="wingp" d="M58 470 H242 V492 H58 Z"/><rect class="wingp" x="56" y="462" width="6" height="36"/><rect class="wingp" x="238" y="462" width="6" height="36"/>
-    ${ghost('gFL',62,118,30,60)}${ghost('gFR',238,118,30,60)}${ghost('gRL',56,380,38,64)}${ghost('gRR',244,380,38,64)}
-    ${wheel('wFL',62,118,30,60)}${wheel('wFR',238,118,30,60)}${wheel('wRL',56,380,38,64)}${wheel('wRR',244,380,38,64)}
-    <text class="vt" id="tFL" x="12" y="170" text-anchor="start"></text><text class="vt" id="tFR" x="288" y="170" text-anchor="end"></text>
-    <text class="vt" id="tRL" x="12" y="432" text-anchor="start"></text><text class="vt" id="tRR" x="288" y="432" text-anchor="end"></text>
-    <text class="vt big" id="tWB" x="150" y="512" text-anchor="middle"></text>
+    <g class="tap" data-goto="sf_fw"><title>Modifica ala anteriore</title>
+      <path class="wingp" d="M46 30 L254 30 L254 40 C210 44 176 46 160 46 L140 46 C124 46 90 44 46 40 Z"/>
+      <path class="wingp2" d="M50 44 C90 50 120 54 136 54 L164 54 C180 54 210 50 250 44 L250 52 C210 58 180 62 164 62 L136 62 C120 62 90 58 50 52 Z"/>
+      <rect class="wingp" x="38" y="22" width="9" height="46" rx="2"/><rect class="wingp" x="253" y="22" width="9" height="46" rx="2"/></g>
+    <path class="floor2" d="M102 214 L198 214 L206 296 L200 386 L184 452 L116 452 L100 386 L94 296 Z"/>
+    <path class="body" fill="url(#bodyG)" d="M150 26 C144 26 141 40 140 62 L137 150 C136 170 132 188 128 202
+      C116 206 104 212 99 224 L97 296 C97 328 104 356 116 382 L124 410 L126 470 L174 470 L176 410 L184 382
+      C196 356 203 328 203 296 L201 224 C196 212 184 206 172 202 C168 188 164 170 163 150 L160 62 C159 40 156 26 150 26 Z"/>
+    <path class="pods" d="M101 232 L112 222 L114 336 L108 356 Z M199 232 L188 222 L186 336 L192 356 Z"/>
+    <path class="stripe" d="M150 30 L150 150 M150 300 L150 466"/>
+    <rect class="cockpit" x="133" y="204" width="34" height="64" rx="16"/>
+    <path class="halo" d="M150 178 L150 200 M132 214 C132 192 168 192 168 214 L168 236 M132 214 L132 236"/>
+    <path class="airbox" d="M140 272 L160 272 L164 300 L136 300 Z"/>
+    <g class="tap" data-goto="sf_rw"><title>Modifica ala posteriore</title>
+      <path class="wingp" d="M78 486 H222 V500 H78 Z"/><path class="wingp2" d="M80 504 H220 V512 H80 Z"/>
+      <rect class="wingp" x="70" y="474" width="9" height="48" rx="2"/><rect class="wingp" x="221" y="474" width="9" height="48" rx="2"/></g>
+    ${wheel('FL',58,118,30,64)}${wheel('FR',242,118,30,64)}${wheel('RL',56,428,38,70)}${wheel('RR',244,428,38,70)}
+    <text class="vt" id="tFL" x="8" y="172" text-anchor="start"></text><text class="vt" id="tFR" x="292" y="172" text-anchor="end"></text>
+    <text class="vt" id="tRL" x="8" y="482" text-anchor="start"></text><text class="vt" id="tRR" x="292" y="482" text-anchor="end"></text>
+    <text class="vt big" id="tWB" x="150" y="550" text-anchor="middle"></text>
   </svg>`;
-  const endView=(ax)=>{
-    const R=ax==='F', wW=R?30:38, wH=R?62:66, xL=R?70:64, xR=R?230:236;
-    return `<svg viewBox="0 0 300 200" class="v-end" role="img" aria-label="Vista ${R?'frontale':'posteriore'}">
-      <line class="ground" x1="10" y1="186" x2="290" y2="186"/>
-      <g id="e${ax}body" class="ebody"><path class="body" d="M118 0 H182 L192 -26 C192 -40 108 -40 108 -26 Z"/><rect class="floor" x="96" y="-4" width="108" height="4"/>
-        ${R?`<path class="wingp" d="M30 -2 H112 V6 H30 Z M188 -2 H270 V6 H188 Z"/>`:`<path class="wingp" d="M84 -96 H216 V-84 H84 Z"/><rect class="wingp" x="80" y="-100" width="6" height="34"/><rect class="wingp" x="214" y="-100" width="6" height="34"/><path class="arms2" d="M146 -40 L146 -84 M154 -40 L154 -84"/>`}
-      </g>
-      <rect class="ghost e" id="xg${ax}L" x="${xL-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="5"/>
-      <rect class="ghost e" id="xg${ax}R" x="${xR-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="5"/>
-      <rect class="whl e" id="e${ax}L" x="${xL-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="5"/>
-      <rect class="whl e" id="e${ax}R" x="${xR-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="5"/>
-      <line class="dim" id="d${ax}" x1="150" y1="186" x2="150" y2="186"/>
-      <text class="vt" id="et${ax}L" x="${xL}" y="${186-wH-8}" text-anchor="middle"></text>
-      <text class="vt" id="et${ax}R" x="${xR}" y="${186-wH-8}" text-anchor="middle"></text>
-      <text class="vt big" id="t${ax}H" x="150" y="14" text-anchor="middle"></text><text class="vt" x="${xL}" y="198" text-anchor="middle">${R?'Dx':'Sx'}</text><text class="vt" x="${xR}" y="198" text-anchor="middle">${R?'Sx':'Dx'}</text>
-    </svg>`;
-  };
+  const sideWheel=(cx,r)=>`<g><circle class="whl" cx="${cx}" cy="${186-r}" r="${r}"/><circle class="rimc" cx="${cx}" cy="${186-r}" r="${r*0.62}"/>
+    ${[0,60,120,180,240,300].map(a=>`<line class="spk" x1="${cx}" y1="${186-r}" x2="${cx+Math.cos(a*Math.PI/180)*r*0.58}" y2="${186-r+Math.sin(a*Math.PI/180)*r*0.58}"/>`).join('')}
+    <circle class="hub" cx="${cx}" cy="${186-r}" r="${r*0.2}"/></g>`;
   const side = `<svg viewBox="0 0 440 200" class="v-side" role="img" aria-label="Vista laterale">
     <line class="ground" x1="6" y1="186" x2="434" y2="186"/>
     <path class="ghost" id="gSide" d=""/>
     <path class="body" id="sBody" d=""/>
-    <g id="sFW"><path class="wingp" d="M-24 0 C-12 -8 8 -8 24 -1 L24 3 C8 0 -12 2 -24 3 Z"/></g>
-    <g id="sRW"><path class="wingp" d="M-28 0 C-14 -10 10 -10 28 -1 L28 4 C10 0 -14 3 -28 4 Z"/></g><path class="arms2" id="sRWpost" d=""/>
-    <circle class="whl" cx="84" cy="155" r="31"/><circle class="hub" cx="84" cy="155" r="10"/>
-    <circle class="whl" cx="346" cy="152" r="34"/><circle class="hub" cx="346" cy="152" r="11"/>
-    <text class="vt" id="tSF" x="40" y="22" text-anchor="start"></text>
-    <text class="vt" id="tSR" x="430" y="22" text-anchor="end"></text>
-    <text class="vt big" id="tRake" x="215" y="22" text-anchor="middle"></text>
+    <path class="pods" id="sPod" d=""/>
+    <path class="halo" id="sHalo" d=""/>
+    <path class="wingp" id="sFEP" d=""/>
+    <path class="wingp" id="sREP" d=""/>
+    <g id="sFW" class="tap" data-goto="sf_fw"><title>Modifica ala anteriore</title><path class="wingp2" d="M-22 0 C-10 -7 8 -7 22 -1 L22 2 C8 0 -10 2 -22 3 Z"/></g>
+    <g id="sRW" class="tap" data-goto="sf_rw"><title>Modifica ala posteriore</title><path class="wingp2" d="M-26 0 C-13 -9 10 -9 26 -1 L26 3 C10 0 -13 3 -26 4 Z"/></g>
+    ${sideWheel(92,30)}${sideWheel(346,33)}
+    <text class="vt" id="tSF" x="10" y="20" text-anchor="start"></text>
+    <text class="vt" id="tSR" x="430" y="20" text-anchor="end"></text>
+    <text class="vt big" id="tRake" x="220" y="20" text-anchor="middle"></text>
   </svg>`;
+  const endView=(ax)=>{
+    const F=ax==='F', wW=F?32:40, wH=F?62:66, xL=F?68:62, xR=F?232:238;
+    const bodyF=`
+      <path class="wingp" d="M24 -4 L276 -4 L276 4 L24 4 Z"/><path class="wingp2" d="M30 -10 L120 -8 L120 -4 L30 -4 Z M270 -10 L180 -8 L180 -4 L270 -4 Z"/>
+      <rect class="wingp" x="20" y="-26" width="10" height="32" rx="2"/><rect class="wingp" x="270" y="-26" width="10" height="32" rx="2"/>
+      <path class="body" d="M132 -4 L136 -44 L164 -44 L168 -4 Z"/>
+      <path class="body" d="M108 -16 L112 -66 C124 -76 176 -76 188 -66 L192 -16 Z"/>
+      <path class="pods" d="M86 -14 L90 -44 L110 -48 L108 -14 Z M214 -14 L210 -44 L190 -48 L192 -14 Z"/>
+      <path class="stripe" d="M150 -44 L150 -6"/>
+      <path class="halo" d="M118 -66 C126 -98 174 -98 182 -66 M150 -96 L150 -82"/>
+      <path class="airbox" d="M140 -84 L144 -106 L156 -106 L160 -84 Z"/>`;
+    const bodyR=`
+      <rect class="wingp" x="60" y="-150" width="12" height="76" rx="2"/><rect class="wingp" x="228" y="-150" width="12" height="76" rx="2"/>
+      <path class="wingp" d="M72 -136 H228 V-124 H72 Z"/><path class="wingp2" d="M72 -120 H228 V-112 H72 Z"/>
+      <path class="arms2" d="M144 -112 L144 -72 M156 -112 L156 -72"/>
+      <path class="body" d="M116 -22 L122 -70 C134 -88 166 -88 178 -70 L184 -22 Z"/>
+      <path class="airbox" d="M140 -86 L144 -104 L156 -104 L160 -86 Z"/>
+      <path class="floor2" d="M98 -22 L202 -22 L206 0 L94 0 Z"/>
+      <path class="arms2" d="M118 -6 L124 0 M134 -6 L138 0 M162 -6 L166 0 M178 -6 L182 0"/>
+      <rect class="light" x="143" y="-34" width="14" height="8" rx="2"/>`;
+    return `<svg viewBox="0 ${F?-6:-46} 300 ${F?212:252}" class="v-end" role="img" aria-label="Vista ${F?'frontale':'posteriore'}">
+      <line class="ground" x1="10" y1="186" x2="290" y2="186"/>
+      <g id="e${ax}body" class="ebody">${F?bodyF:bodyR}<rect class="floor" x="96" y="-2" width="108" height="3"/></g>
+      <path class="susp" id="ar${ax}" d=""/>
+      <rect class="ghost e" id="xg${ax}L" x="${xL-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="6"/>
+      <rect class="ghost e" id="xg${ax}R" x="${xR-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="6"/>
+      <rect class="whl e tap" data-goto="sf_camber${ax}_${F?1:0}" id="e${ax}L" x="${xL-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="6"><title>Modifica camber</title></rect>
+      <rect class="whl e tap" data-goto="sf_camber${ax}_${F?0:1}" id="e${ax}R" x="${xR-wW/2}" y="${186-wH}" width="${wW}" height="${wH}" rx="6"><title>Modifica camber</title></rect>
+      <line class="dim" id="d${ax}" x1="150" y1="186" x2="150" y2="186"/>
+      <text class="vt" id="et${ax}L" x="${xL}" y="${186-wH-8}" text-anchor="middle"></text>
+      <text class="vt" id="et${ax}R" x="${xR}" y="${186-wH-8}" text-anchor="middle"></text>
+      <text class="vt big" id="t${ax}H" x="150" y="${F?8:-32}" text-anchor="middle"></text>
+      <text class="vt" x="${xL}" y="200" text-anchor="middle">${F?'Dx':'Sx'}</text><text class="vt" x="${xR}" y="200" text-anchor="middle">${F?'Sx':'Dx'}</text>
+    </svg>`;
+  };
   return `<div class="viz">
     <div class="vtop">${top}</div>
     <div class="vstrip">
@@ -1193,25 +1298,31 @@ function carSVGs(){
       <figure><figcaption>Fronte · vista dal davanti</figcaption>${endView('F')}</figure>
       <figure><figcaption>Retro · vista da dietro</figcaption>${endView('R')}</figure>
     </div>
-    <div class="vleg"><span class="lg cur"></span>Turno attuale <span class="lg prv"></span>Turno precedente · regolazioni ingrandite per renderle visibili</div>
+    <div class="vleg"><span class="lg cur"></span>Turno attuale <span class="lg prv"></span>Turno precedente · regolazioni ingrandite per renderle visibili · clicca una ruota o un’ala per modificarla</div>
   </div>`;
 }
 function setD(el, d){ if(!el) return; el.setAttribute('d', d); try{ el.style.d=`path("${d}")`; }catch(e){} }
-function sideBody(frh, rrh){
-  // pavimento: anteriore a x=40, posteriore a x=410; altezze in pixel esagerate
-  const yF=186-6-frh*VX.rh*0.6, yR=186-6-rrh*VX.rh*0.6;
-  const y=x=> yF+(yR-yF)*(x-40)/370;
-  return {d:`M30 ${y(30)} L420 ${y(420)} L420 ${y(420)-40} L380 ${y(380)-54} L300 ${y(300)-66} L232 ${y(232)-86} L206 ${y(206)-74} L170 ${y(170)-58} L60 ${y(60)-30} L30 ${y(30)-12} Z`, y};
+// vista laterale: profilo F4 come altezze sopra il fondo, fondo inclinato con le altezze ant./post.
+const SIDE_TOP=[[26,6],[40,12],[80,22],[120,30],[160,38],[190,46],[204,52],[208,48],[236,48],[242,58],[248,90],[266,94],[274,84],[300,68],[340,56],[380,46],[404,44],[406,10]];
+function sideGeom(frh, rrh){
+  const k=VX.rh*0.6, yF=186-8-frh*k, yR=186-8-rrh*k;
+  const y=x=> yF+(yR-yF)*(x-60)/346;
+  const pt=([x,hh])=>`${x} ${(y(x)-hh).toFixed(1)}`;
+  const d=`M${pt(SIDE_TOP[0])} `+SIDE_TOP.slice(1).map(p=>'L'+pt(p)).join(' ')+` L406 ${y(406).toFixed(1)} L60 ${y(60).toFixed(1)} L26 ${(y(26)-2).toFixed(1)} Z`;
+  const pod=`M188 ${(y(188)-10).toFixed(1)} L196 ${(y(196)-38).toFixed(1)} L326 ${(y(326)-34).toFixed(1)} L336 ${(y(336)-12).toFixed(1)} Z`;
+  const halo=`M204 ${(y(204)-54).toFixed(1)} C214 ${(y(214)-72).toFixed(1)} 236 ${(y(236)-70).toFixed(1)} 244 ${(y(244)-62).toFixed(1)}`;
+  const fep=`M14 ${(y(14)-2).toFixed(1)} L44 ${(y(44)-2).toFixed(1)} L44 ${(y(44)-22).toFixed(1)} L14 ${(y(14)-20).toFixed(1)} Z`;
+  const rep=`M388 ${(y(388)-30).toFixed(1)} L424 ${(y(424)-30).toFixed(1)} L428 ${(y(428)-100).toFixed(1)} L396 ${(y(396)-100).toFixed(1)} Z`;
+  return {d,pod,halo,fep,rep,y};
 }
 function updateViz(st, prev){
   const root=document.querySelector('.viz'); if(!root) return;
   const q=id=>document.getElementById(id);
   const P=prev||st;
   const cp=(k,sd)=>prev && norm((st[k]||[])[sd])!==norm((prev[k]||[])[sd]);
-  // vista dall'alto: convergenza
   CORNERS.forEach(c=>{
     const k=c.ax==='F'?'toeF':'toeR', ck=c.ax==='F'?'camberF':'camberR', rk=c.ax==='F'?'rhF':'rhR';
-    const sgn = c.sd===0 ? 1 : -1; // toe-in: ruota sinistra ruota in senso orario
+    const sgn = c.sd===0 ? 1 : -1;
     const a = toeDeg((st[k]||[])[c.sd])*VX.toe*sgn, ap = toeDeg((P[k]||[])[c.sd])*VX.toe*sgn;
     const w=q('w'+c.id), g=q('g'+c.id);
     if(w){ w.style.transform=`rotate(${a}deg)`; w.classList.toggle('chg', cp(k,c.sd)); }
@@ -1222,13 +1333,11 @@ function updateViz(st, prev){
     }
   });
   const w=weightsOf(st), tw=q('tWB'); if(tw) tw.textContent = w ? `${w.tot.toFixed(1)} kg · ${w.front.toFixed(1)} % ant. · incrociato ${w.cross.toFixed(1)} %` : '';
-  // viste frontale/posteriore: camber e altezza
   ['F','R'].forEach(ax=>{
     const rk=ax==='F'?'rhF':'rhR', ck=ax==='F'?'camberF':'camberR';
     const h=avg2(st[rk]), hp=avg2(P[rk]), lift=(isFinite(h)?h:0)*VX.rh;
     const b=q('e'+ax+'body'); if(b){ b.style.transform=`translateY(${186-lift}px)`; b.classList.toggle('chg', cp(rk,0)||cp(rk,1)); }
     [0,1].forEach(sd=>{
-      // vista frontale: il lato sinistro vettura appare a destra; camber negativo = parte alta verso l'interno
       const L = ax==='F' ? (sd===0?'R':'L') : (sd===0?'L':'R'), sg = L==='L' ? 1 : -1;
       const a=camDeg((st[ck]||[])[sd])*VX.camber*-sg, ap=camDeg((P[ck]||[])[sd])*VX.camber*-sg;
       const e=q('e'+ax+L), g=q('xg'+ax+L);
@@ -1237,18 +1346,35 @@ function updateViz(st, prev){
       const t=q('et'+ax+L); if(t){ t.textContent=`${(st[ck]||[])[sd]??'–'}°`; t.classList.toggle('chg', cp(ck,sd)); }
     });
     const d=q('d'+ax); if(d){ d.setAttribute('y1',186); d.setAttribute('y2',186-lift); }
+    // bracci: dal telaio (si muove con l'altezza) al portamozzo (ruota con il camber)
+    const ar=q('ar'+ax); if(ar){
+      const F=ax==='F', wW=F?32:40, wH=F?62:66, xs={L:F?68:62, R:F?232:238};
+      const pk=F?{up:[110,-44],lo:[112,-20]}:{up:[114,-30],lo:[110,-8]}, by=186-lift;
+      let path='';
+      ['L','R'].forEach(L=>{
+        const sd = ax==='F' ? (L==='R'?0:1) : (L==='L'?0:1), sg=L==='L'?1:-1;
+        const a=camDeg((st[ck]||[])[sd])*VX.camber*-sg*Math.PI/180;
+        const cx=xs[L], inner=L==='L'?cx+wW/2-4:cx-wW/2+4, mx=L==='L'?1:-1;
+        const rot=(px,py)=>{ const dx=px-cx, dy=py-186; return [cx+dx*Math.cos(a)-dy*Math.sin(a), 186+dx*Math.sin(a)+dy*Math.cos(a)]; };
+        const hu=rot(inner,186-wH*0.68), hl=rot(inner,186-wH*0.3);
+        const cxp=x=> L==='L'?x:300-x;
+        const [ux,uy]=pk.up, [lx,ly]=pk.lo;
+        path+=`M${cxp(ux)} ${by+uy} L${hu[0].toFixed(1)} ${hu[1].toFixed(1)} M${cxp(lx)} ${by+ly} L${hl[0].toFixed(1)} ${hl[1].toFixed(1)} `;
+        path+=`M${cxp(lx)} ${by+ly-6} L${hu[0].toFixed(1)} ${(hu[1]+4).toFixed(1)} `; // puntone
+      });
+      ar.setAttribute('d', path);
+    }
     const th=q('t'+ax+'H'); if(th){ th.textContent=`altezza ${isFinite(h)?h.toFixed(1):'–'} mm${prev&&isFinite(h)&&isFinite(hp)&&Math.abs(h-hp)>0.01?` (prima ${hp.toFixed(1)})`:''}`; th.classList.toggle('chg', cp(rk,0)||cp(rk,1)); }
   });
-  // vista laterale: rake e ali
   const frh=avg2(st.rhF), rrh=avg2(st.rhR), pf=avg2(P.rhF), pr=avg2(P.rhR);
-  const cur=sideBody(isFinite(frh)?frh:0, isFinite(rrh)?rrh:0), old=sideBody(isFinite(pf)?pf:0, isFinite(pr)?pr:0);
-  setD(q('sBody'), cur.d); setD(q('gSide'), old.d);
+  const cur=sideGeom(isFinite(frh)?frh:0, isFinite(rrh)?rrh:0), old=sideGeom(isFinite(pf)?pf:0, isFinite(pr)?pr:0);
+  setD(q('sBody'), cur.d); setD(q('gSide'), old.d); setD(q('sPod'), cur.pod); setD(q('sHalo'), cur.halo); setD(q('sFEP'), cur.fep); setD(q('sREP'), cur.rep);
   q('gSide').style.opacity = (prev && (Math.abs(frh-pf)>0.01||Math.abs(rrh-pr)>0.01)) ? 1 : 0;
   q('sBody').classList.toggle('chg', cp('rhF',0)||cp('rhF',1)||cp('rhR',0)||cp('rhR',1));
   const fwA=parseFloat(st.fw)||0, rwA=RW_DEG[st.rw]??0;
   const sfw=q('sFW'), srw=q('sRW');
-  sfw.style.transform=`translate(36px,${cur.y(36)-2}px) rotate(${fwA*VX.wing}deg)`; sfw.classList.toggle('chg', !!prev && norm(st.fw)!==norm(prev.fw));
-  srw.style.transform=`translate(392px,${cur.y(392)-78}px) rotate(${rwA*VX.wing}deg)`; setD(q('sRWpost'), `M392 ${cur.y(392)-44} L392 ${cur.y(392)-74}`); srw.classList.toggle('chg', !!prev && norm(st.rw)!==norm(prev.rw));
+  sfw.style.transform=`translate(34px,${cur.y(34)-8}px) rotate(${-fwA*VX.wing}deg)`; sfw.classList.toggle('chg', !!prev && norm(st.fw)!==norm(prev.fw));
+  srw.style.transform=`translate(410px,${cur.y(410)-86}px) rotate(${-rwA*VX.wing}deg)`; srw.classList.toggle('chg', !!prev && norm(st.rw)!==norm(prev.rw));
   q('tSF').textContent=`Ala ant. ${st.fw||'–'}`; q('tSF').classList.toggle('chg', !!prev && norm(st.fw)!==norm(prev.fw));
   q('tSR').textContent=`Ala post. ${st.rw||'–'} (${rwA}°)`; q('tSR').classList.toggle('chg', !!prev && norm(st.rw)!==norm(prev.rw));
   q('tRake').textContent = isFinite(frh)&&isFinite(rrh) ? `rake ${(rrh-frh).toFixed(1)} mm` : '';
