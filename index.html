@@ -189,6 +189,8 @@ table.cmp tr.chg td{color:var(--chg);font-weight:600}
 .axinfo{font:500 12px var(--f-num);color:var(--muted)}
 .gens{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
 .gen.notes textarea{min-height:120px}
+.gens.top{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:start}
+.gen h3 .u{color:var(--muted);font:500 11px var(--f-body);text-transform:none;letter-spacing:0}
 @media (max-width:699px){ .fx{grid-template-columns:1fr;gap:3px} .corner{padding:8px} .corner h3{font-size:15px} }
 /* vettura */
 .viz{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:10px;display:grid;gap:10px}
@@ -688,18 +690,14 @@ const SPRINGS = ['700','900','1000','1100'];
 const SG = {info:'Vettura', pesi:'Pesi', freni:'Freni', ant:'Anteriore', post:'Posteriore'};
 const SF = [
   {g:'info', k:'chassis', l:'Telaio #', t:'text'},
-  {g:'info', k:'engine',  l:'Motore #', t:'text'},
-  {g:'info', k:'gearbox', l:'Cambio #', t:'text'},
   {g:'info', k:'driver',  l:'Pilota', t:'text'},
-  {g:'info', k:'dampers', l:'Ammortizzatori', t:'text'},
-  {g:'info', k:'blanking',l:'Chiusura radiatori', t:'text'},
   {g:'pesi', k:'driverKg',l:'Peso pilota', t:'num', u:'kg'},
   {g:'pesi', k:'fuelKg',  l:'Carburante', t:'num', u:'kg'},
   {g:'pesi', k:'ballast1',l:'Zavorra pos. 1 (max 15)', t:'num', u:'kg'},
   {g:'pesi', k:'ballast2',l:'Zavorra pos. 2 (max 5)', t:'num', u:'kg'},
   {g:'pesi', k:'cwF', l:'Pesi ruota ant.', t:'num', lr:true, u:'kg'},
   {g:'pesi', k:'cwR', l:'Pesi ruota post.', t:'num', lr:true, u:'kg'},
-  {g:'freni',k:'bias', l:'Ripartizione freno (idraulica)', t:'num', u:'% ant.'},
+  {g:'freni',k:'bias', l:'Ripartizione freno', t:'num', u:'% ant.'},
   {g:'freni',k:'mcF',  l:'Pompa freno ant.', t:'sel', o:MC, u:'mm'},
   {g:'freni',k:'mcR',  l:'Pompa freno post.', t:'sel', o:MC, u:'mm'},
   {g:'freni',k:'discs',l:'Dischi', t:'text'},
@@ -917,7 +915,7 @@ function techBlock(st, ref, refName){
     ['Peso incrociato (AS+PD)', w?w.cross.toFixed(1)+' %':'–'],
     ['Bilancio rollio barre', isFinite(m.arb)?m.arb.toFixed(1)+' %':'–'],
     ['Bilancio rollio barre+molle', isFinite(m.tot)?m.tot.toFixed(1)+' %':'<span class="muted">imposta carreggiate</span>'],
-    ['Freno: idraulico pompe', bal!=null?bal+' %':'<span class="muted">combinazione da evitare</span>'],
+    ['Ripartizione freno', `${esc(st.bias||'–')} % ant.`+(bal!=null?` <span class="muted">· pompe ${bal} %</span>`:' <span class="muted">· pompe da evitare</span>')],
     ['Centro rollio post. / anti-squat', pk?`${pk[0]} mm / ${pk[2]}°`:'–'],
     ['Aero', aeroTxt]
   ];
@@ -1114,6 +1112,7 @@ function onSetupField(el){
     if(cell){ cell.classList.toggle('chg',ch); cell.querySelector('.was').innerHTML=ch?'prima '+fmtVal(f,pv):''; } }
   $('#sesSummary').innerHTML=sessionSummary(ev,ses);
   updateChips(ev);
+  updateCwSum(ses.setup);
   updateViz(ses.setup, prev?prev.setup:null);
   const aF=$('#axinfoF'), aR=$('#axinfoR'); if(aF) aF.textContent=axleInfoF(ses.setup); if(aR) aR.textContent=axleInfoR(ses.setup);
   CORNERS.forEach(c=>{ const el=document.querySelector('#corner'+c.id+' .ncnt'); if(!el) return;
@@ -1150,23 +1149,29 @@ document.addEventListener('click', e=>{
   if(el.id==='cv_w'){ S.calc.conv[S.calc.conv.axle==='F'?'wF':'wR']=el.value; updateConv(); return; }
   if(el.dataset && (el.dataset.ck||el.dataset.cv)) onCalcField(el);
 }));
-
-
 /* =================== SCHEDA TURNO A VETTURA + VISUALIZZAZIONE =================== */
 const CORNERS = [
   {id:'FL', name:'Ant. Sx', ax:'F', sd:0}, {id:'FR', name:'Ant. Dx', ax:'F', sd:1},
   {id:'RL', name:'Post. Sx', ax:'R', sd:0}, {id:'RR', name:'Post. Dx', ax:'R', sd:1}
 ];
 const CORNER_FIELDS = {
-  F:[['cwF','Peso ruota'],['rhF','Altezza'],['springF','Molla'],['preloadF','Precarico'],['bumpF','Amm. comp.'],['rebF','Amm. est.'],['toeF','Convergenza'],['camberF','Camber'],['umpF','UMP'],['caster','Incidenza']],
-  R:[['cwR','Peso ruota'],['rhR','Altezza'],['springR','Molla'],['preloadR','Precarico'],['bumpR','Amm. comp.'],['rebR','Amm. est.'],['toeR','Convergenza'],['camberR','Camber']]
+  F:[['rhF','Altezza'],['springF','Molla'],['preloadF','Precarico'],['bumpF','Amm. comp.'],['rebF','Amm. est.'],['toeF','Convergenza'],['camberF','Camber'],['umpF','UMP'],['caster','Incidenza']],
+  R:[['rhR','Altezza'],['springR','Molla'],['preloadR','Precarico'],['bumpR','Amm. comp.'],['rebR','Amm. est.'],['toeR','Convergenza'],['camberR','Camber']]
 };
 const AXLE_FIELDS = { F:['fw','fwGurney','arbF','bladeF'], R:['rw','arbR','bladeR','pickup'] };
 const GEN_GROUPS = [
-  ['Vettura',['chassis','engine','gearbox','driver','dampers','blanking']],
+  ['Vettura',['chassis','driver']],
   ['Pesi',['driverKg','fuelKg','ballast1','ballast2']],
   ['Freni',['bias','mcF','mcR','discs','pads']]
 ];
+function cwPanel(st, prev){
+  const c=(k,sd,l)=>cellHTML(SFK[k],st,prev,sd,l);
+  return `<section class="gen"><h3>Pesi ruota <span class="u">kg</span></h3>
+    <div class="ggrid">${c('cwF',0,'Ant. Sx')}${c('cwF',1,'Ant. Dx')}${c('cwR',0,'Post. Sx')}${c('cwR',1,'Post. Dx')}</div>
+    <div class="axinfo" id="cwSum">${cwSumText(st)}</div></section>`;
+}
+function cwSumText(st){ const w=weightsOf(st); return w ? `Totale ${w.tot.toFixed(1)} kg · ${w.front.toFixed(1)} % ant. · incrociato ${w.cross.toFixed(1)} %` : 'Inserisci i quattro pesi ruota'; }
+function updateCwSum(st){ const e=document.getElementById('cwSum'); if(e) e.textContent=cwSumText(st); }
 const RW_DEG = Object.fromEntries(AERO.rw.map((p,i)=>[p, 2+i])); // A1=2° … D5=21° (foglio REAR WING SETTING)
 
 function cellHTML(f, st, prev, sd, label){
@@ -1398,13 +1403,14 @@ function renderSheet(){
         ${ev.sessions.length>1 && ses!==ev.sessions[0] ? `<button class="btn danger sm" type="button" id="sesDel">Elimina turno</button>`:''}
       </div>
     </div>
+    <div class="gens top">${genPanel(GEN_GROUPS[0][0],GEN_GROUPS[0][1],st,prev)}${genPanel(GEN_GROUPS[1][0],GEN_GROUPS[1][1],st,prev)}${cwPanel(st,prev)}${genPanel(GEN_GROUPS[2][0],GEN_GROUPS[2][1],st,prev)}</div>
     <div id="sesSummary">${sessionSummary(ev,ses)}</div>
     <div class="sheet">
       <div class="col-l">${cornerPanel(CORNERS[0],st,prev)}${cornerPanel(CORNERS[2],st,prev)}</div>
       <div class="col-c">${axlePanel('F',st,prev)}${carSVGs()}${axlePanel('R',st,prev)}</div>
       <div class="col-r">${cornerPanel(CORNERS[1],st,prev)}${cornerPanel(CORNERS[3],st,prev)}</div>
     </div>
-    <div class="gens">${GEN_GROUPS.map(([t,k])=>genPanel(t,k,st,prev)).join('')}
+    <div class="gens">
       <section class="gen notes"><h3>Note e feedback pilota</h3><textarea id="sesNotes" rows="5" placeholder="Bilanciamento, sovrasterzo in ingresso, gomme…">${esc(ses.notes||'')}</textarea></section>
     </div>
   </div>`;
