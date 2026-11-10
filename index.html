@@ -289,7 +289,18 @@ details.pyro>summary>span:first-child{flex:1}
 details.pyro>summary .muted{font:500 12px var(--f-body);text-transform:none;letter-spacing:0}
 details.pyro>*:not(summary){margin-inline:14px}
 details.pyro .pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-block:10px}
-@media (max-width:620px){details.pyro .pgrid{grid-template-columns:minmax(0,1fr)} details.pyro .pcard{grid-column:auto!important}}
+@media (max-width:620px){
+  details.pyro>*:not(summary){margin-inline:8px}
+  details.pyro .pgrid{gap:6px}
+  details.pyro .pcard{padding:6px}
+  details.pyro .pcard .t-h{flex-wrap:wrap;gap:2px}
+  details.pyro .pcard .t-h .name{font-size:13px}
+  details.pyro .pcard .t-h .chip{font-size:10px;padding:1px 4px}
+  details.pyro .pin3{gap:3px}
+  details.pyro .pin3 .lbl{font-size:9.5px;letter-spacing:0;white-space:nowrap;overflow:hidden}
+  details.pyro .pin3 .lbl .u{display:none}
+  details.pyro .pin3 input{padding:6px 2px;text-align:center;min-height:38px}
+}
 .pcard{border:1px solid var(--line);border-radius:4px;padding:10px;background:var(--bg);min-width:0}
 .pcard .t-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 .pcard .t-h .name{font:italic 700 15px var(--f-display);text-transform:uppercase}
@@ -315,6 +326,35 @@ details.pyro .pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));g
 @media (max-width:620px){.pmat{gap:6px} .pmh{font-size:10.5px} .pc{font-size:11px;min-height:34px}}
 .paxle{font-size:14px;color:var(--muted);margin-bottom:8px}
 .pcfg{margin-bottom:14px}
+
+/* ---------- T Track / T Air ---------- */
+.tvtop{display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:space-between;margin-bottom:10px}
+.tvtop select{min-width:170px}
+.tvwx{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px}
+.tvlegend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin:6px 0}
+.tvlegend span,.tvtip div{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:18px;height:0;border-top:2px solid;vertical-align:middle}
+.sw.tt{border-color:#d6761b}.sw.ta{border-color:#2a9fd8}.sw.dash{border-top-style:dashed}.sw.faint{opacity:.45}
+.tvchart{position:relative;width:100%;min-height:240px;background:var(--bg);border:1px solid var(--line);border-radius:4px;overflow:hidden;touch-action:pan-y}
+.tvchart svg{display:block}
+.tvchart .g{stroke:var(--line);stroke-width:1}
+.tvchart .ax{fill:var(--muted);font:500 11px var(--f-num)}
+.tvchart .lab{fill:var(--fg);font:700 12px var(--f-num)}
+.tvchart .now{stroke:var(--muted);stroke-dasharray:2 3}
+.tvchart .ln{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.tvchart .ln.tt{stroke:#d6761b}.tvchart .ln.ta{stroke:#2a9fd8}.tvchart .ln.dash{stroke-dasharray:6 5}.tvchart .ln.faint{opacity:.4;stroke-width:1.5}
+.tvchart .dt{stroke:var(--bg);stroke-width:2}.tvchart .dt.tt{fill:#d6761b}.tvchart .dt.ta{fill:#2a9fd8}
+.tvchart .hv{stroke:var(--fg);stroke-opacity:.5}
+.tvtip{position:absolute;top:8px;width:190px;white-space:nowrap;padding:6px 8px;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;font-size:12px;pointer-events:none}
+.tvtip div{display:flex}
+.tvempty{padding:40px 16px;text-align:center;color:var(--muted)}
+.tvnote{margin-top:8px;font-size:13px}
+.tvnext{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.tvnext div{flex:0 0 auto;min-width:56px;text-align:center;border:1px solid var(--line);border-radius:4px;padding:6px 4px;background:var(--bg)}
+.tvnext b{display:block;font:700 16px var(--f-num);color:var(--fg)}.tvnext span{font-size:12px;color:var(--muted)}
+.tvh{margin:18px 0 8px;font:italic 700 16px var(--f-display);text-transform:uppercase}
+details.tvlist{margin-top:12px}details.tvlist summary{cursor:pointer;color:var(--accent);font-size:14px;margin-bottom:6px}
+details.tvlist table{width:100%;font-size:13px}
 
 /* ---------- pagina iniziale: showroom ---------- */
 body.garage-open{overflow:hidden}
@@ -370,7 +410,7 @@ body.garage-open{overflow:hidden}
       <div class="logo"><img id="logoImg" alt="Motorsport Performance Academy" src="data:image/png;base64,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"></div>
       <div class="titlebar">
         <h1>Tyres <span>Pressure</span></h1>
-        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 10/11 · 17:20</div>
+        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 10/11 · 17:55</div>
       </div>
       <div class="teamsw" role="group" aria-label="Team">
         <button type="button" data-team="mpa" aria-pressed="true">MPA</button>
@@ -424,7 +464,7 @@ const DEF_COEF = {
 };
 const CONDS = {dry:'Asciutta', damp:'Umida', wet:'Bagnata'};
 const DEF_TRACKS = ['Monza','Imola','Mugello','Misano','Vallelunga','Paul Ricard','Spa-Francorchamps','Red Bull Ring','Barcellona','Hockenheim','Nürburgring','Zandvoort','Hungaroring'];
-const TABS = {calc:'Calcolo', reg:'Registra run', hist:'Storico', base:'Base pista'};
+const TABS = {calc:'Calcolo', reg:'Registra run', hist:'Storico', temp:'T Track / T Air', base:'Base pista'};
 
 let S = {
   car:'f4', track:'Mugello', cond:'dry', tab:'calc',
@@ -501,22 +541,23 @@ async function remove(id){
 }
 function stable(v){ if(Array.isArray(v)) return '['+v.map(stable).join(',')+']'; if(v&&typeof v==='object') return '{'+Object.keys(v).sort().filter(k=>v[k]!==undefined).map(k=>JSON.stringify(k)+':'+stable(v[k])).join(',')+'}'; return JSON.stringify(v??null); }
 function ingest(docs){
-  const ses=[], bases={}, events={}; let prefs=null;
+  const ses=[], bases={}, events={}, tlog={}; let prefs=null;
   Object.entries(docs).forEach(([id,d])=>{
     if(!d) return;
     if(d.kind==='session') ses.push({...d, id});
     else if(d.kind==='base') bases[id]=d;
+    else if(d.kind==='tlog') tlog[id]=d;
     else if(d.kind==='event'){ const {kind,...e}=d; events[id]={...e, id}; }
     else if(id==='prefs') prefs=d;
   });
   ses.sort((a,b)=>a.id<b.id?-1:1);
   if(typeof evDirty==='function' && S.events){ Object.keys(S.events).forEach(id=>{ if(evDirty(id)) events[id]=S.events[id]; }); Object.keys(events).forEach(id=>{ if(!S.events[id] && evDirty(id)) delete events[id]; }); }
   const nextPrefs = prefs ? {...S.prefs, ...prefs} : S.prefs;
-  const sig = x => stable({s:[...x.s].sort((a,b)=>a.id<b.id?-1:1), b:x.b, e:x.e, p:(({kind,...r})=>r)(x.p||{})});
+  const sig = x => stable({s:[...x.s].sort((a,b)=>a.id<b.id?-1:1), b:x.b, e:x.e, t:x.t||{}, p:(({kind,...r})=>r)(x.p||{})});
   // salta il ridisegno se arriva solo l'eco di un nostro salvataggio (non perdi il campo in cui scrivi)
-  if(S._loaded && sig({s:ses,b:bases,e:events,p:nextPrefs})===sig({s:S.sessions,b:S.bases,e:S.events||{},p:S.prefs})) return;
+  if(S._loaded && sig({s:ses,b:bases,e:events,t:tlog,p:nextPrefs})===sig({s:S.sessions,b:S.bases,e:S.events||{},t:S.tlog,p:S.prefs})) return;
   S._loaded=true;
-  S.sessions=ses; S.bases=bases; S.events=events; S.prefs=nextPrefs;
+  S.sessions=ses; S.bases=bases; S.events=events; S.tlog=tlog; S.prefs=nextPrefs;
   if(S.evId && !events[S.evId]) S.evId=null;
   if(!S.evId){ const l=Object.values(events).filter(e=>e.car==='f4').sort((a,b)=>(b.date||'').localeCompare(a.date||'')||b.created-a.created); if(l[0]) S.evId=l[0].id; }
   render();
@@ -668,7 +709,7 @@ function pyroPanel(D){
   const cards=C.map((c,i)=>{ const side=i%2, t=D.pyro[i], order=side===0?['o','c','i']:['i','c','o'];
     return `<div class="pcard" style="grid-column:${side?2:1}">
       <div class="t-h"><span class="name">${CN[c]}</span><span class="chip" id="pyA${i}">–</span></div>
-      <div class="pin3">${order.map(k=>`<div class="field"><label class="lbl" for="p${k}${i}">${PYRO_N[k]} °C</label>${inp('p'+k+i, t[PYRO_K.indexOf(k)])}</div>`).join('')}</div>
+      <div class="pin3">${order.map(k=>`<div class="field"><label class="lbl" for="p${k}${i}">${PYRO_N[k]}<span class="u"> °C</span></label>${inp('p'+k+i, t[PYRO_K.indexOf(k)])}</div>`).join('')}</div>
       <div id="pyB${i}">${pyroBars(t,side)}</div></div>`; }).join('');
   return `<details class="pyro"${has?' open':''}><summary><span>Temperature battistrada · interno / centro / esterno</span><span class="muted">facoltativo</span></summary>
     <div class="note">Misura con il pirometro appena la vettura rientra, sempre nello stesso ordine. Inflation: centro più caldo dei lati = OVER, più freddo = UNDER. Camber: ΔT interno − esterno ottimale ${f1(cfg.opt)} ±5 °C, TOO MUCH da ${f1(cfg.alarm)} °C. Window: media dei tre valori fra ${f1(cfg.wmin)} e ${f1(cfg.wmax)} °C.</div>
@@ -721,8 +762,8 @@ function itNum(w){
 }
 function pydParse(text){
   const out=[]; let t=' '+text.toLowerCase()+' ';
-  t=t.replace(/(\d)\s*,\s*(\d)(?!\d{2})/g,(m,a,b)=>a+'.'+b).replace(/°c?|gradi/g,' ');
-  const tok=t.split(/[\s,;:]+/).filter(Boolean);
+  t=t.replace(/(\d),(\d)(?!\d)/g,'$1.$2').replace(/°c?|gradi/g,' ');
+  const tok=t.split(/[\s,;:\/–-]+/).filter(Boolean);
   for(let j=0;j<tok.length;j++){ const w=tok[j];
     if(/^(indietro|annulla|cancella)$/.test(w)){ out.push({cmd:'back'}); continue; }
     if(/^(stop|fine|basta)$/.test(w)){ out.push({cmd:'stop'}); continue; }
@@ -733,11 +774,19 @@ function pydParse(text){
       out.push({v:parseFloat(w)}); continue; }
     const n=itNum(w); if(n!=null) out.push({v:n});
   }
-  return out.filter(o=>o.cmd||(o.v>=-20&&o.v<=200));
+  // la dettatura a volte spezza i numeri: "80 4" → 84, "100 12" → 112
+  const m=[];
+  for(const o of out){ const p=m[m.length-1];
+    if(p&&p.v!=null&&o.v!=null&&Number.isInteger(p.v)&&Number.isInteger(o.v)&&!p.merged){
+      if(p.v>=20&&p.v<=90&&p.v%10===0&&o.v>=1&&o.v<=9){ p.v+=o.v; p.merged=true; continue; }
+      if(p.v===100&&o.v>=1&&o.v<=99){ p.v+=o.v; if(o.v%10!==0||o.v<20) p.merged=true; continue; }
+    }
+    m.push({...o}); }
+  return m.filter(o=>o.cmd||(o.v>=10&&o.v<=160)).map(o=>o.cmd?{cmd:o.cmd}:{v:o.v});
 }
 function pydHear(text){
   if(!PYD.on||!draft) return;
-  const q=pydSeq();
+  const q=pydSeq(); PYD.last=text.trim();
   for(const o of pydParse(text)){
     if(o.cmd==='stop'){ pydStop(); break; }
     if(o.cmd==='back'){ if(PYD.pos>0){ PYD.pos--; const [i,k]=q[PYD.pos]; draft.pyro[i][PYRO_K.indexOf(k)]=NaN; const el=$('#p'+k+i); if(el) el.value=''; } continue; }
@@ -750,20 +799,24 @@ function pydHear(text){
 }
 function pydBind(){
   if(PYD.bound||!PYD.eng) return; PYD.bound=true;
-  PYD.eng.onFinal(({text})=>{ PYD.partial=''; pydHear(text); });
+  PYD.eng.onFinal(({text})=>{ PYD.partial=''; const t=(text||'').trim(), now=Date.now();
+    if(t && t===PYD.lf && now-PYD.lt<600) return; PYD.lf=t; PYD.lt=now; pydHear(text); });
   PYD.eng.onPartial(({text})=>{ PYD.partial=text; pydUI(); });
   PYD.eng.onState(({state,reason})=>{ if(state==='idle'&&PYD.on){ PYD.on=false; if(reason&&!/stopped/.test(reason)) toast(reason==='not_granted'?'Microfono non autorizzato':'Dettatura interrotta'); pydUI(); } });
 }
 function pydStart(){
   if(!draft) return;
-  PYD.pos=pydFirstEmpty(); PYD.on=true; PYD.partial='';
+  PYD.pos=pydFirstEmpty(); PYD.on=true; PYD.partial=''; PYD.last='';
   if(PYD.eng){ pydBind(); PYD.eng.start().catch(err=>{ PYD.on=false; pydUI(); toast(err&&err.code==='not_granted'?'Microfono non autorizzato':'Dettatura non disponibile'); }); }
   else { const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
     if(!SR){ PYD.on=false; toast('Dettatura non disponibile in questo browser'); return; }
-    const r=new SR(); r.lang='it-IT'; r.continuous=true; r.interimResults=true;
-    r.onresult=ev=>{ let part=''; for(let j=ev.resultIndex;j<ev.results.length;j++){ const x=ev.results[j]; if(x.isFinal) pydHear(x[0].transcript); else part+=x[0].transcript; } PYD.partial=part; pydUI(); };
+    // continuous=false: Chrome su Android in modalità continua ripete i risultati già dati → valori doppi
+    const r=new SR(); r.lang='it-IT'; r.continuous=false; r.interimResults=true; r.maxAlternatives=1;
+    r.onresult=ev=>{ let part='', fin=''; for(let j=0;j<ev.results.length;j++){ const x=ev.results[j]; if(x.isFinal) fin=x[0].transcript; else part+=x[0].transcript; }
+      if(fin && !r.__done){ r.__done=true; PYD.partial=''; pydHear(fin); } else { PYD.partial=part; pydUI(); } };
     r.onerror=ev=>{ if(ev.error==='not-allowed'||ev.error==='service-not-allowed'){ PYD.on=false; toast('Microfono non autorizzato'); pydUI(); } };
-    r.onend=()=>{ if(PYD.on){ try{ r.start(); }catch(e){ PYD.on=false; pydUI(); } } };
+    r.onstart=()=>{ r.__done=false; };
+    r.onend=()=>{ if(PYD.on){ r.__done=false; try{ r.start(); }catch(e){ PYD.on=false; pydUI(); } } };
     PYD.sr=r; try{ r.start(); }catch(e){ PYD.on=false; toast('Dettatura non disponibile'); } }
   pydUI();
 }
@@ -780,7 +833,7 @@ function pydUI(){
   if(!b) return; b.classList.toggle('on',PYD.on); b.querySelector('span').textContent=PYD.on?'Stop dettatura':'Detta temperature';
   if(!PYD.on){ st.textContent=''; return; }
   const q=pydSeq(); if(PYD.pos<q.length){ const [i,k]=q[PYD.pos]; const el=$('#p'+k+i); if(el) el.classList.add('pydcur');
-    st.innerHTML=`Ascolto… prossimo: <b>${CN[C[i]]} · ${PYRO_N[k]}</b>${PYD.partial?` <span class="muted">«${esc(PYD.partial)}»</span>`:''}`; }
+    st.innerHTML=`Ascolto… prossimo: <b>${CN[C[i]]} · ${PYRO_N[k]}</b>${PYD.partial?` <span class="muted">«${esc(PYD.partial)}»</span>`:(PYD.last?` <span class="muted">· sentito «${esc(PYD.last)}»</span>`:'')}`; }
 }
 document.addEventListener('click', e=>{
   const b=e.target.closest&&e.target.closest('[data-pyd]'); if(!b) return;
@@ -848,9 +901,10 @@ function render(){
   renderSel();
   if(S.mod==='setup'){ $('#view').innerHTML=renderSetup(); const ev=curEvent(), ses=ev&&curSession(ev); if(ses && document.querySelector('.viz')){ const pv=prevSession(ev,ses); updateViz(ses.setup, pv?pv.setup:null); } return; }
   if(S.mod==='calc'){ $('#view').innerHTML=renderCalcMod(); if(S.car==='f4'&&S.stab.calc==='conv') updateConv(); return; }
-  const v = {calc:renderCalc, reg:renderReg, hist:renderHist, base:renderBase}[S.tab]();
+  const v = {calc:renderCalc, reg:renderReg, hist:renderHist, temp:renderTemps, base:renderBase}[S.tab]();
   $('#view').innerHTML=v;
   if(S.tab==='reg'){ updateRegChips(); updatePyro(); }
+  if(S.tab==='temp'){ drawTChart(); tvStatus(); }
 }
 
 /* ---------- eventi ---------- */
@@ -2517,6 +2571,196 @@ document.addEventListener('click', e=>{
 });
 try{ const lc=localStorage.getItem('tp_lastCar'); if(lc && CARS[lc]) S.car=lc; }catch(_){}
 openGarage();
+
+
+/* =================== T TRACK / T AIR: registro giornata, meteo web, proiezione =================== */
+const TRACK_GEO={'Monza':[45.6156,9.2811],'Imola':[44.3439,11.7167],'Mugello':[43.9975,11.3719],'Misano':[43.9614,12.6833],'Vallelunga':[42.1592,12.3683],'Paul Ricard':[43.2506,5.7917],'Spa-Francorchamps':[50.4372,5.9714],'Red Bull Ring':[47.2197,14.7647],'Barcellona':[41.5700,2.2611],'Hockenheim':[49.3278,8.5656],'Nürburgring':[50.3356,6.9475],'Zandvoort':[52.3888,4.5409],'Hungaroring':[47.5789,19.2486]};
+const TV={date:null, wx:{}, last:{}, err:{}, busy:false, hover:null};
+const K_DEF=0.025, A_DEF=2, LAG=45;   // k °C per W/m², scarto base °C, ritardo termico asfalto (min)
+const pad2=n=>String(n).padStart(2,'0');
+const ymd=d=>`${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+const todayYmd=()=>ymd(new Date());
+const nowMin=()=>{ const d=new Date(); return d.getHours()*60+d.getMinutes(); };
+const hhmm=m=>`${pad2(Math.floor(m/60))}:${pad2(Math.round(m%60))}`;
+const dmy=s=>s?s.slice(8,10)+'/'+s.slice(5,7):'';
+const tlId=(track,date)=>'tl_'+track.replace(/[^a-z0-9]+/gi,'_')+'_'+date;
+function trackGeo(t){ const p=S.prefs&&S.prefs.trackGeo&&S.prefs.trackGeo[t]; return p||TRACK_GEO[t]||null; }
+function tlDoc(track,date){ return (S.tlog||{})[tlId(track,date)]||null; }
+function tlDays(track){ const s=new Set();
+  Object.values(S.tlog||{}).forEach(d=>{ if(d.track===track&&(d.pts||[]).length) s.add(d.date); });
+  S.sessions.forEach(x=>{ if(x.track===track&&isFinite(x.tt)) s.add(ymd(new Date(x.date))); });
+  return [...s].sort(); }
+// tutte le letture del giorno: run salvati (auto) + manuali + web
+function tlPoints(track,date){
+  const out=[];
+  S.sessions.forEach(x=>{ if(x.track!==track) return; const d=new Date(x.date); if(ymd(d)!==date) return;
+    out.push({m:d.getHours()*60+d.getMinutes(), tt:isFinite(x.tt)?x.tt:null, ta:isFinite(x.ta)?x.ta:null, src:'run', car:x.car, id:x.id}); });
+  const doc=tlDoc(track,date); (doc&&doc.pts||[]).forEach((p,j)=>out.push({...p, j}));
+  return out.sort((a,b)=>a.m-b.m);
+}
+function tlWx(track,date){ const mem=TV.wx[track]&&TV.wx[track][date]; if(mem) return mem; const d=tlDoc(track,date); return d&&d.wx||null; }
+function hAt(arr,m){ if(!arr) return NaN; const h=m/60, i=Math.floor(h), f=h-i; if(i<0) return arr[0]; if(i>=arr.length-1) return arr[arr.length-1]; const a=arr[i], b=arr[i+1]; return isFinite(a)&&isFinite(b)?a+(b-a)*f:(isFinite(a)?a:b); }
+function interpPts(pts,m){ if(!pts.length) return NaN; if(m<=pts[0].m) return pts[0].v; if(m>=pts[pts.length-1].m) return pts[pts.length-1].v;
+  for(let j=1;j<pts.length;j++) if(m<=pts[j].m){ const a=pts[j-1], b=pts[j]; return a.v+(b.v-a.v)*(m-a.m)/((b.m-a.m)||1); } return NaN; }
+
+async function tlSave(track,date,mut){
+  const id=tlId(track,date), cur=tlDoc(track,date)||{kind:'tlog', track, date, pts:[]};
+  const next=mut(JSON.parse(JSON.stringify(cur))); if(!next) return;
+  S.tlog={...(S.tlog||{}), [id]:next}; await persist(id,next);
+}
+
+/* ----- meteo web (Open-Meteo, senza chiave) ----- */
+async function geocodeTrack(t){
+  try{ const r=await fetch('https://geocoding-api.open-meteo.com/v1/search?count=1&language=it&name='+encodeURIComponent(t)); const j=await r.json();
+    const g=j.results&&j.results[0]; if(!g) return null; const ll=[+g.latitude.toFixed(4), +g.longitude.toFixed(4)];
+    S.prefs.trackGeo={...(S.prefs.trackGeo||{}), [t]:ll}; persist('prefs',{...S.prefs, kind:'prefs'}); return ll; }catch(e){ return null; }
+}
+async function wxFetch(force){
+  const track=S.track; if(!track||TV.busy) return;
+  if(!force && TV.last[track] && Date.now()-TV.last[track] < 30*60000) return;
+  let ll=trackGeo(track); if(!ll) ll=await geocodeTrack(track);
+  if(!ll){ TV.err[track]='coordinate della pista non trovate: inseriscile qui sotto'; tvStatus(); return; }
+  TV.busy=true; tvStatus();
+  try{
+    const url=`https://api.open-meteo.com/v1/forecast?latitude=${ll[0]}&longitude=${ll[1]}&current=temperature_2m,shortwave_radiation,cloud_cover&hourly=temperature_2m,shortwave_radiation,cloud_cover&past_days=1&forecast_days=2&timezone=auto`;
+    const r=await fetch(url, {cache:'no-store'}); if(!r.ok) throw new Error('HTTP '+r.status); const j=await r.json();
+    const by={}; j.hourly.time.forEach((t,i)=>{ const d=t.slice(0,10), h=+t.slice(11,13); (by[d]=by[d]||{t:Array(24).fill(null),r:Array(24).fill(null),c:Array(24).fill(null)});
+      by[d].t[h]=j.hourly.temperature_2m[i]; by[d].r[h]=j.hourly.shortwave_radiation[i]; by[d].c[h]=j.hourly.cloud_cover[i]; });
+    TV.wx[track]={...(TV.wx[track]||{}), ...by}; TV.last[track]=Date.now(); delete TV.err[track];
+    const today=todayYmd(), cur=j.current||{}, m=nowMin();
+    await tlSave(track,today,d=>{ d.wx=by[today]||d.wx;
+      if(isFinite(cur.temperature_2m) && !d.pts.some(p=>p.src==='web'&&Math.abs(p.m-m)<20)) d.pts.push({m, ta:cur.temperature_2m, src:'web'});
+      return d; });
+    const yest=Object.keys(by).sort().find(x=>x<today);
+    if(yest && tlDoc(track,yest)) await tlSave(track,yest,d=>{ d.wx=by[yest]; return d; });
+  }catch(e){ TV.err[track]='meteo web non raggiungibile ('+(e.message||'rete')+')'; }
+  TV.busy=false; if(S.mod==='press'&&S.tab==='temp') render(); else tvStatus();
+}
+setInterval(()=>{ if(S._loaded) wxFetch(false); }, 60000);
+setTimeout(()=>{ if(S._loaded) wxFetch(false); }, 4000);
+
+/* ----- modello: T pista = T aria + a + k·irraggiamento(t−45') + correzione sulle letture di oggi ----- */
+function tvFit(track,date){
+  const days=tlDays(track).filter(d=>d<date).slice(-3), xs=[], ys=[];
+  days.forEach(d=>{ const wx=tlWx(track,d); if(!wx) return;
+    tlPoints(track,d).forEach(p=>{ if(p.tt==null) return; const air=p.ta!=null?p.ta:hAt(wx.t,p.m), rad=hAt(wx.r,p.m-LAG); if(isFinite(air)&&isFinite(rad)){ xs.push(rad); ys.push(p.tt-air); } }); });
+  const n=xs.length; if(!n) return {a:A_DEF, k:K_DEF, n:0, days:[]};
+  const mx=xs.reduce((s,x)=>s+x,0)/n, my=ys.reduce((s,y)=>s+y,0)/n, vx=xs.reduce((s,x)=>s+(x-mx)**2,0)/n;
+  let k=K_DEF; if(n>=4 && vx>2000){ k=xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0)/n/vx; k=Math.min(0.045,Math.max(0.008,k)); }
+  return {a:my-k*mx, k, n, days};
+}
+function tvProjection(track,date){
+  const wx=tlWx(track,date), pts=tlPoints(track,date).filter(p=>p.tt!=null);
+  if(wx && wx.t.some(isFinite)){
+    const fit=tvFit(track,date), model=m=>hAt(wx.t,m)+fit.a+fit.k*Math.max(0,hAt(wx.r,m-LAG)||0);
+    const res=pts.slice(-2).map(p=>p.tt-model(p.m)).filter(isFinite), bias=res.length?res.reduce((s,x)=>s+x,0)/res.length:0;
+    return {kind:'wx', fit, bias, f:m=>model(m)+bias};
+  }
+  const prev=tlDays(track).filter(d=>d<date).pop(); if(!prev) return null;
+  const pp=tlPoints(track,prev).filter(p=>p.tt!=null).map(p=>({m:p.m, v:p.tt})); if(pp.length<2) return null;
+  const off=pts.length?pts.slice(-2).reduce((s,p)=>s+(p.tt-interpPts(pp,p.m)),0)/Math.min(2,pts.length):0;
+  return {kind:'prev', prev, bias:off, f:m=>(m<pp[0].m-60||m>pp[pp.length-1].m+60)?NaN:interpPts(pp,m)+off};
+}
+
+/* ----- vista ----- */
+function renderTemps(){
+  const track=S.track, today=todayYmd(), days=tlDays(track); if(!TV.date||(TV.date!==today&&!days.includes(TV.date))) TV.date=today;
+  const date=TV.date, isToday=date===today, pts=tlPoints(track,date), ll=trackGeo(track), pr=tvProjection(track,date), m0=nowMin();
+  const opts=[...new Set([today,...days])].sort().reverse();
+  const next=[]; if(pr){ const from=isToday?Math.ceil((m0+1)/60):8; for(let h=Math.max(from,7);h<=19&&next.length<10;h++){ const v=pr.f(h*60); if(isFinite(v)) next.push([h,v]); } }
+  const wx=tlWx(track,date), airNow=isToday&&wx?hAt(wx.t,m0):NaN;
+  const projTxt=!pr?'Nessuna proiezione: servono il meteo web oppure una giornata precedente su questa pista.'
+    : pr.kind==='wx' ? `T pista = T aria prevista ${pr.fit.a<0?'−':'+'} ${f1(Math.abs(pr.fit.a))} °C + ${pr.fit.k.toFixed(3)} × irraggiamento (con 45' di ritardo) ${pr.fit.n?`· tarato su ${pr.fit.n} letture del ${pr.fit.days.map(dmy).join(', ')}`:'· valori standard, si tara da solo con le giornate registrate qui'}${pts.some(p=>p.tt!=null)?` · corretto sulle letture di oggi (${pr.bias>=0?'+':''}${f1(pr.bias)} °C)`:''}`
+    : `Andamento del ${dmy(pr.prev)} spostato di ${pr.bias>=0?'+':''}${f1(pr.bias)} °C sulle letture di oggi (senza meteo web).`;
+  return `<div class="panel tv"><h2>T Track / T Air · ${esc(track)}</h2>
+    <div class="tvtop"><div class="field"><label class="lbl" for="tvDate">Giornata</label><select id="tvDate">${opts.map(d=>`<option value="${d}" ${d===date?'selected':''}>${d===today?'Oggi ':''}${dmy(d)}/${d.slice(0,4)}</option>`).join('')}</select></div>
+      <div class="tvwx"><div id="tvSt" class="muted"></div><button class="btn sm" type="button" data-tv="refresh">Aggiorna meteo</button></div></div>
+    <div class="tvlegend"><span><i class="sw tt"></i>T pista</span><span><i class="sw tt dash"></i>T pista prevista</span><span><i class="sw ta"></i>T aria</span><span><i class="sw ta dash"></i>T aria prevista</span>${tlDays(track).filter(d=>d<date).length?`<span><i class="sw tt faint"></i>T pista ${dmy(tlDays(track).filter(d=>d<date).pop())}</span>`:''}</div>
+    <div class="tvchart" id="tvChart"></div>
+    <div class="note tvnote">${projTxt}</div>
+    ${next.length?`<div class="lbl" style="margin-top:12px">${isToday?'Prossime ore':'Proiezione'} · T pista</div><div class="tvnext">${next.map(([h,v])=>`<div><b>${f1(v)}</b><span>${pad2(h)}:00</span></div>`).join('')}</div>`:''}
+    ${isToday&&(pr||isFinite(airNow))?`<button class="btn" type="button" data-tv="use" style="margin-top:12px">Usa nel calcolo: T pista ${pr&&isFinite(pr.f(m0))?f1(pr.f(m0)):'–'} · T aria ${isFinite(airNow)?f1(airNow):'–'}</button>`:''}
+    <h3 class="tvh">Aggiungi lettura</h3>
+    <div class="grid3"><div class="field"><label class="lbl" for="tvM">Ora</label><input type="text" inputmode="numeric" id="tvM" value="${hhmm(m0)}" placeholder="hh:mm"></div>
+      <div class="field"><label class="lbl" for="tvTT">T pista °C</label>${inp('tvTT','')}</div>
+      <div class="field"><label class="lbl" for="tvTA">T aria °C</label>${inp('tvTA','')}</div>
+      <div class="field"><button class="btn primary" type="button" data-tv="add">Aggiungi</button></div></div>
+    <div class="muted" style="font-size:13px;margin-top:6px">Le T pista e T aria dei run salvati entrano da sole. La T aria web si aggiorna ogni 30 minuti mentre l'app è aperta.</div>
+    <details class="tvlist"><summary>Letture del ${dmy(date)} (${pts.length})</summary>
+      ${pts.length?`<table><thead><tr><th>Ora</th><th>T pista</th><th>T aria</th><th>Fonte</th><th></th></tr></thead><tbody>${pts.map(p=>`<tr><td>${hhmm(p.m)}</td><td>${p.tt!=null?f1(p.tt):'–'}</td><td>${p.ta!=null?f1(p.ta):'–'}</td><td>${p.src==='run'?'Run '+(CARS[p.car]?CARS[p.car].name:''):p.src==='web'?'Web':'Manuale'}</td><td>${p.src==='run'?'':`<button class="btn sm danger" type="button" data-tvdel="${p.j}">Elimina</button>`}</td></tr>`).join('')}</tbody></table>`:'<div class="muted">Nessuna lettura.</div>'}
+    </details>
+    <details class="tvlist"><summary>Coordinate pista per il meteo</summary>
+      <div class="grid3"><div class="field"><label class="lbl" for="tvLL">Lat, lon</label><input type="text" id="tvLL" value="${ll?ll.join(', '):''}" placeholder="45.6156, 9.2811"></div>
+      <div class="field"><button class="btn sm" type="button" data-tv="ll">Salva coordinate</button></div></div>
+      <div class="muted" style="font-size:13px">Dati meteo: Open-Meteo (temperatura a 2 m e irraggiamento solare).</div></details>
+  </div>`;
+}
+function tvStatus(){ const el=$('#tvSt'); if(!el) return; const t=S.track;
+  el.innerHTML = TV.busy?'Meteo web: aggiornamento…' : TV.err[t]?`<span class="chip warn">${esc(TV.err[t])}</span>` : TV.last[t]?`Meteo web aggiornato alle ${new Date(TV.last[t]).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})}`:'Meteo web: in attesa'; }
+
+function drawTChart(){
+  const box=$('#tvChart'); if(!box) return;
+  const track=S.track, date=TV.date, isToday=date===todayYmd(), m0=nowMin(), pts=tlPoints(track,date), wx=tlWx(track,date), pr=tvProjection(track,date);
+  const prevD=tlDays(track).filter(d=>d<date).pop(), prevPts=prevD?tlPoints(track,prevD).filter(p=>p.tt!=null):[];
+  const tt=pts.filter(p=>p.tt!=null), ta=pts.filter(p=>p.ta!=null);
+  let x0=8*60, x1=19*60; [...pts,...prevPts].forEach(p=>{ x0=Math.min(x0,Math.floor(p.m/60)*60); x1=Math.max(x1,Math.ceil(p.m/60)*60); });
+  const W=Math.max(300,box.clientWidth), H=W<500?240:300, L=36, R=10, T=12, B=26;
+  const X=m=>L+(m-x0)/(x1-x0)*(W-L-R);
+  const step=15, grid=[]; for(let m=x0;m<=x1;m+=step) grid.push(m);
+  const airLine=wx?grid.map(m=>({m,v:hAt(wx.t,m)})).filter(p=>isFinite(p.v)):[];
+  const projLine=pr?grid.filter(m=>!isToday||m>=Math.min(m0, tt.length?tt[tt.length-1].m:m0)).map(m=>({m,v:pr.f(m)})).filter(p=>isFinite(p.v)):[];
+  const vals=[...tt.map(p=>p.tt),...ta.map(p=>p.ta),...airLine.map(p=>p.v),...projLine.map(p=>p.v),...prevPts.map(p=>p.tt)].filter(isFinite);
+  if(!vals.length){ box.innerHTML='<div class="tvempty">Nessun dato per questa giornata. Aggiungi una lettura o aggiorna il meteo.</div>'; return; }
+  let y0=Math.floor((Math.min(...vals)-2)/5)*5, y1=Math.ceil((Math.max(...vals)+2)/5)*5; if(y1-y0<10) y1=y0+10;
+  const Y=v=>T+(y1-v)/(y1-y0)*(H-T-B);
+  const path=a=>a.map((p,i)=>(i?'L':'M')+X(p.m).toFixed(1)+' '+Y(p.v).toFixed(1)).join('');
+  const yt=[]; for(let v=y0;v<=y1;v+=(y1-y0>30?10:5)) yt.push(v);
+  const xt=[]; for(let m=x0;m<=x1;m+=60) if((m/60)%(W<500?2:1)===0) xt.push(m);
+  const airPast=isToday?airLine.filter(p=>p.m<=m0):airLine, airFut=isToday?airLine.filter(p=>p.m>=m0):[];
+  let s=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Temperature pista e aria del ${dmy(date)}">`;
+  s+=yt.map(v=>`<line class="g" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ax" x="${L-6}" y="${Y(v)+4}" text-anchor="end">${v}</text>`).join('');
+  s+=xt.map(m=>`<text class="ax" x="${X(m)}" y="${H-8}" text-anchor="middle">${pad2(m/60)}</text>`).join('');
+  if(isToday&&m0>=x0&&m0<=x1) s+=`<line class="now" x1="${X(m0)}" x2="${X(m0)}" y1="${T}" y2="${H-B}"/><text class="ax" x="${X(m0)+4}" y="${T+10}">ora</text>`;
+  if(prevPts.length>1) s+=`<path class="ln tt faint" d="${path(prevPts.map(p=>({m:p.m,v:p.tt})))}"/>`;
+  if(airPast.length>1) s+=`<path class="ln ta" d="${path(airPast)}"/>`;
+  if(airFut.length>1) s+=`<path class="ln ta dash" d="${path(airFut)}"/>`;
+  if(projLine.length>1) s+=`<path class="ln tt dash" d="${path(projLine)}"/>`;
+  if(tt.length>1) s+=`<path class="ln tt" d="${path(tt.map(p=>({m:p.m,v:p.tt})))}"/>`;
+  s+=ta.map(p=>`<circle class="dt ta" cx="${X(p.m)}" cy="${Y(p.ta)}" r="${p.src==='web'?3:4.5}"/>`).join('');
+  s+=tt.map(p=>`<circle class="dt tt" cx="${X(p.m)}" cy="${Y(p.tt)}" r="4.5"/>`).join('');
+  const lastT=tt[tt.length-1]; if(lastT) s+=`<text class="lab" x="${Math.min(X(lastT.m)+7,W-R-30)}" y="${Y(lastT.tt)-8}">${f1(lastT.tt)}</text>`;
+  s+=`<g id="tvHv" style="display:none"><line class="hv" y1="${T}" y2="${H-B}"/><circle class="dt tt" r="4"/><circle class="dt ta" r="4"/></g>`;
+  s+=`<rect id="tvOv" x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="transparent"/></svg><div class="tvtip" id="tvTip" hidden></div>`;
+  box.innerHTML=s;
+  const ttAt=m=>{ const a=tt.map(p=>({m:p.m,v:p.tt})); if(a.length&&m>=a[0].m&&m<=a[a.length-1].m) return [interpPts(a,m),'misurata']; const v=pr?pr.f(m):NaN; return [v,'prevista']; };
+  const taAt=m=>wx?hAt(wx.t,m):(ta.length?interpPts(ta.map(p=>({m:p.m,v:p.ta})),m):NaN);
+  const ov=$('#tvOv'), hv=$('#tvHv'), tip=$('#tvTip');
+  const move=e=>{ const r=ov.getBoundingClientRect(), cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left; let m=x0+cx/r.width*(x1-x0); m=Math.round(m/5)*5; m=Math.max(x0,Math.min(x1,m));
+    const [vt,kt]=ttAt(m), va=taAt(m), x=X(m); hv.style.display=''; const [l,c1,c2]=hv.children; l.setAttribute('x1',x); l.setAttribute('x2',x);
+    c1.style.display=isFinite(vt)?'':'none'; if(isFinite(vt)){ c1.setAttribute('cx',x); c1.setAttribute('cy',Y(vt)); }
+    c2.style.display=isFinite(va)?'':'none'; if(isFinite(va)){ c2.setAttribute('cx',x); c2.setAttribute('cy',Y(va)); }
+    tip.hidden=false; tip.innerHTML=`<b>${hhmm(m)}</b><div><i class="sw tt"></i>T pista ${isFinite(vt)?f1(vt)+' °C <span class="muted">'+kt+'</span>':'–'}</div><div><i class="sw ta"></i>T aria ${isFinite(va)?f1(va)+' °C':'–'}</div>`;
+    tip.style.left=Math.min(Math.max(4,x-95),W-194)+'px'; };
+  const out=()=>{ hv.style.display='none'; tip.hidden=true; };
+  ov.addEventListener('pointermove',move); ov.addEventListener('pointerdown',move); ov.addEventListener('pointerleave',out);
+}
+window.addEventListener('resize',()=>{ clearTimeout(TV.rz); TV.rz=setTimeout(()=>{ if(S.mod==='press'&&S.tab==='temp') drawTChart(); },150); });
+
+document.addEventListener('click', async e=>{
+  const b=e.target.closest&&e.target.closest('[data-tv],[data-tvdel]'); if(!b) return;
+  const track=S.track, date=TV.date;
+  if(b.dataset.tvdel!=null){ const j=+b.dataset.tvdel; await tlSave(track,date,d=>{ d.pts.splice(j,1); return d; }); render(); return; }
+  const a=b.dataset.tv;
+  if(a==='refresh'){ wxFetch(true); }
+  else if(a==='add'){ const tm=($('#tvM').value||hhmm(nowMin())).trim().split(/[:.,\s]/), m=Math.min(1439,Math.max(0,(+tm[0])*60+(+tm[1]||0))), vt=num($('#tvTT').value), va=num($('#tvTA').value);
+    if(!isFinite(vt)&&!isFinite(va)){ toast('Inserisci almeno una temperatura'); return; }
+    await tlSave(track,date,d=>{ d.pts.push({m, ...(isFinite(vt)?{tt:vt}:{}), ...(isFinite(va)?{ta:va}:{}), src:'man'}); return d; }); toast('Lettura aggiunta'); render(); }
+  else if(a==='use'){ const pr=tvProjection(track,date), m0=nowMin(), wx=tlWx(track,date), vt=pr?pr.f(m0):NaN, va=wx?hAt(wx.t,m0):NaN;
+    if(isFinite(vt)) S.inp.tt=+vt.toFixed(1); if(isFinite(va)) S.inp.ta=+va.toFixed(1); S.tab='calc'; render(); window.scrollTo({top:0}); toast('Temperature inserite nel calcolo'); }
+  else if(a==='ll'){ const p=($('#tvLL').value||'').split(/[,;\s]+/).map(Number).filter(isFinite); if(p.length!==2){ toast('Formato: lat, lon'); return; }
+    S.prefs.trackGeo={...(S.prefs.trackGeo||{}), [track]:p}; await persist('prefs',{...S.prefs, kind:'prefs'}); TV.last[track]=0; toast('Coordinate salvate'); wxFetch(true); }
+});
+document.addEventListener('change', e=>{ if(e.target.id==='tvDate'){ TV.date=e.target.value; render(); } });
 /* ---------- backup e installazione (versione app) ---------- */
 document.addEventListener('click', e=>{
   if(e.target.id!=='expData') return;
