@@ -191,6 +191,7 @@ table.cmp tr.chg td{color:var(--chg);font-weight:600}
 .fx.chg .fl{color:var(--chg)}
 .axgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px}
 .axgrid .fx,.ggrid .fx{grid-template-columns:1fr;gap:3px}
+.bl2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .ggrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 14px}
 .axinfo{font:500 12px var(--f-num);color:var(--muted)}
 .gens{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
@@ -335,6 +336,16 @@ details.pyro .pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));g
 .cmpgrp{margin-bottom:12px}
 .cmph{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font:italic 700 15px var(--f-display);text-transform:uppercase;letter-spacing:.03em;margin:4px 0 6px}
 .cmph .muted,.cmph .chip{font-style:normal;text-transform:none;letter-spacing:0}
+.tech .rbbox,.ctiles .rbbox{grid-column:span 2}
+.rbt{width:100%;border-collapse:collapse;margin-top:6px;font:500 13px var(--f-num)}
+.rbt th{font:600 11px var(--f-body);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;text-align:right;padding:2px 6px;border-bottom:1px solid var(--line)}
+.rbt th:first-child{text-align:left}
+.rbt td{text-align:right;padding:4px 6px;white-space:nowrap}.rbt td:first-child{text-align:left;font-family:var(--f-body);color:var(--muted);white-space:normal}
+.rbt td b{font-weight:700;font-size:15px;color:var(--fg)}.rbt .rbw{color:var(--muted);font-size:12px}
+.rbt td.rbch b{color:var(--accent-2)}
+.rbt tr.rbtot td{border-top:1px solid var(--line)}.rbt tr.rbtot td:first-child{color:var(--fg);font-weight:600}
+@media (max-width:420px){ .tech .rbbox,.ctiles .rbbox{grid-column:1/-1} }
+.rbnote{margin-top:6px;font-size:12px;color:var(--warn);line-height:1.35}
 .tech .cmpch{border-color:var(--accent-2)} .cmpd{font:600 12px var(--f-num);color:var(--muted);margin-top:2px} .cmpch .cmpd{color:var(--accent-2)}
 /* ---------- note a voce e report ---------- */
 .micbtn{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;flex:0 0 auto}
@@ -458,7 +469,7 @@ body.garage-open{overflow:hidden}
       <div class="logo"><img id="logoImg" alt="Motorsport Performance Academy" src="data:image/png;base64,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"></div>
       <div class="titlebar">
         <h1>Engineer <span>Workbook</span></h1>
-        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 10/11 · 19:15</div>
+        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 11/11 · 22:30</div>
       </div>
       <div class="teamsw" role="group" aria-label="Team">
         <button type="button" data-team="mpa" aria-pressed="true">MPA</button>
@@ -603,7 +614,7 @@ function ingest(docs){
     if(d.kind==='session') ses.push({...d, id});
     else if(d.kind==='base') bases[id]=d;
     else if(d.kind==='tlog') tlog[id]=d;
-    else if(d.kind==='event'){ const {kind,...e}=d; events[id]={...e, id}; }
+    else if(d.kind==='event'){ const {kind,...e}=d; events[id]={...e, id}; if(typeof migrateEvent==='function') migrateEvent(events[id]); }
     else if(id==='prefs') prefs=d;
   });
   ses.sort((a,b)=>a.id<b.id?-1:1);
@@ -1090,8 +1101,8 @@ let SF = [
   {g:'ant', k:'toeF',    l:'Convergenza', t:'text', lr:true},
   {g:'ant', k:'bumpF',   l:'Ammortizzatore comp.', t:'num', lr:true, u:'click'},
   {g:'ant', k:'rebF',    l:'Ammortizzatore est.', t:'num', lr:true, u:'click'},
-  {g:'ant', k:'arbF',    l:'Barra ant. diametro', t:'sel', o:['22','25'], u:'mm'},
-  {g:'ant', k:'bladeF',  l:'Barra ant. lama', t:'sel', o:['129.5','119.5','109.5'], u:'mm'},
+  {g:'ant', k:'arbF',    l:'Barra ant. diametro', t:'sel', o:['22','25','Nessuna'], u:'mm'},
+  {g:'ant', k:'bladeF',  l:'Posizione barra ant.', t:'sel', o:['S','M','H'], lr:true},
   {g:'ant', k:'caster',  l:'Incidenza', t:'num', lr:true, u:'°'},
   {g:'ant', k:'fw',      l:'Ala anteriore', t:'sel', o:['3°','5°','7°']},
   {g:'ant', k:'fwGurney',l:'Gurney ala ant.', t:'sel', o:['Sì','No']},
@@ -1102,8 +1113,8 @@ let SF = [
   {g:'post',k:'toeR',    l:'Convergenza', t:'text', lr:true},
   {g:'post',k:'bumpR',   l:'Ammortizzatore comp.', t:'num', lr:true, u:'click'},
   {g:'post',k:'rebR',    l:'Ammortizzatore est.', t:'num', lr:true, u:'click'},
-  {g:'post',k:'arbR',    l:'Barra post. diametro', t:'sel', o:['10','14'], u:'mm'},
-  {g:'post',k:'bladeR',  l:'Barra post. lama', t:'sel', o:['70','60','50'], u:'mm'},
+  {g:'post',k:'arbR',    l:'Barra post. diametro', t:'sel', o:['10','14','Nessuna'], u:'mm'},
+  {g:'post',k:'bladeR',  l:'Posizione barra post.', t:'sel', o:['S','M','H'], lr:true},
   {g:'post',k:'pickup',  l:'Attacco sospensione post.', t:'sel', o:Object.keys(PICKUP)},
   {g:'post',k:'rw',      l:'Ala posteriore', t:'sel', o:AERO.rw}
 ];
@@ -1114,9 +1125,9 @@ let BASE_SETUP = {
   driverKg:'70', fuelKg:'20', ballast1:'', ballast2:'', cwF:['98.5','132'], cwR:['174','143'],
   bias:'54', mcF:'19.05', mcR:'20.64', discs:'TM', pads:'Ferodo',
   rhF:['18','18'], umpF:['STD','STD'], springF:['700','700'], preloadF:['1','1'], camberF:['4','4'], toeF:['1out','1out'],
-  bumpF:['10','10'], rebF:['12','12'], arbF:'22', bladeF:'129.5', caster:['9.4','9.4'], fw:'3°', fwGurney:'Sì',
+  bumpF:['10','10'], rebF:['12','12'], arbF:'22', bladeF:['S','S'], caster:['9.4','9.4'], fw:'3°', fwGurney:'Sì',
   rhR:['38','38'], springR:['900','900'], preloadR:['1','1'], camberR:['-3','-3'], toeR:['0','0'],
-  bumpR:['6','6'], rebR:['6','6'], arbR:'14', bladeR:'50', pickup:'BE24', rw:'A5'
+  bumpR:['6','6'], rebR:['6','6'], arbR:'14', bladeR:['H','H'], pickup:'BE24', rw:'A5'
 };
 const SES_NAMES = ['FP1','FP2','FP3','Q1','Q2','Gara 1','Gara 2','Gara 3'];
 const SET_TABS = {sheet:'Turno', cmp:'Confronta', events:'Eventi'};
@@ -1149,7 +1160,7 @@ function diffs(a, b){
   });
   return out;
 }
-const fmtVal = (f,v) => (v===''||v==null) ? '–' : esc(String(v)) + (f.u && !/[°%]$/.test(String(v)) ? ' '+f.u : '');
+const fmtVal = (f,v) => (v===''||v==null) ? '–' : esc(String(v)) + (f.u && !/[°%]$/.test(String(v)) && !/^[a-zà-ú]/i.test(String(v).trim()) ? ' '+f.u : '');
 const dLabel = d => d.f.l + (d.sd!=null ? ' '+SIDE[d.sd] : '') + (d.f.g==='ant'&&!/ant/i.test(d.f.l)?' (ant.)':'') + (d.f.g==='post'&&!/post/i.test(d.f.l)?' (post.)':'');
 
 /* ---------- calcoli tecnici ---------- */
@@ -1181,7 +1192,23 @@ function aeroDelta(a, b, tA=NaN, tB=NaN){
 }
 function aeroOfSetup(st){ return aeroAt(st.fw, st.rw, avg2(st.rhF), avg2(st.rhR)); }
 function avg2(v){ const a=(Array.isArray(v)?v:[v,v]).map(num).filter(isFinite); return a.length? a.reduce((x,y)=>x+y,0)/a.length : NaN; }
-function rollStiff(axle, dia, blade){ return (ARB[axle][String(num(dia))]||{})[String(num(blade))] ?? NaN; }
+// Lame barra: S (soft) = lama lunga, M (medium), H (hard) = lama corta. Si regolano per lato (Sx, Dx).
+const BLADE = { F:{S:'129.5',M:'119.5',H:'109.5'}, R:{S:'70',M:'60',H:'50'} };
+function bladeLetter(axle, v){ const s=String(v??'').trim().toUpperCase(); if(BLADE[axle][s]) return s;
+  const n=num(v); for(const k in BLADE[axle]) if(num(BLADE[axle][k])===n) return k; return ''; }
+function bladeLR(axle, v){ const a=Array.isArray(v)?v:[v,v]; return [bladeLetter(axle,a[0]), bladeLetter(axle,a[1])]; }
+// Rigidezza a rollio della barra a terra, nell'unità della tabella del manuale.
+// Lati diversi: la torsione della barra è la somma dei due lati, quindi il rapporto equivalente è la media dei due
+// e K = Kt·((rSx+rDx)/2)² = ((√K_Sx+√K_Dx)/2)². Con lati uguali restituisce il valore di tabella.
+const noBar = dia => /^(nessuna|no|0|-|–)$/i.test(String(dia??'').trim());
+function rollStiff(axle, dia, blade){
+  if(noBar(dia)) return 0;   // barra smontata: l'asse rolla solo su molle e gomme
+  const t=ARB[axle][String(num(dia))]; if(!t) return NaN;
+  const [l,r]=bladeLR(axle,blade), kl=t[BLADE[axle][l]], kr=t[BLADE[axle][r]];
+  return (isFinite(kl)&&isFinite(kr)) ? Math.pow((Math.sqrt(kl)+Math.sqrt(kr))/2,2) : NaN;
+}
+function migrateSetupF4(st){ if(!st) return; st.bladeF=bladeLR('F',st.bladeF); st.bladeR=bladeLR('R',st.bladeR); }
+function migrateEvent(ev){ if(!ev) return; const gt=(ev.car||'f4')==='gt4'; (ev.sessions||[]).forEach(s=>gt?migrateSetupGT(s.setup):migrateSetupF4(s.setup)); }
 function springRoll(axle, rate, track){ const k=GROUND_K[axle][String(num(rate))]; return (isFinite(k)&&isFinite(track)&&track>0) ? k*track*track/2*Math.PI/180/1000 : NaN; }
 function mrbOf(p){
   const aF=rollStiff('F',p.arbF,p.bladeF), aR=rollStiff('R',p.arbR,p.bladeR);
@@ -1193,7 +1220,7 @@ function mrbOf(p){
 function mrbOfSetup(st){
   const ve=vehicle(st);
   const r=mechModel({arbF:st.arbF,bladeF:st.bladeF,arbR:st.arbR,bladeR:st.bladeR,springF:avg2(st.springF),springR:avg2(st.springR),pickup:st.pickup,frh:avg2(st.rhF),rrh:avg2(st.rhR),fw:st.fw,rw:st.rw,ta:20}, ve);
-  return {arb:r.pArb, sus:r.pSus, tot:r.pTot, lltd:r.lltd, grad:r.grad, vpct:r.vPct, fqF:r.fqF, fqR:r.fqR, rakeS:r.rakeS, rakeD:r.rakeD};
+  return {arb:r.pArb, spr:r.pSpr, sus:r.pSus, arbT:r.pArbT, sprT:r.pSprT, tot:r.pTot, lltd:r.lltd, grad:r.grad, vpct:r.vPct, fqF:r.fqF, fqR:r.fqR, rakeS:r.rakeS, rakeD:r.rakeD};
 }
 function weightsOf(st){
   const c=[...(st.cwF||[]),...(st.cwR||[])].map(num);
@@ -1235,6 +1262,7 @@ function setupGate(){
 }
 function renderSetup(){
   const g=setupGate(); if(g) return g;
+  migrateEvent(curEvent());
   const t=S.stab.setup;
   if(t==='events' || !curEvent()) return renderEvents();
   if(t==='cmp') return renderCompare();
@@ -1294,14 +1322,25 @@ function techBlock(st, ref, refName){
     ['Peso totale', w?w.tot.toFixed(1)+' kg':'–'],
     ['% anteriore', w?w.front.toFixed(1)+' %':'–'],
     ['Peso incrociato (AS+PD)', w?w.cross.toFixed(1)+' %':'–'],
-    ['Bilancio rollio barre', isFinite(m.arb)?m.arb.toFixed(1)+' %':'–'],
-    ['Rigidezza rollio con gomme', isFinite(m.tot)?m.tot.toFixed(1)+' % ant.':'–'],
     ['LLTD / gradiente', isFinite(m.lltd)?`${m.lltd.toFixed(1)} % · ${m.grad.toFixed(2)} °/g`:'–'],
     ['Ripartizione freno', `${esc(st.bias||'–')} % ant.`+(bal!=null?` <span class="muted">· pompe ${bal} %</span>`:' <span class="muted">· pompe da evitare</span>')],
     ['Centro rollio post. / anti-squat', pk?`${pk[0]} mm / ${pk[2]}°`:'–'],
     ['Aero', aeroTxt]
   ];
-  return `<div class="tech">${tiles.map(([k,v])=>`<div><div class="lbl">${k}</div><div class="tv">${v}</div></div>`).join('')}</div>`;
+  const mr=ref?mrbOfSetup(ref):null;
+  return `<div class="tech">
+    <div class="rbbox"><div class="lbl">Mech roll balance${mr?` <span class="muted">· vs ${esc(refName)}</span>`:''}</div>${rollBalTable(m, mr)}</div>
+    ${tiles.map(([k,v])=>`<div><div class="lbl">${k}</div><div class="tv">${v}</div></div>`).join('')}</div>`;
+}
+// Mech roll balance: % anteriore della rigidezza a rollio, per barre, molle e totale, senza e con gomma.
+// m = valori attuali, p = valori di riferimento (facoltativo: mostra prima → dopo)
+function rollBalTable(m, p){
+  const f=x=>isFinite(x)?x.toFixed(1):'–';
+  const cell=k=>{ const ch=p&&f(p[k])!==f(m[k]);
+    return `<td class="${ch?'rbch':''}">${p&&ch?`<span class="rbw">${f(p[k])} →</span> `:''}<b>${f(m[k])}</b></td>`; };
+  const rows=[['Solo barre','arb','arbT'],['Solo molle','spr','sprT'],['Totale barre + molle','sus','tot']];
+  return `<table class="rbt"><thead><tr><th>% ant.</th><th>Senza gomma</th><th>Con gomma</th></tr></thead><tbody>
+    ${rows.map(([l,a,b],i)=>`<tr class="${i===2?'rbtot':''}"><td>${l}</td>${cell(a)}${cell(b)}</tr>`).join('')}</tbody></table>`;
 }
 // riquadro confronto "prima → dopo" con differenza; v può essere un numero o una coppia [ant, post]
 function cmpTile(label, va, vb, dd, unit){
@@ -1337,9 +1376,7 @@ function renderCompare(){
     </div></div>
     <div class="cmpgrp"><div class="cmph">Bilancio meccanico ${mechTrend(mb.lltd-ma.lltd)}</div><div class="tech">
       ${cmpTile('LLTD (trasferimento carico) ant.', ma.lltd, mb.lltd, 1, '%')}
-      ${cmpTile('Rigidezza a rollio con gomme ant.', ma.tot, mb.tot, 1, '%')}
-      ${cmpTile('Molle + barre ant.', ma.sus, mb.sus, 1, '%')}
-      ${cmpTile('Solo barre ant.', ma.arb, mb.arb, 1, '%')}
+      <div class="rbbox"><div class="lbl">Mech roll balance</div>${rollBalTable(mb, ma)}</div>
       ${cmpTile('Gradiente di rollio', ma.grad, mb.grad, 2, '°/g')}
       ${cmpTile('Rigidezza verticale ant.', ma.vpct, mb.vpct, 1, '%')}
       ${cmpTile('Frequenze ant. / post.', [ma.fqF,ma.fqR], [mb.fqF,mb.fqR], 2, 'Hz')}
@@ -1356,9 +1393,9 @@ function renderCompare(){
 function calcDefaults(){
   if(S.car==='gt4') return calcDefaultsGT();
   const ses=curSession(), st=ses?ses.setup:BASE_SETUP;
-  const pick=s=>({fw:s.fw, rw:s.rw, frh:avg2(s.rhF), rrh:avg2(s.rhR), ta:20, arbF:s.arbF, bladeF:s.bladeF, arbR:s.arbR, bladeR:s.bladeR, springF:String(avg2(s.springF)), springR:String(avg2(s.springR)), pickup:s.pickup});
+  const pick=s=>({fw:s.fw, rw:s.rw, frh:avg2(s.rhF), rrh:avg2(s.rhR), ta:20, arbF:s.arbF, bladeFL:bladeLR('F',s.bladeF)[0], bladeFR:bladeLR('F',s.bladeF)[1], arbR:s.arbR, bladeRL:bladeLR('R',s.bladeR)[0], bladeRR:bladeLR('R',s.bladeR)[1], springF:String(avg2(s.springF)), springR:String(avg2(s.springR)), pickup:s.pickup});
   return {a:pick(st), b:pick(st), src: ses? (curEvent().name+' · '+ses.name) : 'Base Setup MPA',
-    conv:{axle:'F', from:String(avg2(st.springF)), to:'900', wF:avg2(st.cwF), wR:avg2(st.cwR), preload:'1', drh:'2', dcam:'0.5', dtoe:'1', dcas:'0.5', dbr:'1.5'}};
+    conv:{xc:'AS', xu:'pre', xv:'0.5', xt:'0.5', axle:'F', from:String(avg2(st.springF)), to:'900', wF:avg2(st.cwF), wR:avg2(st.cwR), preload:'1', drh:'2', dcam:'0.5', dtoe:'1', dcas:'0.5', dbr:'1.5'}};
 }
 function renderCalcMod(){
   const g=setupGate(); if(g) return g;
@@ -1405,10 +1442,10 @@ function aeroBars(A,B){
 }
 /* ---------- modello meccanico completo (MTS, Design applicated to Race Engineering, pp. 25, 37, 42, 63-67) ---------- */
 // Parametri vettura T-421: carreggiate e passo dalla scheda tecnica Tatuus; i valori "stima" vanno sostituiti con dati misurati
-const VEH_DEF = { L:2800, TF:1515, TR:1470, M:'', fF:'', hcg:290, RCF:-3.5, MRF:1.1, MRR:1.23, pF:1.40, pR:1.43, ktF:'', ktR:'', muF:14, muR:16, rF:'', rR:'', kcF:'', kcR:'',
+const VEH_DEF = { L:2800, TF:1515, TR:1470, M:'', fF:'', hcg:290, hcgF:15, hcgR:35, RCF:-3.5, MRF:1.1, MRR:1.23, pF:1.40, pR:1.43, ktF:'', ktR:'', muF:14, muR:16, rF:'', rR:'', kcF:'', kcR:'',
   V:200, P:1013, sczRef:1.0, balRef:40, tgtF:'', tgtR:'', bumpF:'', bumpR:'' };
 const VEH_FIELDS = [
-  ['Vettura', [['L','Passo','mm'],['TF','Carreggiata ant.','mm'],['TR','Carreggiata post.','mm'],['M','Massa totale','kg','dal turno'],['fF','Peso all’anteriore','%','dal turno'],['hcg','Altezza baricentro','mm','stima']]],
+  ['Vettura', [['L','Passo','mm'],['TF','Carreggiata ant.','mm'],['TR','Carreggiata post.','mm'],['M','Massa totale','kg','dal turno'],['fF','Peso all’anteriore','%','dal turno'],['hcg','Altezza baricentro','mm','stima'],['hcgF','… misurata con altezza ant.','mm'],['hcgR','… misurata con altezza post.','mm']]],
   ['Sospensioni e gomme', [['MRF','Motion ratio ant.',''],['MRR','Motion ratio post.',''],['RCF','Centro di rollio ant. (dal piano di rif.)','mm','manuale T-421'],['pF','Pressione a caldo ant.','bar'],['pR','Pressione a caldo post.','bar'],['ktF','Rigidezza gomma ant.','kg/mm','vuoto = Pirelli ×0,9 (stima)'],['ktR','Rigidezza gomma post.','kg/mm','vuoto = Pirelli'],['kcF','Cedevolezza ant.','kg/mm','vuoto = rigida'],['kcR','Cedevolezza post.','kg/mm','vuoto = rigida']]],
   ['Masse non sospese', [['muF','Non sospesa per ruota ant.','kg','stima'],['muR','Non sospesa per ruota post.','kg','stima'],['rF','Raggio gomma ant. sotto carico','mm','vuoto = post. −16 (stima)'],['rR','Raggio gomma post. sotto carico','mm','vuoto = Pirelli']]],
   ['Aerodinamica e altezze', [['V','Velocità','km/h'],['P','Pressione','mbar'],['sczRef','SCz di riferimento','m²','stima'],['balRef','Bilancio aero di riferimento','% ant.','stima'],['tgtF','Altezza dinamica obiettivo ant.','mm','facoltativo'],['tgtR','Altezza dinamica obiettivo post.','mm','facoltativo'],['bumpF','Luce tampone ant.','mm','facoltativo'],['bumpR','Luce tampone post.','mm','facoltativo']]]
@@ -1429,7 +1466,7 @@ function vehicle(st){
   const kPR=lerp(PIR_K.p,PIR_K.k,isFinite(n('pR'))?n('pR'):1.43), kPF=lerp(PIR_K.p,PIR_K.k,isFinite(n('pF'))?n('pF'):1.40)*0.9;
   const rRa=lerp(PIR_R.load,PIR_R.r,M*(1-fF)/2);
   const ktF=n('ktF')>0?n('ktF'):kPF, ktR=n('ktR')>0?n('ktR'):kPR, rR=n('rR')>0?n('rR'):rRa, rF=n('rF')>0?n('rF'):rR-16;
-  return {L:n('L'),TF:n('TF'),TR:n('TR'),M,fF,hcg:n('hcg'),RCF:n('RCF'),MRF:n('MRF'),MRR:n('MRR'),ktF,ktR,kcF:n('kcF'),kcR:n('kcR'),
+  return {L:n('L'),TF:n('TF'),TR:n('TR'),M,fF,hcg:n('hcg'),hcgF:isFinite(n('hcgF'))?n('hcgF'):15,hcgR:isFinite(n('hcgR'))?n('hcgR'):35,RCF:n('RCF'),MRF:n('MRF'),MRR:n('MRR'),ktF,ktR,kcF:n('kcF'),kcR:n('kcR'),
     muF:n('muF'),muR:n('muR'),rF,rR,V:n('V'),P:n('P'),sczRef:n('sczRef'),balRef:n('balRef')/100,tgtF:n('tgtF'),tgtR:n('tgtR'),bumpF:n('bumpF'),bumpR:n('bumpR'),fromTurn:!isFinite(n('M'))&&!!w};
 }
 const ser = (...k) => { const f=k.filter(x=>isFinite(x)&&x>0); return f.length ? 1/f.reduce((a,x)=>a+1/x,0) : NaN; };
@@ -1443,11 +1480,15 @@ function mechModel(c, ve){
   r.vPct=r.kvF/(r.kvF+r.kvR)*100;
   // --- rigidezze a rollio [kg·m/°] (MTS p.37, p.64): molle e barra in parallelo, gomma e cedevolezza in serie
   r.sF=rollK(r.kwF,ve.TF); r.sR=rollK(r.kwR,ve.TR);
-  r.aF=rollStiff('F',c.arbF,c.bladeF)*DAN2KG; r.aR=rollStiff('R',c.arbR,c.bladeR)*DAN2KG;
+  // tabella del manuale usata così com'è: i suoi “daN” sono kg, come nella tabella delle molle (§5.4)
+  r.aF=rollStiff('F',c.arbF,c.bladeF??[c.bladeFL,c.bladeFR]); r.aR=rollStiff('R',c.arbR,c.bladeR??[c.bladeRL,c.bladeRR]);
   r.tF=rollK(ve.ktF,ve.TF); r.tR=rollK(ve.ktR,ve.TR);
   r.cF=isFinite(ve.kcF)&&ve.kcF>0?rollK(ve.kcF,ve.TF):NaN; r.cR=isFinite(ve.kcR)&&ve.kcR>0?rollK(ve.kcR,ve.TR):NaN;
   r.KF=ser(r.sF+r.aF, r.tF, r.cF); r.KR=ser(r.sR+r.aR, r.tR, r.cR);
-  r.pArb=r.aF/(r.aF+r.aR)*100; r.pSus=(r.sF+r.aF)/(r.sF+r.aF+r.sR+r.aR)*100; r.pTot=r.KF/(r.KF+r.KR)*100;
+  // ripartizione a rollio % ant. (mech roll balance): senza gomma e con gomma (e cedevolezza) in serie
+  const pc=(f,r_)=>(f+r_)>0?f/(f+r_)*100:NaN, sr=(k,t,c)=>k>0?ser(k,t,c):0;
+  r.pArb=pc(r.aF,r.aR); r.pSpr=pc(r.sF,r.sR); r.pSus=pc(r.sF+r.aF,r.sR+r.aR);
+  r.pArbT=pc(sr(r.aF,r.tF,r.cF),sr(r.aR,r.tR,r.cR)); r.pSprT=pc(sr(r.sF,r.tF,r.cF),sr(r.sR,r.tR,r.cR)); r.pTot=pc(r.KF,r.KR);
   // --- masse e trasferimento laterale a 1 g (MTS p.42)
   const WF=ve.M*ve.fF, WR=ve.M-WF, MsF=WF-2*ve.muF, MsR=WR-2*ve.muR, Ms=MsF+MsR;
   r.WF=WF; r.WR=WR;
@@ -1455,9 +1496,11 @@ function mechModel(c, ve){
   const pk=PICKUP[c.pickup]; r.RCR=pk?pk[0]:NaN; r.antiLift=pk?pk[1]:NaN; r.antiSquat=pk?pk[2]:NaN;
   // manuale T-421 §5.7.3: centri di rollio riferiti al piano di riferimento → da terra si somma l'altezza statica
   const fh0=isFinite(num(c.frh))?num(c.frh):15, rh0=isFinite(num(c.rrh))?num(c.rrh):35;
-  r.rcgF=ve.RCF+fh0; r.rcgR=r.RCR+rh0; r.ktF=ve.ktF; r.ktR=ve.ktR; r.rF=ve.rF; r.rR=ve.rR;
-  const hra=r.rcgF+(r.rcgR-r.rcgF)*aS/ve.L;
-  r.Mroll=Ms*(hs-hra)/1000;                       // kg·m per g
+  r.rcgF=ve.RCF+fh0; r.rcgR=r.RCR+rh0;
+  // il baricentro del sospeso sale e scende con l'altezza statica (riferito alle altezze a cui è stato stimato/misurato)
+  const dzF=fh0-ve.hcgF, dzR=rh0-ve.hcgR; r.dzCG=dzF+(dzR-dzF)*aS/ve.L; r.hs=hs+r.dzCG; r.ktF=ve.ktF; r.ktR=ve.ktR; r.rF=ve.rF; r.rR=ve.rR;
+  const hra=r.rcgF+(r.rcgR-r.rcgF)*aS/ve.L; r.hra=hra;
+  r.Mroll=Ms*(r.hs-hra)/1000;                       // kg·m per g
   r.grad=r.Mroll/(r.KF+r.KR);                     // °/g
   r.elF=r.Mroll*1000*r.KF/(r.KF+r.KR)/ve.TF; r.elR=r.Mroll*1000*r.KR/(r.KF+r.KR)/ve.TR;
   r.geF=MsF*r.rcgF/ve.TF; r.geR=MsR*r.rcgR/ve.TR;
@@ -1488,10 +1531,12 @@ function mechModel(c, ve){
 function renderMechCalc(){
   const c=S.calc;
   const rows=[
-    ['Barra ant. Ø mm', cSel('a','arbF',c.a.arbF,['22','25']), cSel('b','arbF',c.b.arbF,['22','25'])],
-    ['Barra ant. lama mm', cSel('a','bladeF',c.a.bladeF,['129.5','119.5','109.5']), cSel('b','bladeF',c.b.bladeF,['129.5','119.5','109.5'])],
-    ['Barra post. Ø mm', cSel('a','arbR',c.a.arbR,['10','14']), cSel('b','arbR',c.b.arbR,['10','14'])],
-    ['Barra post. lama mm', cSel('a','bladeR',c.a.bladeR,['70','60','50']), cSel('b','bladeR',c.b.bladeR,['70','60','50'])],
+    ['Barra ant. Ø mm', cSel('a','arbF',c.a.arbF,['22','25','Nessuna']), cSel('b','arbF',c.b.arbF,['22','25','Nessuna'])],
+    ['Posizione barra ant. Sx', cSel('a','bladeFL',c.a.bladeFL,['S','M','H']), cSel('b','bladeFL',c.b.bladeFL,['S','M','H'])],
+    ['Posizione barra ant. Dx', cSel('a','bladeFR',c.a.bladeFR,['S','M','H']), cSel('b','bladeFR',c.b.bladeFR,['S','M','H'])],
+    ['Barra post. Ø mm', cSel('a','arbR',c.a.arbR,['10','14','Nessuna']), cSel('b','arbR',c.b.arbR,['10','14','Nessuna'])],
+    ['Posizione barra post. Sx', cSel('a','bladeRL',c.a.bladeRL,['S','M','H']), cSel('b','bladeRL',c.b.bladeRL,['S','M','H'])],
+    ['Posizione barra post. Dx', cSel('a','bladeRR',c.a.bladeRR,['S','M','H']), cSel('b','bladeRR',c.b.bladeRR,['S','M','H'])],
     ['Molla ant. lb/in', cSel('a','springF',c.a.springF,SPRINGS), cSel('b','springF',c.b.springF,SPRINGS)],
     ['Molla post. lb/in', cSel('a','springR',c.a.springR,SPRINGS), cSel('b','springR',c.b.springR,SPRINGS)],
     ['Attacco post.', cSel('a','pickup',c.a.pickup,Object.keys(PICKUP)), cSel('b','pickup',c.b.pickup,Object.keys(PICKUP))],
@@ -1530,7 +1575,7 @@ function mechOut(){
   if(B.bumpHitF||B.bumpHitR) warn.push(`Tampone in presa a ${ve.V} km/h ${B.bumpHitF?'all’anteriore':''}${B.bumpHitF&&B.bumpHitR?' e ':''}${B.bumpHitR?'al posteriore':''}.`);
   return `${warn.map(w=>`<div class="note warn">${w}</div>`).join('')}
   <div class="ctiles">
-    ${tile('Rigidezza a rollio','pTot',1,'% ant.')}
+    <div class="ctile rbbox"><div class="lbl">Mech roll balance</div>${rollBalTable({arb:B.pArb,spr:B.pSpr,sus:B.pSus,arbT:B.pArbT,sprT:B.pSprT,tot:B.pTot},{arb:A.pArb,spr:A.pSpr,sus:A.pSus,arbT:A.pArbT,sprT:A.pSprT,tot:A.pTot})}</div>
     ${tile('Trasferimento laterale (LLTD)','lltd',1,'% ant.')}
     ${tile('Gradiente di rollio','grad',2,'°/g')}
     ${tile('Rigidezza verticale','vPct',1,'% ant.')}
@@ -1539,7 +1584,8 @@ function mechOut(){
     ${sec('Rollio')}
     ${pair('Molle','sF','sR',0,'kg·m/°')}${pair('Barra','aF','aR',0,'kg·m/°')}${pair('Gomme','tF','tR',0,'kg·m/°')}
     ${pair('Totale asse','KF','KR',0,'kg·m/°')}
-    ${row('% ant. solo barre','pArb',1,'%')}${row('% ant. barre + molle','pSus',1,'%')}${row('% ant. con gomme','pTot',1,'%')}
+    ${row('% ant. solo barre','pArb',1,'%')}${row('% ant. solo molle','pSpr',1,'%')}${row('% ant. barre + molle','pSus',1,'%')}
+    ${row('% ant. solo barre, con gomma','pArbT',1,'%')}${row('% ant. solo molle, con gomma','pSprT',1,'%')}${row('% ant. totale con gomma','pTot',1,'%')}
     ${row('Gradiente di rollio','grad',2,'°/g')}
     ${sec('Trasferimento laterale a 1 g')}
     ${pair('Elastico','elF','elR',1,'kg')}${pair('Geometrico','geF','geR',1,'kg')}${pair('Non sospeso','unF','unR',1,'kg')}
@@ -1576,7 +1622,14 @@ function renderConvCalc(){
         <label for="cv_dtoe">Δ convergenza al cerchio (mm)</label>${i('dtoe')}<div class="cres" id="cvToe"></div>
         <label for="cv_dcas">Δ incidenza (°)</label>${i('dcas')}<div class="cres" id="cvCas"></div>
         <label for="cv_dbr">Δ ripartizione freno (% ant.)</label>${i('dbr')}<div class="cres" id="cvBr"></div>
-      </div></section></div>
+      </div></section>
+    <section class="shg"><h3>Peso incrociato da una regolazione d'angolo</h3>
+      <div class="grid3">
+        <div class="field"><label class="lbl" for="cv_xc">Ruota regolata</label><select id="cv_xc" data-cv="xc">${[['AS','Ant. Sx'],['AD','Ant. Dx'],['PS','Post. Sx'],['PD','Post. Dx']].map(([k,l])=>`<option value="${k}" ${v.xc===k?'selected':''}>${l}</option>`).join('')}</select></div>
+        <div class="field"><label class="lbl" for="cv_xu">Regolazione</label><select id="cv_xu" data-cv="xu">${[['pre','Precarico (giri)'],['rh','Altezza dado (giri)'],['mm','Altezza ruota (mm)']].map(([k,l])=>`<option value="${k}" ${v.xu===k?'selected':''}>${l}</option>`).join('')}</select></div>
+        <div class="field"><label class="lbl" for="cv_xv">Quantità (+ = alza)</label>${i('xv')}</div>
+      </div><div class="cres" id="cvX"></div>
+      <div class="convgrid" style="margin-top:8px"><label for="cv_xt">Δ peso incrociato voluto (% AS+PD)</label>${i('xt')}<div class="cres" id="cvXt"></div></div></section></div>
     <div class="note">Rapporti dal foglio Correlation_Change: rapporto di installazione 1,1 ant. / 1,23 post.; passo precarico 1,5 mm; altezza 5,4 mm/giro ant. e 6,5 mm/giro post. (dado a 6 facce); camber 0,42°/mm ant. e 0,3°/mm post.; convergenza 5,82 mm/giro ant. e 5,25 mm/giro post.; incidenza 0,47°/giro; freno +1,5 %/giro in senso orario.</div>
   </div>`;
 }
@@ -1596,6 +1649,29 @@ function updateConv(){
   const dt=num(v.dtoe); set('cvToe',`Ant. ${f(dt/ADJ.toeTurn.F*6,1)} facce · Post. ${f(dt/ADJ.toeTurn.R*6,1)} facce`);
   set('cvCas',`${f(num(v.dcas)/ADJ.casterTurn)} giri`);
   set('cvBr',`${f(num(v.dbr)/ADJ.brakeTurn)} giri ${num(v.dbr)>=0?'in senso orario':'in senso antiorario'}`);
+  // peso incrociato: la regolazione su una ruota torce la vettura; la torsione si divide tra asse ant. e post.
+  // in base alle loro rigidezze a rollio (molle + barra, gomma in serie)
+  const X=crossWeight(v); if(!X){ set('cvX','Servono barre e molle del turno.'); set('cvXt',''); return; }
+  const sgn=x=>(x>0?'+':'')+x.toFixed(1);
+  set('cvX', isFinite(X.d)?`Ruota ${X.d>=0?'alzata':'abbassata'} di <b>${Math.abs(X.d).toFixed(2)} mm</b> → peso incrociato (AS+PD) <b>${sgn(X.dW)} kg</b> (${sgn(X.dPct)} %).<br><span class="muted">Per ruota: ant. ±${Math.abs(X.dWF).toFixed(1)} kg, post. ±${Math.abs(X.dWR).toFixed(1)} kg · ${X.perMm.toFixed(1)} kg per mm su una ruota (${X.perMmPct.toFixed(2)} % per mm). Sulla diagonale opposta lo stesso valore va in senso inverso.</span>`:'Inserisci la quantità.');
+  const t=num(v.xt);
+  if(isFinite(t)){ const mm=t/X.perMmPct, ax=v.xc[0]==='A'?'F':'R';
+    set('cvXt',`Su una ruota ${ax==='F'?'anteriore':'posteriore'}: ${(()=>{ const up=ax==='F'?'AS':'PD', dn=ax==='F'?'AD':'PS'; return mm>=0?`alza ${up} o abbassa ${dn}`:`abbassa ${up} o alza ${dn}`; })()} di ${Math.abs(mm).toFixed(2)} mm (≈ ${Math.abs(mm/(ADJ.preloadPitch*MRATIO[ax])).toFixed(2)} giri di precarico, ${Math.abs(mm/ADJ.rhTurn[ax]*6).toFixed(1)} facce del dado). Divisa sulle due ruote della diagonale: metà per ruota.`); }
+  else set('cvXt','');
+}
+function crossWeight(v){
+  const ses=curSession(), st=ses?ses.setup:BASE_SETUP, ve=vehicle(st), c=S.calc.a, m=mechModel(c,ve);
+  if(!isFinite(m.KF)||!isFinite(m.KR)) return null;
+  const ax=v.xc[0]==='A'?'F':'R', q=num(v.xv), T=ax==='F'?ve.TF:ve.TR;
+  const d=v.xu==='pre'?q*ADJ.preloadPitch*MRATIO[ax]:v.xu==='rh'?q*ADJ.rhTurn[ax]:q;   // mm alla ruota
+  const kF=m.KF*1000*57.3, kR=m.KR*1000*57.3;          // kg·mm/rad
+  const perRad=1/(1/kF+1/kR);                           // le due rigidezze a rollio in serie
+  const M1=perRad/T;                                    // momento per 1 mm alla ruota [kg·mm]
+  const perMm=M1/ve.TF+M1/ve.TR;                         // Δ peso incrociato per 1 mm
+  const W=(()=>{ const w=weightsOf(st); return w?w.tot:ve.M; })();
+  const diag=(v.xc==='AS'||v.xc==='PD')?1:-1;
+  const dW=diag*perMm*d;
+  return {d, dW, dPct:dW/W*100, dWF:diag*M1*d/ve.TF, dWR:diag*M1*d/ve.TR, perMm, perMmPct:perMm/W*100};
 }
 
 /* ---------- eventi UI setup/calcolatore ---------- */
@@ -1631,15 +1707,19 @@ document.addEventListener('click', async e=>{
 function onSetupField(el){
   const ev=curEvent(), ses=curSession(ev); if(!ses) return;
   const k=el.dataset.sf, sd=el.dataset.sd, f=SFK[k];
-  if(f.lr){ const arr=Array.isArray(ses.setup[k])?[...ses.setup[k]]:[ses.setup[k],ses.setup[k]]; arr[+sd]=el.value; ses.setup[k]=arr; }
+  const gtArb=S.car==='gt4'&&(k==='arbF'||k==='arbR');
+  if(f.lr){ const cur=ses.setup[k], arr=(k==='bladeF'||k==='bladeR')?bladeLR(k==='bladeF'?'F':'R',cur):gtArb?gtPosLR(cur):(Array.isArray(cur)?[...cur]:[cur,cur]); arr[+sd]=el.value; ses.setup[k]=arr; }
   else ses.setup[k]=el.value;
   const prev=prevSession(ev,ses);
   if(prev){ const pv=f.lr?(prev.setup[k]||[])[+sd]:prev.setup[k]; const cell=$('#c_'+k+(f.lr?'_'+sd:'')); const ch=norm(el.value)!==norm(pv);
-    if(cell){ cell.classList.toggle('chg',ch); cell.querySelector('.was').innerHTML=ch?'prima '+fmtVal(f,pv):''; } }
+    if(k==='bladeF'||k==='bladeR'||gtArb){ const c2=$('#c_'+k), ax=(k==='bladeF'||k==='arbF')?'F':'R', a1=gtArb?gtPosLR(ses.setup[k]):bladeLR(ax,ses.setup[k]), p1=gtArb?gtPosLR(prev.setup[k]):bladeLR(ax,prev.setup[k]), ch2=a1.join()!==p1.join(); if(c2){ c2.classList.toggle('chg',ch2); c2.querySelector('.was').innerHTML=ch2?'prima '+p1.join(' / '):''; } }
+    else if(cell){ cell.classList.toggle('chg',ch); cell.querySelector('.was').innerHTML=ch?'prima '+fmtVal(f,pv):''; } }
   $('#sesSummary').innerHTML=sessionSummary(ev,ses);
   updateChips(ev);
   updateCwSum(ses.setup);
   updateViz(ses.setup, prev?prev.setup:null);
+  if(S.car==='gt4'&&(k==='arbFon'||k==='arbRon')){ const pk=k==='arbFon'?'arbF':'arbR'; [0,1].forEach(i=>{ const b=$('#sf_'+pk+'_'+i); if(b){ b.disabled=el.value==='Nessuna'; b.title=b.disabled?'Barra smontata':''; } }); }
+  if(S.car!=='gt4'&&(k==='arbF'||k==='arbR')){ const bk=k==='arbF'?'bladeF':'bladeR'; [0,1].forEach(i=>{ const b=$('#sf_'+bk+'_'+i); if(b){ b.disabled=noBar(el.value); b.title=b.disabled?'Barra smontata':''; } }); }
   const aF=$('#axinfoF'), aR=$('#axinfoR'); if(aF) aF.textContent=axleInfoF(ses.setup); if(aR) aR.textContent=axleInfoR(ses.setup);
   CORNERS.forEach(c=>{ const el=document.querySelector('#corner'+c.id+' .ncnt'); if(!el) return;
     const n=prev?CORNER_FIELDS[c.ax].filter(([kk])=>norm((ses.setup[kk]||[])[c.sd])!==norm((prev.setup[kk]||[])[c.sd])).length:0; el.textContent=n; el.hidden=!n; });
@@ -1702,7 +1782,19 @@ function cwSumText(st){ const w=weightsOf(st); return w ? `Totale ${w.tot.toFixe
 function updateCwSum(st){ const e=document.getElementById('cwSum'); if(e) e.textContent=cwSumText(st); }
 const RW_DEG = Object.fromEntries(AERO.rw.map((p,i)=>[p, 2+i])); // A1=2° … D5=21° (foglio REAR WING SETTING)
 
+// Posizione barra: una sola cella con le due lame (Sx · Dx) in sigla S / M / H
+function bladeCell(f, st, prev){
+  const ax=f.k==='bladeF'?'F':'R', v=bladeLR(ax,st[f.k]), pv=prev?bladeLR(ax,prev[f.k]):null;
+  const off=noBar(st[ax==='F'?'arbF':'arbR']);
+  const sel=sd=>`<select id="sf_${f.k}_${sd}" data-sf="${f.k}" data-sd="${sd}" aria-label="Posizione barra ${SIDE[sd]}"${off?' disabled title="Barra smontata"':''}>${['S','M','H'].map(o=>`<option ${v[sd]===o?'selected':''}>${o}</option>`).join('')}</select>`;
+  const ch=sd=>pv&&v[sd]!==pv[sd];
+  return `<div class="fx${ch(0)||ch(1)?' chg':''}" id="c_${f.k}">
+    <label class="fl" for="sf_${f.k}_0">Posizione barra <span class="u">Sx · Dx</span></label>
+    <div class="fi"><div class="bl2">${sel(0)}${sel(1)}</div><span class="was">${ch(0)||ch(1)?'prima '+pv.join(' / '):''}</span></div></div>`;
+}
 function cellHTML(f, st, prev, sd, label){
+  if(f.k==='bladeF'||f.k==='bladeR') return bladeCell(f, st, prev);
+  if(S.car==='gt4'&&(f.k==='arbF'||f.k==='arbR')) return gtPosCell(f, st, prev);
   const v = sd==null ? st[f.k] : (st[f.k]||[])[sd];
   const pv = prev ? (sd==null ? prev[f.k] : (prev[f.k]||[])[sd]) : undefined;
   const ch = prev && norm(v)!==norm(pv);
@@ -1720,9 +1812,9 @@ function axlePanel(ax, st, prev){
   const extra = ax==='R' ? `<div class="axinfo" id="axinfoR">${axleInfoR(st)}</div>` : `<div class="axinfo" id="axinfoF">${axleInfoF(st)}</div>`;
   return `<section class="axle"><h3>${t}</h3><div class="axgrid">${AXLE_FIELDS[ax].map(k=>cellHTML(SFK[k],st,prev,null)).join('')}</div>${extra}</section>`;
 }
-function axleInfoF(st){ if(S.car==='gt4') return axleInfoGT('F',st); const k=rollStiff('F',st.arbF,st.bladeF); return `Barra ${isFinite(k)?k+' daN·m/°':'–'}`; }
+function axleInfoF(st){ if(S.car==='gt4') return axleInfoGT('F',st); const k=rollStiff('F',st.arbF,st.bladeF); return noBar(st.arbF)?'Barra smontata: l’asse rolla solo su molle e gomme':`Barra ${isFinite(k)?Math.round(k)+' daN·m/°':'–'} · posizione ${bladeLR('F',st.bladeF).map(x=>x||'–').join(' / ')}`; }
 function axleInfoR(st){ if(S.car==='gt4') return axleInfoGT('R',st); const k=rollStiff('R',st.arbR,st.bladeR), pk=PICKUP[st.pickup];
-  return `Ala ${RW_DEG[st.rw]!=null?RW_DEG[st.rw]+'°':'–'} · Barra ${isFinite(k)?k+' daN·m/°':'–'}${pk?` · CR ${pk[0]} mm · anti-squat ${pk[2]}°`:''}`; }
+  return `Ala ${RW_DEG[st.rw]!=null?RW_DEG[st.rw]+'°':'–'} · ${noBar(st.arbR)?'Barra smontata':`Barra ${isFinite(k)?Math.round(k)+' daN·m/°':'–'} · posizione ${bladeLR('R',st.bladeR).map(x=>x||'–').join(' / ')}`}${pk?` · CR ${pk[0]} mm · anti-squat ${pk[2]}°`:''}`; }
 function genPanel(title, keys, st, prev){
   return `<section class="gen"><h3>${title}</h3><div class="ggrid">${keys.map(k=>cellHTML(SFK[k],st,prev,null)).join('')}</div></section>`;
 }
@@ -2065,7 +2157,8 @@ const SF_GT = [
   {g:'ant', k:'bumpHF',  l:'Comp. alta vel.', t:'num', lr:true, u:'click'},
   {g:'ant', k:'rebLF',   l:'Est. bassa vel.', t:'num', lr:true, u:'click'},
   {g:'ant', k:'rebHF',   l:'Est. alta vel.', t:'num', lr:true, u:'click'},
-  {g:'ant', k:'arbF',    l:'Barra ant. posizione', t:'sel', o:GT.arb},
+  {g:'ant', k:'arbFon',  l:'Barra ant.', t:'sel', o:['Montata','Nessuna']},
+  {g:'ant', k:'arbF',    l:'Posizione barra ant.', t:'sel', o:GT.arb, lr:true},
   {g:'ant', k:'dive',    l:'Dive plane', t:'sel', o:GT.dive},
   {g:'post',k:'rhR',     l:'Altezza (piano rif.)', t:'num', lr:true, u:'mm'},
   {g:'post',k:'springR', l:'Molla', t:'sel', o:GT.springsR, lr:true, u:'N/mm'},
@@ -2075,7 +2168,8 @@ const SF_GT = [
   {g:'post',k:'bumpHR',  l:'Comp. alta vel.', t:'num', lr:true, u:'click'},
   {g:'post',k:'rebLR',   l:'Est. bassa vel.', t:'num', lr:true, u:'click'},
   {g:'post',k:'rebHR',   l:'Est. alta vel.', t:'num', lr:true, u:'click'},
-  {g:'post',k:'arbR',    l:'Barra post. posizione', t:'sel', o:GT.arb},
+  {g:'post',k:'arbRon',  l:'Barra post.', t:'sel', o:['Montata','Nessuna']},
+  {g:'post',k:'arbR',    l:'Posizione barra post.', t:'sel', o:GT.arb, lr:true},
   {g:'post',k:'rw',      l:'Ala posteriore', t:'sel', o:GT.rw, u:'°'}
 ];
 // Setup di consegna (manuale §5.6.2). Ala posteriore e ripartizione freno non indicati: da compilare.
@@ -2084,15 +2178,15 @@ const BASE_GT = {
   bias:'', mcF:'22.4', mcR:'25.4', pedal:'4.55', pads:'Sprint', tc:'', abs:'',
   ramps:'D40/C30', faces:'8FF', preload:'70',
   rhF:['97','97'], springF:['200','200'], camberF:['-3.5','-3.5'], toeF:['-3.0','-3.0'],
-  bumpLF:['9','9'], bumpHF:['0','0'], rebLF:['9','9'], rebHF:['0','0'], arbF:'3', dive:'Sì',
+  bumpLF:['9','9'], bumpHF:['0','0'], rebLF:['9','9'], rebHF:['0','0'], arbFon:'Montata', arbF:['3','3'], dive:'Sì',
   rhR:['156','156'], springR:['220','220'], camberR:['-3.4','-3.4'], toeR:['3.0','3.0'],
-  bumpLR:['9','9'], bumpHR:['0','0'], rebLR:['9','9'], rebHR:['0','0'], arbR:'3', rw:'2'
+  bumpLR:['9','9'], bumpHR:['0','0'], rebLR:['9','9'], rebHR:['0','0'], arbRon:'Montata', arbR:['3','3'], rw:'2'
 };
 const CORNER_GT = {
   F:[['rhF','Altezza'],['springF','Molla'],['camberF','Camber'],['toeF','Convergenza'],['bumpLF','Comp. LS'],['bumpHF','Comp. HS'],['rebLF','Est. LS'],['rebHF','Est. HS']],
   R:[['rhR','Altezza'],['springR','Molla'],['camberR','Camber'],['toeR','Convergenza'],['bumpLR','Comp. LS'],['bumpHR','Comp. HS'],['rebLR','Est. LS'],['rebHR','Est. HS']]
 };
-const AXLE_GT = { F:['arbF','dive'], R:['rw','arbR'] };
+const AXLE_GT = { F:['arbFon','arbF','dive'], R:['rw','arbRon','arbR'] };
 const GEN_GT = [
   ['Vettura',['chassis','driver','tyre']],
   ['Pesi',['driverKg','fuelKg','ballast']],
@@ -2118,11 +2212,30 @@ useSchema(S.car);
 // Ripartizione idraulica a barra centrata: definizione del manuale pF/(pF+pR); a forza uguale p ∝ 1/area pompa
 const mcBalGT = (dF,dR) => { dF=num(dF); dR=num(dR); return (isFinite(dF)&&isFinite(dR)&&dF>0&&dR>0) ? dR*dR/(dF*dF+dR*dR)*100 : NaN; };
 const toeDegGT = mm => Math.atan(num(mm)/GT.rimD)*180/Math.PI;
-function axleInfoGT(ax, st){
-  if(ax==='F') return `Barra pos. ${st.arbF||'–'} · dive plane ${st.dive||'–'}`;
-  const r=avg2(st.rhR)-avg2(st.rhF);
-  return `Ala ${st.rw!==''&&st.rw!=null?st.rw+'°':'–'} · Barra pos. ${st.arbR||'–'}${isFinite(r)?` · rake ${r.toFixed(1)} mm`:''}`;
+// Barre GT4: montata/smontata + posizione 1–5 per lato (Sx, Dx)
+function gtPosLR(v){ const a=Array.isArray(v)?v:[v,v]; return a.map(x=>{ const n=Math.round(num(x)); return n>=1&&n<=5?String(n):'3'; }); }
+function gtBarOff(st,ax){ const on=st[ax==='F'?'arbFon':'arbRon']; const v=st[ax==='F'?'arbF':'arbR']; return noBar(on)||String(on||'').toLowerCase()==='nessuna'||(!Array.isArray(v)&&noBar(v)); }
+function gtBar(st,ax){ return gtBarOff(st,ax)?'Nessuna':gtPosLR(st[ax==='F'?'arbF':'arbR']); }
+function gtBarTxt(st,ax){ const b=gtBar(st,ax); return b==='Nessuna'?'smontata':(b[0]===b[1]?b[0]:b.join('/')); }
+function migrateSetupGT(st){ if(!st) return; ['F','R'].forEach(ax=>{ const k=ax==='F'?'arbF':'arbR', on=k+'on';
+  if(!Array.isArray(st[k])){ if(noBar(st[k])){ st[on]='Nessuna'; st[k]=['3','3']; } else st[k]=gtPosLR(st[k]); }
+  if(!st[on]) st[on]='Montata'; }); }
+function gtPosCell(f, st, prev){
+  const ax=f.k==='arbF'?'F':'R', v=gtPosLR(st[f.k]), pv=prev?gtPosLR(prev[f.k]):null, off=gtBarOff(st,ax);
+  const sel=sd=>`<select id="sf_${f.k}_${sd}" data-sf="${f.k}" data-sd="${sd}" aria-label="Posizione barra ${SIDE[sd]}"${off?' disabled title="Barra smontata"':''}>${GT.arb.map(o=>`<option ${v[sd]===o?'selected':''}>${o}</option>`).join('')}</select>`;
+  const ch=pv&&v.join()!==pv.join();
+  return `<div class="fx${ch?' chg':''}" id="c_${f.k}">
+    <label class="fl" for="sf_${f.k}_0">Posizione barra <span class="u">Sx · Dx</span></label>
+    <div class="fi"><div class="bl2">${sel(0)}${sel(1)}</div><span class="was">${ch?'prima '+pv.join(' / '):''}</span></div></div>`;
 }
+function axleInfoGT(ax, st){
+  if(ax==='F') return `Barra ${gtBarTxt(st,'F')} · dive plane ${st.dive||'–'}`;
+  const r=avg2(st.rhR)-avg2(st.rhF);
+  return `Ala ${st.rw!==''&&st.rw!=null?st.rw+'°':'–'} · Barra ${gtBarTxt(st,'R')}${isFinite(r)?` · rake ${r.toFixed(1)} mm`:''}`;
+}
+function mrbGT(st){ const x=mechGT(avg2(st.springF), avg2(st.springR), vehGT(st), gtBar(st,'F'), gtBar(st,'R'));
+  return {arb:x.pArb, spr:x.pSpr, sus:x.pSus, arbT:x.pArbT, sprT:x.pSprT, tot:x.pTot, pct:x.pct, fqF:x.fqF, fqR:x.fqR, missing:x.arbMissing}; }
+const ARB_GT_NOTE='Barre: il manuale BMW non dà la rigidezza per posizione. Inseriscila in Calcolatore › Parametri vettura per avere barre e totale.';
 function techBlockGT(st, ref, refName){
   const w=weightsOf(st), mb=mcBalGT(st.mcF,st.mcR), rake=avg2(st.rhR)-avg2(st.rhF);
   const bias=num(st.bias), biasW = isFinite(bias)&&(bias<GT.biasMin||bias>GT.biasMax);
@@ -2135,19 +2248,21 @@ function techBlockGT(st, ref, refName){
     ['Peso incrociato (AS+PD)', w?w.cross.toFixed(1)+' %':'–'],
     ['Ripartizione freno', `<span class="${biasW?'warn':''}">${esc(st.bias||'–')} % ant.</span> <span class="muted">· pompe ${isFinite(mb)?mb.toFixed(1)+' %':'–'} a barra centrata</span>`],
     ['Rake', isFinite(rake)?rake.toFixed(1)+' mm':'–'],
-    ['Barre ant. / post.', `pos. ${esc(st.arbF||'–')} / ${esc(st.arbR||'–')}`],
+    ['Barre · posizione Sx/Dx', `ant. ${esc(gtBarTxt(st,'F'))} · post. ${esc(gtBarTxt(st,'R'))}`],
     ['Rigidezza a ruota (stima MR)', isFinite(kF)&&isFinite(kR)?`${kF.toFixed(0)} / ${kR.toFixed(0)} N/mm · ${(kF/(kF+kR)*100).toFixed(1)} % ant.`:'–'],
     ['Differenziale', `${esc(st.ramps||'–')} · ${esc(st.preload||'–')} Nm`],
     ['Rispetto alla base', refTxt]
   ];
-  return `<div class="tech">${tiles.map(([k,v])=>`<div><div class="lbl">${k}</div><div class="tv">${v}</div></div>`).join('')}</div>`;
+  const m=mrbGT(st), mr=ref?mrbGT(ref):null;
+  return `<div class="tech">
+    <div class="rbbox"><div class="lbl">Mech roll balance${mr?` <span class="muted">· vs ${esc(refName)}</span>`:''}</div>${rollBalTable(m, mr)}${m.missing?`<div class="rbnote">${ARB_GT_NOTE}</div>`:''}</div>
+    ${tiles.map(([k,v])=>`<div><div class="lbl">${k}</div><div class="tv">${v}</div></div>`).join('')}</div>`;
 }
 function compareTilesGT(a, b, d){
   const r=s=>avg2(s.rhR)-avg2(s.rhF);
-  const m=s=>{ const x=mechGT(avg2(s.springF), avg2(s.springR), vehGT(s)); const TF=GT.trackF, TR=GT.trackR; x.roll=x.kwF*TF*TF/(x.kwF*TF*TF+x.kwR*TR*TR)*100; return x; };
-  const ma=m(a), mb=m(b), arbCh=norm(a.arbF)!==norm(b.arbF)||norm(a.arbR)!==norm(b.arbR);
-  const dRoll=mb.roll-ma.roll;
-  const trend=arbCh?'<span class="chip warn">barre cambiate: il manuale non dà le rigidezze per posizione</span>'
+  const ma=mrbGT(a), mb=mrbGT(b), arbCh=gtBarTxt(a,'F')!==gtBarTxt(b,'F')||gtBarTxt(a,'R')!==gtBarTxt(b,'R');
+  const dRoll=isFinite(mb.tot)&&isFinite(ma.tot)?mb.tot-ma.tot:mb.sprT-ma.sprT;
+  const trend=arbCh&&(ma.missing||mb.missing)?'<span class="chip warn">barre cambiate: inserisci le rigidezze per posizione</span>'
     : !isFinite(dRoll)||Math.abs(dRoll)<0.2 ? '<span class="chip">tendenza invariata</span>'
     : dRoll>0 ? '<span class="chip warn">più sottosterzo in percorrenza</span>' : '<span class="chip warn">più sovrasterzo in percorrenza</span>';
   return `<div class="cmpgrp"><div class="cmph">Bilancio aerodinamico <span class="muted">· ${d.length} modifiche</span></div><div class="tech">
@@ -2156,8 +2271,8 @@ function compareTilesGT(a, b, d){
     <div class="${norm(a.dive)!==norm(b.dive)?'cmpch':''}"><div class="lbl">Dive plane</div><div class="tv">${esc(a.dive||'–')} → ${esc(b.dive||'–')}</div></div>
   </div></div>
   <div class="cmpgrp"><div class="cmph">Bilancio meccanico ${trend}</div><div class="tech">
-    ${cmpTile('Rollio da molle ant.', ma.roll, mb.roll, 1, '%')}
-    <div class="${arbCh?'cmpch':''}"><div class="lbl">Barre ant. / post. (posizione)</div><div class="tv">${esc(a.arbF||'–')} / ${esc(a.arbR||'–')} → ${esc(b.arbF||'–')} / ${esc(b.arbR||'–')}</div></div>
+    <div class="rbbox"><div class="lbl">Mech roll balance</div>${rollBalTable(mb, ma)}${ma.missing||mb.missing?`<div class="rbnote">${ARB_GT_NOTE}</div>`:''}</div>
+    <div class="${arbCh?'cmpch':''}"><div class="lbl">Barre · posizione Sx/Dx</div><div class="tv">ant. ${esc(gtBarTxt(a,'F'))} → ${esc(gtBarTxt(b,'F'))}<br>post. ${esc(gtBarTxt(a,'R'))} → ${esc(gtBarTxt(b,'R'))}</div></div>
     ${cmpTile('Rigidezza verticale ant.', ma.pct, mb.pct, 1, '%')}
     ${cmpTile('Frequenze ant. / post.', [ma.fqF,ma.fqR], [mb.fqF,mb.fqR], 2, 'Hz')}
     ${cmpTile('Ripartizione freno ant.', num(a.bias), num(b.bias), 1, '%')}
@@ -2165,12 +2280,13 @@ function compareTilesGT(a, b, d){
 }
 
 /* ---------- parametri vettura per il calcolatore (stime modificabili) ---------- */
-const VEH_GT_DEF = { mrF:1.05, mrR:1.45, kt:330, mu:48, M:'', fF:'' };
-const VEH_GT_FIELDS = [['mrF','Rapporto ruota/molla ant.','','stima'],['mrR','Rapporto ruota/molla post.','','stima'],['kt','Rigidezza verticale gomma','N/mm','stima'],['mu','Massa non sospesa per ruota','kg','stima'],['M','Massa totale','kg','dal turno'],['fF','Peso all’anteriore','%','dal turno']];
+const VEH_GT_DEF = { mrF:1.05, mrR:1.45, kt:330, mu:48, M:'', fF:'', TF:1570, TR:1560, arbFk:'', arbRk:'' };
+const VEH_GT_FIELDS = [['TF','Carreggiata ant.','mm','stima'],['TR','Carreggiata post.','mm','stima'],['arbFk','Barra ant. rigidezza pos. 1–5','N·m/°','da inserire'],['arbRk','Barra post. rigidezza pos. 1–5','N·m/°','da inserire'],['mrF','Rapporto ruota/molla ant.','','stima'],['mrR','Rapporto ruota/molla post.','','stima'],['kt','Rigidezza verticale gomma','N/mm','stima'],['mu','Massa non sospesa per ruota','kg','stima'],['M','Massa totale','kg','dal turno'],['fF','Peso all’anteriore','%','dal turno']];
 function vehGT(st){
   const v={...VEH_GT_DEF, ...((S.prefs||{}).vehGT||{})}, n=k=>num(v[k]);
   const w=st?weightsOf(st):null;
-  return { mrF:n('mrF'), mrR:n('mrR'), kt:n('kt'), mu:n('mu'),
+  const list=k=>String(v[k]??'').split(/[;,\s]+/).filter(x=>x!=='').map(num);
+  return { mrF:n('mrF'), mrR:n('mrR'), kt:n('kt'), mu:n('mu'), TF:n('TF')>0?n('TF'):GT.trackF, TR:n('TR')>0?n('TR'):GT.trackR, arbFk:list('arbFk'), arbRk:list('arbRk'),
     M:isFinite(n('M'))?n('M'):(w?w.tot:1450), fF:(isFinite(n('fF'))?n('fF'):(w?w.front:53))/100, fromTurn:!isFinite(n('M'))&&!!w };
 }
 function onVehGT(el){
@@ -2180,18 +2296,31 @@ function onVehGT(el){
 }
 function calcDefaultsGT(){
   const ses=curSession(), st=ses?ses.setup:BASE_GT;
-  const pick=s=>({springF:String(avg2(s.springF)), springR:String(avg2(s.springR))});
+  const pick=s=>({springF:String(avg2(s.springF)), springR:String(avg2(s.springR)), arbFon:gtBarOff(s,'F')?'Nessuna':'Montata', arbFL:gtPosLR(s.arbF)[0], arbFR:gtPosLR(s.arbF)[1], arbRon:gtBarOff(s,'R')?'Nessuna':'Montata', arbRL:gtPosLR(s.arbR)[0], arbRR:gtPosLR(s.arbR)[1]});
   return {car:'gt4', a:pick(st), b:pick(st), src: ses? (curEvent().name+' · '+ses.name) : 'Setup di consegna',
     conv:{bias:st.bias||'55', biasT:String((num(st.bias)||55)+1), mcF:st.mcF||'22.4', mcR:st.mcR||'25.4', pedalA:st.pedal||'4.55', pedalB:'5.00', toe:'1.0', rim:String(GT.rimD), axle:'F', from:String(avg2(st.springF)), to:'240'}};
 }
-function mechGT(springF, springR, ve){
+// rigidezza a rollio della barra GT4 per posizione (da Parametri vettura); 0 se smontata, NaN se non inserita
+function arbGT(list, pos){ if(!Array.isArray(pos)&&noBar(pos)) return 0;
+  const k=p=>{ const v=list&&list[Math.round(num(p))-1]; return isFinite(v)&&v>0?v:NaN; };
+  const [l,r]=gtPosLR(pos), kl=k(l), kr=k(r);
+  return isFinite(kl)&&isFinite(kr)?Math.pow((Math.sqrt(kl)+Math.sqrt(kr))/2,2):NaN; }
+function mechGT(springF, springR, ve, arbF, arbR){
   const r={}, g=9.81;
   r.kwF=num(springF)/ve.mrF**2; r.kwR=num(springR)/ve.mrR**2;
   const ser2=(a,b)=>1/(1/a+1/b);
   r.krF=ser2(r.kwF,ve.kt); r.krR=ser2(r.kwR,ve.kt);
   const WF=ve.M*ve.fF/2, WR=ve.M*(1-ve.fF)/2, msF=WF-ve.mu, msR=WR-ve.mu;
   r.fqF=Math.sqrt(r.krF*1000/msF)/(2*Math.PI); r.fqR=Math.sqrt(r.krR*1000/msR)/(2*Math.PI);
-  r.pct=r.kwF/(r.kwF+r.kwR)*100;
+  r.pctW=r.kwF/(r.kwF+r.kwR)*100; r.pct=r.krF/(r.krF+r.krR)*100;   // rigidezza verticale % ant.: senza e con gomma (come F4)
+  // rollio [N·m/°]: molle k·T²/2, barra dalla posizione, gomma in serie (stesso schema della F4)
+  const rk=(k,T)=>k*T*T/2/1000*Math.PI/180, pc=(f,b)=>(f+b)>0?f/(f+b)*100:NaN, sr=(k,t)=>k>0?ser2(k,t):(k===0?0:NaN);
+  r.sF=rk(r.kwF,ve.TF); r.sR=rk(r.kwR,ve.TR); r.tF=rk(ve.kt,ve.TF); r.tR=rk(ve.kt,ve.TR);
+  r.aF=arbGT(ve.arbFk,arbF); r.aR=arbGT(ve.arbRk,arbR);
+  r.KF=sr(r.sF+r.aF,r.tF); r.KR=sr(r.sR+r.aR,r.tR);
+  r.pArb=pc(r.aF,r.aR); r.pSpr=pc(r.sF,r.sR); r.pSus=pc(r.sF+r.aF,r.sR+r.aR);
+  r.pArbT=pc(sr(r.aF,r.tF),sr(r.aR,r.tR)); r.pSprT=pc(sr(r.sF,r.tF),sr(r.sR,r.tR)); r.pTot=pc(r.KF,r.KR);
+  r.arbMissing=!isFinite(r.aF)||!isFinite(r.aR);
   r.dfF=msF*g/r.kwF; r.dfR=msR*g/r.kwR;           // schiacciamento statico della sospensione [mm]
   r.WF=WF; r.WR=WR;
   return r;
@@ -2201,22 +2330,31 @@ function renderCalcGT(){
   if(t==='conv') return renderConvGT();
   const c=S.calc, sp=(side,k,opts)=>cSel(side,k,c[side][k],opts);
   const rows=[['Molla ant. N/mm', sp('a','springF',GT.springsF), sp('b','springF',GT.springsF)],
-              ['Molla post. N/mm', sp('a','springR',GT.springsR), sp('b','springR',GT.springsR)]];
+              ['Molla post. N/mm', sp('a','springR',GT.springsR), sp('b','springR',GT.springsR)],
+              ['Barra ant.', sp('a','arbFon',['Montata','Nessuna']), sp('b','arbFon',['Montata','Nessuna'])],
+              ['Posizione barra ant. Sx', sp('a','arbFL',GT.arb), sp('b','arbFL',GT.arb)],
+              ['Posizione barra ant. Dx', sp('a','arbFR',GT.arb), sp('b','arbFR',GT.arb)],
+              ['Barra post.', sp('a','arbRon',['Montata','Nessuna']), sp('b','arbRon',['Montata','Nessuna'])],
+              ['Posizione barra post. Sx', sp('a','arbRL',GT.arb), sp('b','arbRL',GT.arb)],
+              ['Posizione barra post. Dx', sp('a','arbRR',GT.arb), sp('b','arbRR',GT.arb)]];
   return `<div class="panel"><h2>Molle e frequenze</h2><div class="cwide"><div class="cin">${srcBar()}${twoCol(rows)}${vehPanelGT()}</div><div id="calcOut">${mechOutGT()}</div></div>
     <div class="note">Molle dal manuale (ant. 160 / 200 / 240, post. 200 / 220 / 240 N/mm, più la molla ausiliaria da 5 N/mm, che si chiude a pacco sotto carico). Il manuale non riporta rapporti di installazione, rigidezze delle barre per posizione né la mappa aerodinamica: per questo il bilancio a rollio e l'aero della F4 qui non si possono calcolare. I valori marcati “stima” vanno sostituiti con dati misurati o del Performance Book BMW.</div></div>`;
 }
 function vehPanelGT(){
   const v={...VEH_GT_DEF, ...((S.prefs||{}).vehGT||{})};
-  return `<section class="shg"><h3>Parametri vettura</h3><div class="vehcol">${VEH_GT_FIELDS.map(([k,l,u,tag])=>`<div class="vf"><label for="vg_${k}">${l} ${u?`<span class="u">${u}</span>`:''} ${tag?`<span class="tag ${tag==='stima'?'est':''}">${tag}</span>`:''}</label><input type="text" inputmode="decimal" id="vg_${k}" data-vehgt="${k}" value="${esc(v[k]??'')}" placeholder="${k==='M'||k==='fF'?'dal turno':''}"></div>`).join('')}</div></section>`;
+  return `<section class="shg"><h3>Parametri vettura</h3><div class="vehcol">${VEH_GT_FIELDS.map(([k,l,u,tag])=>`<div class="vf"><label for="vg_${k}">${l} ${u?`<span class="u">${u}</span>`:''} ${tag?`<span class="tag ${tag==='stima'?'est':''}">${tag}</span>`:''}</label><input type="text" inputmode="decimal" id="vg_${k}" data-vehgt="${k}" value="${esc(v[k]??'')}" placeholder="${k==='M'||k==='fF'?'dal turno':(k==='arbFk'||k==='arbRk'?'pos. 1, 2, 3, 4, 5':'')}"></div>`).join('')}</div></section>`;
 }
 function mechOutGT(){
   const c=S.calc, ses=curSession(), ve=vehGT(ses?ses.setup:null);
-  const A=mechGT(c.a.springF,c.a.springR,ve), B=mechGT(c.b.springF,c.b.springR,ve);
+  const cb=(x,ax)=>x['arb'+ax+'on']==='Nessuna'?'Nessuna':[x['arb'+ax+'L']||'3', x['arb'+ax+'R']||'3'];
+  const A=mechGT(c.a.springF,c.a.springR,ve,cb(c.a,'F'),cb(c.a,'R')), B=mechGT(c.b.springF,c.b.springR,ve,cb(c.b,'F'),cb(c.b,'R'));
+  const rb=x=>({arb:x.pArb,spr:x.pSpr,sus:x.pSus,arbT:x.pArbT,sprT:x.pSprT,tot:x.pTot});
   const f=(x,d=1)=>isFinite(x)?x.toFixed(d):'–', dl=(a,b,d=1)=>isFinite(a)&&isFinite(b)?((b-a>0?'+':'')+(b-a).toFixed(d)):'–';
   const row=(l,k,d,u)=>`<tr><td>${l} <span class="u">${u}</span></td><td>${f(A[k],d)}</td><td>${f(B[k],d)}</td><td class="${Math.abs(B[k]-A[k])>1e-9?'dchg':''}">${dl(A[k],B[k],d)}</td></tr>`;
   const drhF=A.dfF-B.dfF, drhR=A.dfR-B.dfR;
   const tile=(l,v,h)=>`<div class="ctile"><div class="lbl">${l}</div><div class="big">${v}</div><div class="delta">${h}</div></div>`;
   return `<div class="ctiles">
+      <div class="ctile rbbox"><div class="lbl">Mech roll balance</div>${rollBalTable(rb(B),rb(A))}${A.arbMissing||B.arbMissing?`<div class="rbnote">${ARB_GT_NOTE.replace('Calcolatore › Parametri vettura','Parametri vettura qui a sinistra')}</div>`:''}</div>
       ${tile('Frequenza ant.', f(B.fqF,2)+' Hz', 'prima '+f(A.fqF,2))}
       ${tile('Frequenza post.', f(B.fqR,2)+' Hz', 'prima '+f(A.fqR,2))}
       ${tile('Rigidezza verticale', f(B.pct)+' % ant.', 'prima '+f(A.pct))}
@@ -2225,6 +2363,9 @@ function mechOutGT(){
     <div class="tbl-wrap"><table class="mres"><thead><tr><th>Parametro</th><th>Attuale</th><th>Modifica</th><th>Δ</th></tr></thead><tbody>
       ${row('Rigidezza a ruota ant.','kwF',0,'N/mm')}${row('Rigidezza a ruota post.','kwR',0,'N/mm')}
       ${row('Con gomma ant.','krF',0,'N/mm')}${row('Con gomma post.','krR',0,'N/mm')}
+      ${row('Rigidezza verticale % ant. senza gomma','pctW',1,'%')}${row('Rigidezza verticale % ant. con gomma','pct',1,'%')}
+      ${row('Rollio molle ant.','sF',0,'N·m/°')}${row('Rollio molle post.','sR',0,'N·m/°')}${row('Rollio barra ant.','aF',0,'N·m/°')}${row('Rollio barra post.','aR',0,'N·m/°')}${row('Rollio gomme ant.','tF',0,'N·m/°')}${row('Rollio gomme post.','tR',0,'N·m/°')}
+      ${row('% ant. solo barre','pArb',1,'%')}${row('% ant. solo molle','pSpr',1,'%')}${row('% ant. barre + molle','pSus',1,'%')}${row('% ant. totale con gomma','pTot',1,'%')}
       ${row('Frequenza propria ant.','fqF',2,'Hz')}${row('Frequenza propria post.','fqR',2,'Hz')}
       ${row('Schiacciamento statico ant.','dfF',1,'mm')}${row('Schiacciamento statico post.','dfR',1,'mm')}
     </tbody></table></div>
