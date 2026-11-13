@@ -71,6 +71,22 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid 
 .car .body{grid-column:2;grid-row:1/3;border:2px solid var(--line);border-radius:26px 26px 12px 12px;position:relative;background:linear-gradient(180deg,var(--surface-2),var(--surface))}
 .car .body::before{content:"";position:absolute;left:0;right:0;margin-inline:auto;top:calc(10% + 4px);bottom:12%;width:4px;background:var(--accent);border-radius:2px}
 .car .body::after{content:"";position:absolute;left:0;right:0;margin-inline:auto;top:10%;width:18px;height:18px;border-left:4px solid var(--accent);border-top:4px solid var(--accent);border-radius:2px 0 0 0;transform:rotate(45deg)}
+.pwide2{grid-template-columns:minmax(300px,0.9fr) minmax(0,2fr)}
+.pwins{display:grid;grid-template-columns:1fr 1fr;gap:12px;min-width:0}
+.pwin{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pwin.day{border-color:var(--accent)}
+.pwin.empty{opacity:.75;justify-content:flex-start}
+.pw-h{display:flex;justify-content:space-between;align-items:center;gap:8px}.pw-h h3{margin:0;font-size:16px}
+.pw-s{font-size:12px;color:var(--muted);line-height:1.4}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pwin .pc{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:8px 10px;min-width:0;display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:2px;text-align:left}
+.pwin .pc .lbl{margin:0}.pwin .pc .delta{text-align:left;width:100%;line-height:1.35}
+.pwin .pc .big{font-size:30px;line-height:1.1}
+.pwin .pc .delta{font-size:12px}
+.pwin .pc .chg{color:var(--accent);font-weight:700;white-space:nowrap}
+.rimgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px}
+@media (max-width:900px){ .pwide2{grid-template-columns:1fr} }
+@media (max-width:620px){ .pwins{grid-template-columns:1fr} .pwin .pc .big{font-size:26px} }
 .tyre{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:10px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .tyre .t-h{display:flex;justify-content:space-between;align-items:center;gap:6px}
 .tyre .name{font:italic 700 16px var(--f-display);text-transform:uppercase;letter-spacing:.05em;color:var(--accent)}
@@ -524,7 +540,7 @@ body.garage-open{overflow:hidden}
       <div class="logo"><img id="logoImg" alt="Motorsport Performance Academy" src="data:image/png;base64,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"></div>
       <div class="titlebar">
         <h1>Engineer <span>Workbook</span></h1>
-        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 12/11 · 23:25</div>
+        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 13/11 · 22:25</div>
       </div>
       <div class="teamsw" role="group" aria-label="Team">
         <button type="button" data-team="mpa" aria-pressed="true">MPA</button>
@@ -643,8 +659,18 @@ function learnedBase(){
   const w=[0.6,0.3,0.1].slice(0,h.length), sw=w.reduce((a,x)=>a+x,0);
   return {cold: C.map((_,i)=> h.reduce((a,s,j)=>a+w[j]*base20FromRun(s,i,b,k),0)/sw), n:h.length};
 }
-function recommend(){
-  const b=getBase(), k=coef(), I=S.inp, L=learnedBase();
+// Base 20/20 dai run di OGGI (stessa pista, condizione e gomma): media pesata 60/30/10 degli ultimi 3 di oggi
+const sameDay=(a,b)=>{ const x=new Date(a), y=new Date(b); return x.getFullYear()===y.getFullYear()&&x.getMonth()===y.getMonth()&&x.getDate()===y.getDate(); };
+function dayBase(){
+  const b=getBase(), k=coef(), all=history().filter(s=>sameDay(s.date,Date.now())), h=all.slice(0, k.mem==='last'?1:3);
+  if(!h.length) return null;
+  const w=[0.6,0.3,0.1].slice(0,h.length), sw=w.reduce((a,x)=>a+x,0);
+  return {cold: C.map((_,i)=> h.reduce((a,s,j)=>a+w[j]*base20FromRun(s,i,b,k),0)/sw), n:all.length, used:h.length};
+}
+// src: 'base' = solo Base pista · 'day' = aggiornata con i run di oggi · 'auto' = oggi se ci sono run, altrimenti base
+function recommend(src='auto'){
+  const b=getBase(), k=coef(), I=S.inp, L=src==='base'?null:dayBase();
+  if(src==='day'&&!L) return null;
   const target = I.target || b.target;
   const tenv = tenvOf(S.car, I.tt, I.ta);
   return C.map((_,i)=>{
@@ -732,49 +758,58 @@ function condInputs(prefix, I, air){
 
 function renderCalc(){
   const car=CARS[S.car], b=getBase(), I=S.inp; if(!I.target) I.target=[...b.target];
-  const r=recommend(), meta=r.pop();
-  const tyres = C.map((c,i)=>{
-    const x=r[i], d=x.cold-x.base;
-    return `<div class="tyre" style="grid-column:${i%2?3:1};grid-row:${i<2?1:2}">
-      <div class="t-h"><span class="name">${CN[c]}</span><span class="chip">${x.src?x.src+' run':'base'}</span></div>
-      <div class="big" id="out${i}">${f2(x.cold)}<small>bar</small></div>
-      <div class="delta" id="dl${i}">base 20/20 ${f2(x.base20)}${x.src?` (pista ${f2(x.base)})`:''}</div>
-      <div class="mini">
-        <div class="field" style="grid-column:1/-1"><label class="lbl" for="trim${i}">Cerchio °C</label>${inp('trim'+i,I.trim[i])}</div>
-      </div></div>`;
-  }).join('');
-  const k=coef();
-  const amb = `${car.air?'media aria+pista':'T pista'} <span id="ambTxt">${f1(meta.tenv)}</span> °C`;
-  const info = (meta.n
-    ? `Base 20/20 aggiornata da ${meta.n===1?'l\'ultimo run':'una media pesata degli ultimi '+meta.n+' run'} su ${esc(S.track)} (${CONDS[S.cond].toLowerCase()}, ${esc(tyreOf())}).`
-    : `Nessun run registrato su ${esc(S.track)} con ${esc(tyreOf())} in condizione ${CONDS[S.cond].toLowerCase()}: parto dalla Base 20/20 della pista.`)
-    + ` Correzione per ${amb} (${sgn(k.kEnv)} bar/10 °C) e T cerchio (${sgn(k.kRim)} bar/10 °C), rapporto caldo/freddo ${f2(k.ratio)}.`;
+  const k=coef(), D=dayBase(), rb=recommend('base'), mb=rb.pop();
+  const amb = `${car.air?'media aria+pista':'T pista'} <span id="ambTxt">${f1(mb.tenv)}</span> °C`;
+  const info = `Correzione per ${amb} (${sgn(k.kEnv)} bar/10 °C) e T cerchio (${sgn(k.kRim)} bar/10 °C), rapporto caldo/freddo ${f2(k.ratio)}.`;
+  const rims = `<div class="rimgrid">${C.map((c,i)=>`<div class="field"><label class="lbl" for="trim${i}">Cerchio ${CN[c]} °C</label>${inp('trim'+i,I.trim[i])}</div>`).join('')}</div>`;
   return `<div class="panel">
     <h2>Pressioni a freddo consigliate</h2>
     ${b.isDefault?`<div class="note">La base di ${esc(S.track)} usa valori di esempio. Inserisci i tuoi nella scheda <b>Base pista</b>.</div>`:''}
-    ${b.fromTyre?`<div class="note ${b.wetFromDry?'warnnote':''}">Nessuna base ${esc(tyreOf())} per ${esc(S.track)}: parto da quella ${esc(b.fromTyre)}.${b.wetFromDry?' Attenzione: sono pressioni da slick, con le wet di solito si parte più alti a freddo perché la gomma lavora più fredda. Correggi la base a mano o registra il primo run.':''} Dopo il primo run con queste gomme la base si aggiorna da sola.</div>`:''}
+    ${b.fromTyre?`<div class="note ${b.wetFromDry?'warnnote':''}">Nessuna base ${esc(tyreOf())} per ${esc(S.track)}: parto da quella ${esc(b.fromTyre)}.${b.wetFromDry?' Attenzione: sono pressioni da slick, con le wet di solito si parte più alti a freddo perché la gomma lavora più fredda. Correggi la base a mano o registra il primo run.':''}</div>`:''}
     ${b.isSeed?`<div class="note">Base 20/20 di ${esc(S.track)} presa dal tuo file ${S.car==='f4'?'MPA':'GT'}: target ${f2(b.target[0])} ant. / ${f2(b.target[2])} post.</div>`:''}
-    <div class="pwide"><div class="pin">
+    <div class="pwide pwide2"><div class="pin">
     ${condInputs('c', I, car.air)}
     <div class="grid3">
     <div class="field"><label class="lbl" for="cTgF">Target caldo anteriore</label>${inp('cTgF',I.target[0])}</div>
     <div class="field"><label class="lbl" for="cTgR">Target caldo posteriore</label>${inp('cTgR',I.target[2])}</div>
     </div>
+    ${rims}
     <div class="note" id="calcInfo">${info}</div>
-    <div class="row"><button class="btn primary" type="button" id="toReg">Copia valori nel Run</button>
-    <button class="btn" type="button" id="toBase">Aggiorna Base 20/20 dai run</button></div>
-    </div><div class="car">${tyres}<div class="body" aria-hidden="true"></div></div></div>
+    </div><div class="pwins">${pwinHTML('base')}${pwinHTML('day')}</div></div>
   </div>`;
 }
+function pwinHTML(kind){
+  const r=recommend(kind), b=getBase(), D=dayBase();
+  const head=kind==='base'
+    ? `<div class="pw-h"><h3>Dalla Base pista</h3><span class="chip">base 20/20</span></div><div class="pw-s">Base scritta in Base pista per ${esc(S.track)} · ${esc(tyreOf())}</div>`
+    : `<div class="pw-h"><h3>Aggiornata con i run di oggi</h3><span class="chip ${D?'ok':''}">${D?(D.n===1?'1 run':D.n+' run'):'nessun run'}</span></div><div class="pw-s">${D?`${D.used===1?'Correzione dall’ultimo run':'Media pesata 60/30/10 degli ultimi '+D.used+' run'} di oggi · ${CONDS[S.cond].toLowerCase()}`:`Registra un run oggi su ${esc(S.track)} (${CONDS[S.cond].toLowerCase()}, ${esc(tyreOf())}) per vedere la correzione`}</div>`;
+  if(!r) return `<section class="pwin day empty">${head}</section>`;
+  r.pop();
+  const rb=kind==='day'?recommend('base'):null; if(rb) rb.pop();
+  return `<section class="pwin ${kind}">${head}
+    <div class="pgrid">${C.map((c,i)=>{ const x=r[i];
+      return `<div class="pc"><div class="lbl">${CN[c]}</div><div class="big" id="o_${kind}_${i}">${f2(x.cold)}<small>bar</small></div>
+        <div class="delta" id="d_${kind}_${i}">${pwDelta(kind,x,rb&&rb[i])}</div></div>`; }).join('')}</div>
+    <div class="row"><button class="btn ${kind==='day'||!D?'primary':''} sm" type="button" data-toreg="${kind}">Copia nel Run</button>
+    ${kind==='day'?'<button class="btn sm" type="button" id="toBase">Salva come Base 20/20</button>':''}</div></section>`;
+}
+function pwDelta(kind,x,y){
+  if(kind==='base') return `base 20/20 ${f2(x.base20)}`;
+  const d=x.cold-y.cold;
+  return `base 20/20 ${f2(x.base20)} · <span class="${Math.abs(d)<0.005?'':'chg'}">${d>=0?'+':''}${f2(d)} vs base</span>`;
+}
 function updateCalcOutputs(){
-  const r=recommend(), m=r.pop(); const a=$('#ambTxt'); if(a) a.textContent=f1(m.tenv);
-  r.forEach((x,i)=>{ const o=$('#out'+i), d=$('#dl'+i); if(o){ o.innerHTML=`${f2(x.cold)}<small>bar</small>`; d.textContent=`base 20/20 ${f2(x.base20)}${x.src?` (pista ${f2(x.base)})`:''}`; } });}
+  const rb=recommend('base'), m=rb.pop(); const a=$('#ambTxt'); if(a) a.textContent=f1(m.tenv);
+  const rd=recommend('day'); if(rd) rd.pop();
+  rb.forEach((x,i)=>{ const o=$('#o_base_'+i), d=$('#d_base_'+i); if(o){ o.innerHTML=`${f2(x.cold)}<small>bar</small>`; d.innerHTML=pwDelta('base',x); } });
+  if(rd) rd.forEach((x,i)=>{ const o=$('#o_day_'+i), d=$('#d_day_'+i); if(o){ o.innerHTML=`${f2(x.cold)}<small>bar</small>`; d.innerHTML=pwDelta('day',x,rb[i]); } });
+}
 
 let draft=null;
 function renderReg(){
   const car=CARS[S.car];
   if(!draft || draft.car!==S.car || !draft.edited){
-    const r=recommend(); r.pop();
+    const r=recommend(window.__regSrc||'auto'); r.pop(); window.__regSrc=null;
     draft={car:S.car, tt:S.inp.tt, ta:S.inp.ta, trim:[...S.inp.trim], cold:r.map(x=>+x.cold.toFixed(2)), hot:[NaN,NaN,NaN,NaN], target:[...(S.inp.target||getBase().target)], note:'', pyro:C.map(()=>[NaN,NaN,NaN])};
   }
   const D=draft;
@@ -999,12 +1034,15 @@ function renderHist(){
 }
 
 function renderBase(){
-  const car=CARS[S.car], b=getBase(), k=coef();
+  const car=CARS[S.car], b=getBase(), k=coef(), L=dayBase();
   return `<div class="panel"><h2>Base 20/20 · ${esc(S.track)} · ${esc(tyreOf())}</h2>
-    <div class="note">Pressioni a freddo con cerchio a 20 °C e ${car.air?'media aria+pista':'T pista'} a 20 °C che danno il target a caldo. Vale finché non registri run per la condizione scelta: da lì la base si aggiorna da sola.</div>
+    <div class="note">Pressioni a freddo con cerchio a 20 °C e ${car.air?'media aria+pista':'T pista'} a 20 °C che danno il target a caldo. È il punto di partenza della finestra “Dalla Base pista” nel Calcolo; i run del giorno la correggono nella finestra accanto.</div>
     <div class="tbl-wrap"><table><thead><tr><th></th>${C.map(c=>`<th>${CN[c]}</th>`).join('')}</tr></thead><tbody>
       <tr><td>Base 20/20 bar</td>${C.map((_,i)=>`<td>${inp('bc'+i,b.cold[i],'style="width:78px"')}</td>`).join('')}</tr>
+      ${L?`<tr class="lrow"><td>Aggiornata dai run di oggi</td>${L.cold.map(v=>`<td><b>${f2(v)}</b></td>`).join('')}</tr>`:''}
     </tbody></table></div>
+    ${L?`<div class="note warnnote">Su ${esc(S.track)} con ${esc(tyreOf())} in condizione ${CONDS[S.cond].toLowerCase()} ${L.n===1?'c’è 1 run':'ci sono '+L.n+' run'} di oggi: nel Calcolo la finestra “Aggiornata con i run di oggi” usa la base della riga sotto, la finestra “Dalla Base pista” quella scritta sopra. “Salva come Base 20/20” rende definitiva quella di oggi.
+      <div class="row" style="margin-top:8px"><button class="btn sm" type="button" id="toBase">Salva come Base 20/20</button></div></div>`:''}
     <div class="grid3">
     <div class="field"><label class="lbl" for="bTgF">Target caldo anteriore</label>${inp('bTgF',b.target[0])}</div>
     <div class="field"><label class="lbl" for="bTgR">Target caldo posteriore</label>${inp('bTgR',b.target[2])}</div>
@@ -1020,7 +1058,7 @@ function renderBase(){
     <div class="field"><div class="lbl">Aggiornamento base dai run</div><div class="seg" id="memSeg">
       <button type="button" data-mem="last" aria-pressed="${k.mem==='last'}">Solo ultimo run</button>
       <button type="button" data-mem="avg3" aria-pressed="${k.mem==='avg3'}">Media ultimi 3 (60/30/10)</button></div></div>
-    <div class="row"><button class="btn" type="button" id="savePrefs">Salva coefficienti</button></div>
+    <div class="row"><button class="btn" type="button" id="savePrefs">Salva coefficienti</button><span class="chip warn" id="coefDirty" hidden>Non salvato: il calcolo usa ancora i valori salvati (rapporto ${f2(k.ratio)})</span></div>
     <h2 style="margin-top:8px">Backup dati</h2>
     <div class="note">I dati restano su questo telefono: pressioni, basi, coefficienti ed eventi setup. Esporta un backup dopo ogni evento: serve anche per passarli su un altro dispositivo o a un collega.</div>
     <div class="row"><button class="btn" type="button" id="expData">Esporta backup</button>
@@ -1057,8 +1095,8 @@ document.addEventListener('click', async e=>{
   else if(t.id==='addTrack'){ const n=$('#newTrack').value.trim(); if(!n) return;
     if(!tracks().includes(n)){ S.prefs.tracks=[...(S.prefs.tracks||[]),n]; await persist('prefs',{...S.prefs, kind:'prefs'}); }
     S.track=n; S.inp.target=null; draft=null; render(); toast('Pista aggiunta'); }
-  else if(t.id==='toReg'){ draft=null; S.tab='reg'; render(); window.scrollTo({top:0}); toast('Valori copiati: inserisci le pressioni a caldo'); }
-  else if(t.id==='toBase'){ const L=learnedBase(); const b=getBase();
+  else if(t.id==='toReg'||t.dataset.toreg){ window.__regSrc=t.dataset.toreg||'auto'; draft=null; S.tab='reg'; render(); window.scrollTo({top:0}); toast(`Valori ${t.dataset.toreg==='base'?'dalla Base pista':t.dataset.toreg==='day'?'aggiornati con i run di oggi':''} copiati: inserisci le pressioni a caldo`); }
+  else if(t.id==='toBase'){ const L=dayBase()||learnedBase(); const b=getBase();
     if(!L){ toast('Registra almeno un run per aggiornare la base'); return; }
     const nb={kind:'base', car:S.car, track:S.track, cold:L.cold.map(v=>+v.toFixed(3)), target:[...b.target]};
     if(await persist(baseKey(S.car,S.track), nb)) toast('Base 20/20 aggiornata'); }
@@ -1090,6 +1128,7 @@ document.addEventListener('click', async e=>{
 const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
 
 document.addEventListener('input', e=>{
+  if(['kEnv','kRim','kRatio'].includes(e.target.id)){ const d=$('#coefDirty'); if(d) d.hidden=false; }
   if(S.mod!=='press') return;
   const id=e.target.id, v=num(e.target.value);
   if(S.tab==='calc'){
@@ -1474,7 +1513,7 @@ function renderCompare(){
 function calcDefaults(){
   if(S.car==='gt4') return calcDefaultsGT();
   const ses=curSession(), st=ses?ses.setup:BASE_SETUP;
-  const cmag=a=>{ const v=(a||[]).map(camDeg).filter(isFinite); return v.length?String(+(-v.reduce((x,y)=>x+y,0)/v.length).toFixed(2)):''; };
+  const cmag=a=>{ const v=(a||[]).filter(x=>isFinite(num(x))).map(camDeg).filter(isFinite); return v.length?String(+(-v.reduce((x,y)=>x+y,0)/v.length).toFixed(2)):''; };
   const pick=s=>({camF:cmag(s.camberF), camR:cmag(s.camberR), pF:turnTargets(s)[0], pR:turnTargets(s)[1], fw:s.fw, rw:s.rw, frh:avg2(s.rhF), rrh:avg2(s.rhR), ta:20, arbF:s.arbF, bladeFL:bladeLR('F',s.bladeF)[0], bladeFR:bladeLR('F',s.bladeF)[1], arbR:s.arbR, bladeRL:bladeLR('R',s.bladeR)[0], bladeRR:bladeLR('R',s.bladeR)[1], springF:String(avg2(s.springF)), springR:String(avg2(s.springR)), pickup:s.pickup});
   return {a:pick(st), b:pick(st), src: ses? (curEvent().name+' · '+ses.name) : 'Base Setup MPA',
     conv:{xc:'AS', xu:'pre', xv:'0.5', xt:'0.5', axle:'F', from:String(avg2(st.springF)), to:'900', wF:avg2(st.cwF), wR:avg2(st.cwR), preload:'1', drh:'2', dcam:'0.5', dtoe:'1', dcas:'0.5', dbr:'1.5'}};
@@ -1544,7 +1583,7 @@ const VEH_FIELDS = [
 // post. asola sul piano del cambio 47,3 mm davanti all'asse, piano a 373 mm (§3.2.2).
 const SHIM = { F:{k:0.42, max:13}, R:{k:0.30, max:11} };   // T-421 §5.3.2
 function stgRH(st){
-  const v={...VEH_DEF, ...((S.prefs&&S.prefs.veh)||{})}, n=k=>num(v[k]);
+  const v={...VEH_DEF, ...((S.prefs&&S.prefs.veh)||{})}, n=k=>{ const x=num(v[k]); return isFinite(x)?x:num(VEH_DEF[k]); };   // parametro vuoto → default
   const mF=num(st&&st.stgF), mR=num(st&&st.stgR);
   const wet=tyreIsWet(st&&st.tyre), km=wet?PIR_WET_K:1;
   const kR=lerp(PIR_K.p,PIR_K.k,n('stgP'))*km, kF=kR*0.9;
@@ -3473,6 +3512,8 @@ function kinCtx(){
   const ses=curSession(), st=ses?ses.setup:BASE_SETUP, ve=vehicle(st), m=mechModel(S.calc.a, ve);
   const stat={F:num(S.calc.a.frh), R:num(S.calc.a.rrh)};
   if(!isFinite(stat.F)) stat.F=avg2(st.rhF); if(!isFinite(stat.R)) stat.R=avg2(st.rhR);
+  // nessuna altezza nel turno → altezza di progetto (punti di attacco del manuale)
+  if(!isFinite(stat.F)) stat.F=kinSweep('F').hD; if(!isFinite(stat.R)) stat.R=kinSweep('R').hD;
   const dyn={F:m.dynF, R:m.dynR};
   return {st, ve, m, stat, dyn, set:kinSet(st), src:ses?'turno attuale':'setup base'};
 }
@@ -3481,7 +3522,7 @@ function kinSet(st){
   const o={};
   [['F','camberF','toeF'],['R','camberR','toeR']].forEach(([ax,ck,tk])=>{
     const c=(st&&st[ck])||[], t=(st&&st[tk])||[];
-    const cs=[0,1].map(i=>camDeg(c[i])), ts=[0,1].map(i=>-toeDeg(t[i]));
+    const cs=[0,1].map(i=>isFinite(num(c[i]))?camDeg(c[i]):camDeg(ck==='camberF'?'4':'3')), ts=[0,1].map(i=>-toeDeg(t[i]));
     o[ax]={cam:(cs[0]+cs[1])/2, toe:(ts[0]+ts[1])/2, raw:{cam:c, toe:t}, diff:Math.abs(cs[0]-cs[1])>0.01||Math.abs(ts[0]-ts[1])>0.001};
   });
   return o;
@@ -3738,12 +3779,13 @@ VEH_FIELDS.push(['Camber in curva e grip', [
   ['camLS','Sensibilità al carico gomma','','stima'],
   ['camCalK','Taratura pirometro: camber per °C di ΔT','°/°C','stima']]]);
 const cgV = () => ({...VEH_DEF, ...((S.prefs&&S.prefs.veh)||{})});
-const cgN = (v,k) => num(v[k]);
+const cgN = (v,k) => { const x=num(v[k]); return isFinite(x)?x:num(VEH_DEF[k]); };   // parametro vuoto → valore di default
 function cgSides(st, ovr){
   const o={};
   [['F','camberF'],['R','camberR']].forEach(([ax,k])=>{
     if(ovr && isFinite(num(ovr[ax]))){ const c=camDeg(ovr[ax]); o[ax]=[c,c]; return; }
-    const a=(st&&st[k])||[]; o[ax]=[camDeg(a[0]), camDeg(a[1])];
+    // camber non inserito → camber standard del manuale (una casella vuota non è 0°)
+    const a=(st&&st[k])||[], std=camDeg(CAM_STD[ax]), one=x=>isFinite(num(x))?camDeg(x):std; o[ax]=[one(a[0]), one(a[1])];
   });
   return o;
 }
@@ -3757,7 +3799,8 @@ function camCurve(st, ve, m, ay, dir, ovr){
     const Mel=el*ay*T/1000;                                   // kg·m
     const phS=Ks>0?Mel/Ks:0, phT=Kt>0?Mel/Kt:0, ph=phS+phT;  // °
     const z=Math.tan(phS*Math.PI/180)*T/2;                   // escursione ruota (mm)
-    const rh0=F?m.stF:m.stR, sw=kinSweep(ax), a0=sw.at(rh0), po=sw.at(rh0-z), pi=sw.at(rh0+z);
+    const sw=kinSweep(ax), rhS=F?m.stF:m.stR, rh0=isFinite(rhS)?rhS:sw.hD;   // altezza non inserita → altezza di progetto
+    const a0=sw.at(rh0), po=sw.at(rh0-z)||a0, pi=sw.at(rh0+z)||a0;
     const dko=po.pose.camber-a0.pose.camber, dki=pi.pose.camber-a0.pose.camber;
     const camO=sides[ax][oi]+dko+ph, camI=sides[ax][1-oi]+dki-ph;
     const W=F?m.WF:m.WR, dW=(F?m.dWF:m.dWR)*ay, Wo=W/2+dW, Wi=Math.max(0,W/2-dW);
