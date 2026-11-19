@@ -1,0 +1,9 @@
+{
+  "name": "m4-gt4-mileage",
+  "version": "2.0.0",
+  "private": true,
+  "description": "FS Motorsport – Car & Tyres Mileage BMW M4 GT4 EVO",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}
