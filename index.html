@@ -417,6 +417,22 @@ details.pyro .pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));g
 .kchart{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:8px 8px 4px}
 .kchart figcaption{font:600 12px var(--f-body);color:var(--fg)}.kchart svg{display:block;width:100%;height:auto}
 .kchart .g{stroke:var(--line)}.kchart .ax{fill:var(--muted);font:500 10px var(--f-num)}
+.dmin input,.dmin select{width:100%;min-width:64px}.dmin tbody th{text-align:left;font-weight:500;text-transform:none;letter-spacing:0}.dmhint{font-size:12px;margin-top:6px}
+.dmtab tr.dmsub th{font-size:10px}.ctile .big.dz-ok{color:var(--accent)}.ctile .big.dz-lo,.ctile .big.dz-hi{color:#f5a524}
+.dmspring ul{margin:6px 0 0;padding-left:18px;display:grid;gap:8px}.dmspring li{line-height:1.5}.dmspring .btn{margin-left:6px}
+.aeglob{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}
+.aecfgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:14px}
+.aecfg{border:1px solid var(--line);border-top:3px solid var(--c);border-radius:4px;padding:10px;display:grid;gap:6px;background:var(--surface);min-width:0}
+.aecfg-h{display:flex;align-items:center;gap:8px}.aecfg-h .btn,.aecfg-h .muted{margin-left:auto}.aedot{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.aerh{display:grid;grid-template-columns:1fr 1fr;gap:8px}.aerh input,.aecfg select,.aeglob input{width:100%}
+.aeadd{border:1px dashed var(--line);border-radius:4px;background:none;color:var(--muted);font:600 13px var(--f-body);min-height:120px;cursor:pointer}.aeadd:hover{color:var(--fg);border-color:var(--accent)}
+table.aetab th .hint,table.aetab .hint{font-weight:400;font-size:11px;color:var(--muted);text-transform:none;letter-spacing:0}
+table.aetab tbody th{text-align:left;font-weight:500;text-transform:none;letter-spacing:0}table.aetab td{text-align:center;font-variant-numeric:tabular-nums}
+table.aetab .aed{display:block;font-size:11px;color:var(--accent)}table.aetab tr.aesec td{font:700 11px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding-top:12px;text-align:left}
+.aeh{margin:18px 0 6px;font-size:15px}.aeallh{font-size:12px;margin-bottom:6px}
+table.aeall tbody tr{cursor:pointer}table.aeall tbody tr:hover{background:var(--surface-2)}table.aeall tr.aesel th{color:var(--accent)}table.aeall tr.aecur{background:var(--surface)}
+.aesort{background:none;border:0;color:inherit;font:inherit;text-transform:inherit;letter-spacing:inherit;cursor:pointer;padding:0}.aesort.on{color:var(--accent)}
+@media (max-width:560px){.aeglob{grid-template-columns:1fr 1fr 1fr;gap:6px}.aeadd{min-height:48px}}
 .kchart .kline{fill:none;stroke:var(--accent);stroke-width:2}.kchart .kref2{fill:none;stroke:var(--muted);stroke-width:1.5;stroke-dasharray:5 4}
 .kchart .kcurl{stroke:var(--accent);stroke-opacity:.5}.kchart .kmS{fill:var(--fg);stroke:var(--bg);stroke-width:2}.kchart .kmD{fill:var(--accent-2);stroke:var(--bg);stroke-width:2}.kchart .kmC{fill:var(--accent);stroke:var(--bg);stroke-width:2}
 .kleg{display:flex;gap:12px;font-size:11px;color:var(--muted);padding:2px 4px}.kleg span{display:inline-flex;gap:5px;align-items:center}.sw.kl{border-color:var(--accent)}.sw.kl.dash{border-color:var(--muted)}
@@ -601,7 +617,7 @@ body.garage-open{overflow:hidden}
       <div class="logo"><img id="logoImg" alt="Motorsport Performance Academy" src="data:image/png;base64,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"></div>
       <div class="titlebar">
         <h1>Engineer <span>Workbook</span></h1>
-        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 23/11 · 22:20</div>
+        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 27/11 · 12:15</div>
       </div>
       <div class="teamsw" role="group" aria-label="Team">
         <button type="button" data-team="mpa" aria-pressed="true">MPA</button>
@@ -1284,8 +1300,8 @@ let SF = [
   {g:'ant', k:'camberF', l:'Camber', t:'num', lr:true, u:'°'},
   {g:'ant', k:'shimF',   l:'Shim camber', t:'num', lr:true, u:'mm'},
   {g:'ant', k:'toeF',    l:'Convergenza', t:'text', lr:true},
-  {g:'ant', k:'bumpF',   l:'Ammortizzatore comp.', t:'num', lr:true, u:'click'},
-  {g:'ant', k:'rebF',    l:'Ammortizzatore est.', t:'num', lr:true, u:'click'},
+  {g:'ant', k:'bumpF',   l:'Ammortizzatore comp.', t:'num', lr:true, u:'click da aperto'},
+  {g:'ant', k:'rebF',    l:'Ammortizzatore est.', t:'num', lr:true, u:'click da aperto'},
   {g:'ant', k:'arbF',    l:'Barra ant. diametro', t:'sel', o:['22','25','Nessuna'], u:'mm'},
   {g:'ant', k:'bladeF',  l:'Posizione barra ant.', t:'sel', o:['S','M','H'], lr:true},
   {g:'ant', k:'caster',  l:'Incidenza', t:'num', lr:true, u:'°'},
@@ -1298,8 +1314,8 @@ let SF = [
   {g:'post',k:'camberR', l:'Camber', t:'num', lr:true, u:'°'},
   {g:'post',k:'shimR',   l:'Shim camber', t:'num', lr:true, u:'mm'},
   {g:'post',k:'toeR',    l:'Convergenza', t:'text', lr:true},
-  {g:'post',k:'bumpR',   l:'Ammortizzatore comp.', t:'num', lr:true, u:'click'},
-  {g:'post',k:'rebR',    l:'Ammortizzatore est.', t:'num', lr:true, u:'click'},
+  {g:'post',k:'bumpR',   l:'Ammortizzatore comp.', t:'num', lr:true, u:'click da aperto'},
+  {g:'post',k:'rebR',    l:'Ammortizzatore est.', t:'num', lr:true, u:'click da aperto'},
   {g:'post',k:'arbR',    l:'Barra post. diametro', t:'sel', o:['10','14','Nessuna'], u:'mm'},
   {g:'post',k:'bladeR',  l:'Posizione barra post.', t:'sel', o:['S','M','H'], lr:true},
   {g:'post',k:'pickup',  l:'Attacco sospensione post.', t:'sel', o:Object.keys(PICKUP)},
@@ -1312,13 +1328,13 @@ let BASE_SETUP = {
   driverKg:'70', fuelKg:'20', ballast1:'', ballast2:'', cwF:['98.5','132'], cwR:['174','143'],
   bias:'54', mcF:'19.05', mcR:'20.64', discs:'TM', pads:'Ferodo',
   rhF:['18','18'], umpF:['STD','STD'], springF:['700','700'], preloadF:['1','1'], camberF:['4','4'], toeF:['1out','1out'],
-  bumpF:['10','10'], rebF:['12','12'], arbF:'22', bladeF:['S','S'], caster:['9.4','9.4'], fw:'3°', fwGurney:'Sì',
+  bumpF:['2','2'], rebF:['4','4'], arbF:'22', bladeF:['S','S'], caster:['9.4','9.4'], fw:'3°', fwGurney:'Sì',
   rhR:['38','38'], springR:['900','900'], preloadR:['1','1'], camberR:['-3','-3'], toeR:['0','0'],
-  bumpR:['6','6'], rebR:['6','6'], arbR:'14', bladeR:['H','H'], pickup:'BE24', rw:'A5'
+  bumpR:['6','6'], rebR:['10','10'], arbR:'14', bladeR:['H','H'], pickup:'BE24', rw:'A5'
 };
 const SES_NAMES = ['FP1','FP2','FP3','Q1','Q2','Gara 1','Gara 2','Gara 3'];
 const SET_TABS = {sheet:'Turno', cmp:'Confronta', events:'Eventi'};
-const CALC_TABS = {aero:'Aerodinamica', mech:'Bilancio', kin:'Cinematica', conv:'Conversioni'};
+const CALC_TABS = {aero:'Aerodinamica', mech:'Bilancio', kin:'Cinematica', anti:'Anti-effetti', dmp:'Ammortizzatori', conv:'Conversioni'};
 
 S.mod = S.mod || 'press'; S.stab = {setup:'sheet', calc:'aero'};
 S.events = {}; S.evId = null; S.sesId = null; S.cmp = {a:null, b:null, all:false};
@@ -1595,7 +1611,7 @@ function renderCalcMod(){
   const g=setupGate(); if(g) return g;
   if(!S.calc || (S.calc.car||'f4')!==S.car) S.calc=calcDefaults();
   if(S.car==='gt4') return renderCalcGT();
-  return {aero:renderAeroCalc, mech:renderMechCalc, kin:renderKinCalc, conv:renderConvCalc}[S.stab.calc]();
+  return ({aero:renderAeroCalc, mech:renderMechCalc, kin:renderKinCalc, anti:renderAntiCalc, dmp:renderDamperCalc, conv:renderConvCalc}[S.stab.calc]||renderAeroCalc)();
 }
 const cIn=(side,k,v,extra='')=>`<input type="text" inputmode="decimal" id="k_${side}_${k}" data-ck="${k}" data-cs="${side}" value="${isFinite(num(v))?v:''}" ${extra}>`;
 const cSel=(side,k,v,opts)=>`<select id="k_${side}_${k}" data-ck="${k}" data-cs="${side}">${opts.map(o=>`<option ${String(o)===String(v)?'selected':''}>${esc(o)}</option>`).join('')}</select>`;
@@ -1773,7 +1789,7 @@ function mechModel(c, ve){
   // manuale T-421 §5.7.3: centri di rollio riferiti al piano di riferimento → da terra si somma l'altezza statica
   const fh0=isFinite(num(c.frh))?num(c.frh):15, rh0=isFinite(num(c.rrh))?num(c.rrh):35;
   // centri di rollio da terra dalla cinematica dei punti di attacco (manuale §5.7): migrano con l'altezza più del semplice spostamento
-  const kF=typeof kinRCground==='function'?kinRCground('F',fh0):NaN, kR=typeof kinRCground==='function'?kinRCground('R',rh0,r.RCR):NaN;
+  const kF=typeof kinRCground==='function'?kinRCground('F',fh0):NaN, kR=typeof aeRCground==='function'&&PICKUP[c.pickup]?aeRCground('R',rh0,c.pickup):typeof kinRCground==='function'?kinRCground('R',rh0,r.RCR):NaN;
   r.rcgF=isFinite(kF)?kF:ve.RCF+fh0; r.rcgR=isFinite(kR)?kR:r.RCR+rh0;
   // il baricentro del sospeso sale e scende con l'altezza statica (riferito alle altezze a cui è stato stimato/misurato)
   const dzF=fh0-ve.hcgF, dzR=rh0-ve.hcgR; r.dzCG=dzF+(dzR-dzF)*aS/ve.L; r.hs=hs+r.dzCG; r.ktF=ve.ktF; r.ktR=ve.ktR; r.rF=ve.rF; r.rR=ve.rR;
@@ -1804,7 +1820,7 @@ function mechModel(c, ve){
   if(typeof kinSweep==='function'&&isFinite(r.dynF)&&isFinite(sF)){ const a=kinSweep('F'), b=kinSweep('R'), f0=a.at(sF), f1=a.at(r.dynF), g0=b.at(sR), g1=b.at(r.dynR);
     r.camDF=f1.camber-f0.camber; r.camDR=g1.camber-g0.camber; r.toeDF=f1.toe-f0.toe; r.toeDR=g1.toe-g0.toe;
     if(ve.kset){ r.camAF=ve.kset.F.cam+r.camDF; r.camAR=ve.kset.R.cam+r.camDR; r.camSF=ve.kset.F.cam; r.camSR=ve.kset.R.cam; r.toeAF=ve.kset.F.toe+r.toeDF; r.toeAR=ve.kset.R.toe+r.toeDR; }
-    r.rcDynF=kinRCground('F',r.dynF); r.rcDynR=kinRCground('R',r.dynR,r.RCR); }
+    r.rcDynF=kinRCground('F',r.dynF); r.rcDynR=typeof aeRCground==='function'&&PICKUP[c.pickup]?aeRCground('R',r.dynR,c.pickup):kinRCground('R',r.dynR,r.RCR); }
   r.rakeS=sR-sF; r.rakeD=r.dynR-r.dynF;
   r.rakeSdeg=Math.atan(r.rakeS/ve.L)*57.3; r.rakeDdeg=Math.atan(r.rakeD/ve.L)*57.3;
   if(isFinite(ve.tgtF)&&isFinite(ve.tgtR)){ const at=aeroAtRH(ve.tgtF,ve.tgtR); if(at){ r.reqF=ve.tgtF+at.F/2/r.kvF; r.reqR=ve.tgtR+at.R/2/r.kvR; } }
@@ -3540,7 +3556,7 @@ const REP_EN={
  'Attacco sospensione':'Rear wishbone pickup','Rampe diff. (drive/coast)':'Diff ramps (drive/coast)','Facce frizione':'Friction faces','Precarico diff.':'Diff preload','Controllo trazione':'Traction control','Rapporto pedale':'Pedal ratio',
  'Montata':'Fitted','Nessuna':'Removed','Sì':'Yes','No':'No','Asciutta':'Dry','Umida':'Damp','Bagnata':'Wet','invariato':'unchanged','giri':'turns','% ant.':'% front',
  'caldo':'hot','freddo':'cold','esclusa dalla correzione':'excluded from correction','chip = scarto dal target':'chip = deviation from target',
- 'Camber':'Camber','UMP':'UMP','Dive plane':'Dive plane','ABS':'ABS','Sprint':'Sprint','Endurance':'Endurance','Ant. Sx':'FL','Ant. Dx':'FR','Post. Sx':'RL','Post. Dx':'RR','Sx':'L','Dx':'R'
+ 'click da aperto':'clicks from open','Camber':'Camber','UMP':'UMP','Dive plane':'Dive plane','ABS':'ABS','Sprint':'Sprint','Endurance':'Endurance','Ant. Sx':'FL','Ant. Dx':'FR','Post. Sx':'RL','Post. Dx':'RR','Sx':'L','Dx':'R'
 };
 const REP_EN_DAY={'lunedì':'Monday','martedì':'Tuesday','mercoledì':'Wednesday','giovedì':'Thursday','venerdì':'Friday','sabato':'Saturday','domenica':'Sunday'};
 const REP_EN_MON={gennaio:'January',febbraio:'February',marzo:'March',aprile:'April',maggio:'May',giugno:'June',luglio:'July',agosto:'August',settembre:'September',ottobre:'October',novembre:'November',dicembre:'December'};
@@ -4146,6 +4162,399 @@ document.addEventListener('click', async e=>{
   toast(`Ottimo camber tarato: ant. ${cgF(c.oF)} → ${cgF(c.nF)}°, post. ${cgF(c.oR)} → ${cgF(c.nR)}° (ΔT int−est ${cgF(c.dF,1)} / ${cgF(c.dR,1)} °C, obiettivo ${c.tgt})`);
   render();
 });
+
+/* =================== ANTI-EFFETTI E CENTRI DI ROLLIO F4 T-421 (manuale §5.7.2–5.7.3) =================== */
+// Il manuale dà le coordinate dei punti di attacco solo per la BE23 e, per tutte le 28 combinazioni di fori del posteriore,
+// centro di rollio, anti-lift e anti-squat all'altezza di progetto. Gruppi di fori (pag. 108):
+//   A/B/C = superiore lato anteriore (punto D), D/E/F = superiore lato posteriore (punto F),
+//   1/2 = inferiore lato anteriore (punto A), 3/4 = inferiore lato posteriore (punto C). Standard: B, E, 2, 3.
+// Spostamenti verticali dei fori ricavati con i minimi quadrati sulla tabella del manuale (84 valori):
+// scarto massimo 2,8 mm sul centro di rollio, 0,4° anti-lift, 1,0° anti-squat. All'altezza di progetto i valori
+// vengono poi riportati esattamente a quelli del manuale; il modello dà come variano con altezza e beccheggio.
+const AE_HOLE = { g1:{A:10.7,B:0,C:-10.9}, g2:{D:14.2,E:0,F:-14.9}, g3:{'1':11.8,'2':0}, g4:{'3':0,'4':-14.1} };
+const AE_FRONT = {rc:-3.5, dive:3.8};                         // §5.7.3.1, configurazione standard
+const AE_COL = ['var(--accent)','#f5a524','#ff6b81','#a594ff'];
+const AE_CACHE = {};
+function aePts(ax, pk){
+  const P=JSON.parse(JSON.stringify(KIN_PTS[ax])); if(ax==='F'||!pk||pk==='BE23') return P;
+  const [a,b,c,d]=pk; P.D[2]+=AE_HOLE.g1[a]||0; P.F[2]+=AE_HOLE.g2[b]||0; P.A[2]+=AE_HOLE.g3[c]||0; P.C[2]+=AE_HOLE.g4[d]||0; return P;
+}
+// curva completa per un attacco: in funzione dell'escursione z (+ = compressione) → centro di rollio dal piano di riferimento,
+// angolo della traiettoria del centro ruota (anti-squat) e del punto di contatto solidale al portamozzo (anti-dive / anti-lift)
+function aeSweep(ax, pk){
+  const key=ax+(ax==='R'?(pk||'BE23'):''); if(AE_CACHE[key]) return AE_CACHE[key];
+  const P=aePts(ax,pk), Rd=KIN_RD[ax];
+  const G={uAC:kv.norm(kv.sub(P.C,P.A)), lDE:kv.dist(P.D,P.E), lFE:kv.dist(P.F,P.E), lBE:kv.dist(P.B,P.E), lTS:kv.dist(P.T,P.S), lBS:kv.dist(P.B,P.S), lES:kv.dist(P.E,P.S)};
+  const pose=t=>{ const B=kinRot(P.B,P.A,G.uAC,t), E=kinTri(P.D,G.lDE,P.F,G.lFE,B,G.lBE,P.E); if(!E) return null;
+    const S=kinTri(P.T,G.lTS,B,G.lBS,E,G.lES,P.S); if(!S) return null; return {B,E,tf:kinFrame(P.B,P.E,P.S,B,E,S)}; };
+  const L0=[P.N[0],P.N[1],P.N[2]-Rd], deg=x=>x*180/Math.PI, out=[];
+  for(let t=-0.2; t<=0.2001; t+=0.004){
+    const p=pose(t), a=pose(t-0.002), b=pose(t+0.002); if(!p||!a||!b) continue;
+    const N=p.tf(P.N), axv=kv.norm(kv.sub(p.tf(kv.add(P.N,[0,1,0])),N));
+    const dn=kv.norm(kv.sub([0,0,-1],kv.mul(axv,kv.dot([0,0,-1],axv)))), L=kv.add(N,kv.mul(dn,Rd));
+    const lo=kinPlaneCut(P.A,P.C,p.B,N[0]), up=kinPlaneCut(P.D,P.F,p.E,N[0]), ic=kinLine2(lo.pt,lo.dir,up.pt,up.dir);
+    const rc=ic&&Math.abs(ic[0]-L[1])>1e-9 ? L[2]+(ic[1]-L[2])*(0-L[1])/(ic[0]-L[1]) : NaN;
+    const dN=kv.sub(b.tf(P.N),a.tf(P.N)), dL=kv.sub(b.tf(L0),a.tf(L0));
+    out.push({z:N[2]-P.N[2], rc, aN:deg(Math.atan2(dN[0],dN[2])), aL:deg(Math.atan2(dL[0],dL[2]))});
+  }
+  out.sort((x,y)=>x.z-y.z);
+  const hD=Rd-P.N[2];
+  const raw=rh=>{ const z=hD-rh; let k=out.findIndex(o=>o.z>=z); if(k<0) k=out.length-1; if(k===0) k=1;
+    const a=out[k-1], b=out[k], f=(z-a.z)/(b.z-a.z), I=x=>a[x]+(b[x]-a[x])*f; return {rc:I('rc'), aN:I('aN'), aL:I('aL')}; };
+  const d=raw(hD);
+  // ancoraggio alla tabella del manuale all'altezza di progetto
+  let ref;
+  if(ax==='F') ref={rc:AE_FRONT.rc, aL:-AE_FRONT.dive, aN:d.aN};
+  else { const tb=PICKUP[pk||'BE23']; ref=tb?{rc:tb[0], aL:tb[1], aN:tb[2]}:d; }
+  const at=rh=>{ if(!isFinite(rh)) return null; const r=raw(rh); return {rc:r.rc-d.rc+ref.rc, aN:r.aN-d.aN+ref.aN, aL:r.aL-d.aL+ref.aL}; };
+  return (AE_CACHE[key]={hD, at, fitErr:{rc:d.rc-ref.rc, aL:d.aL-ref.aL, aN:d.aN-ref.aN}});
+}
+// centro di rollio posteriore da terra per attacco e altezza (usato anche dal Bilancio)
+function aeRCground(ax, rh, pk){ const s=aeSweep(ax,pk), a=s&&s.at(rh); return a?a.rc+rh:NaN; }
+
+// --- calcolo completo di una configurazione
+function aeCalc(cf, g, lite){
+  const ses=curSession(), st=ses?ses.setup:BASE_SETUP, ve=aeCalc.ve&&aeCalc.st===st?aeCalc.ve:(aeCalc.st=st, aeCalc.ve=vehicle(st));
+  const fh=num(cf.frh), rh=num(cf.rrh), L=ve.L, bF=num(g.bias)/100;
+  const m=lite?{}:mechModel({...S.calc.a, frh:cf.frh, rrh:cf.rrh, pickup:cf.pk}, ve);
+  const h=(isFinite(ve.hcg)?ve.hcg:290)+((fh-ve.hcgF)+(rh-ve.hcgR))/2;       // baricentro da terra con le altezze della configurazione
+  const geo=(f,r)=>{ const F=aeSweep('F').at(f), R=aeSweep('R',cf.pk).at(r); if(!F||!R) return null;
+    const th=Math.atan((r-f)/L)*180/Math.PI;                                // beccheggio: + = coda più alta (muso giù)
+    const ad=-(F.aL-th), al=R.aL-th, as=R.aN-th, k=L/h, tn=x=>Math.tan(x*Math.PI/180);
+    return {rcF:F.rc+f, rcFr:F.rc, rcR:R.rc+r, rcRr:R.rc, th, ad, al, as,
+      adP:tn(ad)*k*bF*100, alP:tn(al)*k*(1-bF)*100, asP:tn(as)*k*100}; };
+  const o=geo(fh,rh); if(!o) return null;
+  o.h=h; o.rake=rh-fh; if(lite) return o;
+  // inclinazione dell'asse di rollio
+  o.axis=Math.atan((o.rcR-o.rcF)/L)*180/Math.PI;
+  // frenata e accelerazione: trasferimento longitudinale M·a·h/L; la parte non ripresa dagli anti va sulle molle, la gomma prende tutto
+  const M=ve.M, dW=a=>M*a*h/L, kw={F:m.kwF, R:m.kwR}, kt={F:ve.ktF, R:ve.ktR};
+  const def=(W,ax,anti)=>W/2*(1-anti/100)/kw[ax]+W/2/kt[ax];
+  const gB=num(g.gB), gA=num(g.gA);
+  if(isFinite(gB)&&isFinite(M)){ const W=dW(gB); o.bW=W; o.bDive=def(W,'F',o.adP); o.bRise=def(W,'R',o.alP); o.bDive0=def(W,'F',0); o.bRise0=def(W,'R',0);
+    o.bPitch=Math.atan((o.bDive+o.bRise)/L)*180/Math.PI; o.bPitch0=Math.atan((o.bDive0+o.bRise0)/L)*180/Math.PI; }
+  if(isFinite(gA)&&isFinite(M)){ const W=dW(gA); o.aW=W; o.aSquat=def(W,'R',o.asP); o.aRise=def(W,'F',0); o.aSquat0=def(W,'R',0);
+    o.aPitch=Math.atan((o.aSquat+o.aRise)/L)*180/Math.PI; o.aPitch0=Math.atan((o.aSquat0+o.aRise)/L)*180/Math.PI; }
+  // alla velocità impostata (altezze dinamiche dalla mappa aero)
+  if(isFinite(m.dynF)&&isFinite(m.dynR)){ const d=geo(m.dynF,m.dynR); if(d) o.dyn={...d, f:m.dynF, r:m.dynR, V:ve.V}; }
+  o.out = fh<-5||fh>55||rh<5||rh>75;
+  return o;
+}
+
+function aeState(){
+  const c=S.calc; if(c.anti) return c.anti;
+  const ses=curSession(), st=ses?ses.setup:BASE_SETUP, pk=c.a.pickup||st.pickup||'BE23';
+  const frh=c.a.frh!==''&&c.a.frh!=null?c.a.frh:'15', rrh=c.a.rrh!==''&&c.a.rrh!=null?c.a.rrh:'35';
+  return (c.anti={cfg:[{pk,frh,rrh},{pk:pk==='BE23'?'BE24':'BE23',frh,rrh}], bias:isFinite(num(st.bias))?String(st.bias):'54', gB:'1.5', gA:'0.6', sort:'rc'});
+}
+function renderAntiCalc(){
+  const A=aeState(), opts=Object.keys(PICKUP);
+  const cfgCard=(cf,i)=>`<div class="aecfg" style="--c:${AE_COL[i]}">
+      <div class="aecfg-h"><span class="aedot"></span><b>Config ${i+1}</b>${i?`<button type="button" class="btn sm ghost" data-aedel="${i}" aria-label="Togli configurazione ${i+1}">✕</button>`:`<span class="muted">riferimento</span>`}</div>
+      <label class="lbl" for="ae_pk_${i}">Attacco posteriore</label>
+      <select id="ae_pk_${i}" data-ae="pk" data-ai="${i}">${opts.map(o=>`<option value="${o}" ${o===cf.pk?'selected':''}>${o}${o==='BE23'?' (STD)':''}</option>`).join('')}</select>
+      <div class="aerh"><div><label class="lbl" for="ae_frh_${i}">Altezza ant. mm</label><input id="ae_frh_${i}" type="text" inputmode="decimal" data-ae="frh" data-ai="${i}" value="${esc(cf.frh)}"></div>
+        <div><label class="lbl" for="ae_rrh_${i}">Altezza post. mm</label><input id="ae_rrh_${i}" type="text" inputmode="decimal" data-ae="rrh" data-ai="${i}" value="${esc(cf.rrh)}"></div></div>
+    </div>`;
+  return `<div class="panel"><h2>Anti-effetti e centri di rollio</h2>${srcBar()}
+    <div class="aeglob">
+      <div><label class="lbl" for="ae_bias">Freno <span class="u">% ant.</span></label><input id="ae_bias" type="text" inputmode="decimal" data-ae="bias" value="${esc(A.bias)}"></div>
+      <div><label class="lbl" for="ae_gB">Frenata <span class="u">g</span></label><input id="ae_gB" type="text" inputmode="decimal" data-ae="gB" value="${esc(A.gB)}"></div>
+      <div><label class="lbl" for="ae_gA">Trazione <span class="u">g</span></label><input id="ae_gA" type="text" inputmode="decimal" data-ae="gA" value="${esc(A.gA)}"></div>
+    </div>
+    <div class="aecfgs">${A.cfg.map(cfgCard).join('')}${A.cfg.length<4?`<button type="button" class="aeadd" data-aeadd="1">+ Aggiungi configurazione</button>`:''}</div>
+    <div id="aeOut">${aeOut()}</div>
+    <div class="note">Cinematica sui punti di attacco del manuale T-421 (§5.7): la configurazione standard BE23 ritrova i valori Tatuus (anti-lift 3,41° contro 3,3°, anti-squat −0,48° contro −0,5°, anti-dive 3,82° contro 3,8°, centri di rollio −3,5 / +1,0 mm).
+      Per gli altri attacchi la posizione dei fori è ricavata dalla tabella del manuale (passo verticale ≈ 11 mm A/B/C, 15 mm D/E/F, 12 mm 1/2, 14 mm 3/4); all'altezza di progetto (10 / 29 mm) i valori coincidono con la tabella, la variazione con l'altezza viene dalla geometria.
+      Angoli rispetto al suolo: il beccheggio (rake) li ruota, + = coda più alta. Anti-dive ant. % = tan α × passo / h baricentro × ripartizione freno ant.; anti-lift post. % = tan α × passo / h × freno post. (freni sul portamozzo: retta dal contatto a terra); anti-squat % = tan α × passo / h (trazione dai semiassi: retta dal centro ruota).
+      Affondamento: trasferimento M·a·h/passo; la parte non ripresa dagli anti comprime molle (rigidezza a ruota), la gomma schiaccia comunque. Passo, baricentro, massa e molle da Parametri vettura e dal turno.</div>
+  </div>`;
+}
+function aeOut(){
+  const A=aeState(), R=A.cfg.map(cf=>aeCalc(cf,A));
+  if(R.some(r=>!r)) return `<div class="note warn">Inserisci attacco e altezze per tutte le configurazioni.</div>`;
+  const f=(x,d=1,u='')=>isFinite(x)?x.toFixed(d).replace('.',',')+u:'–';
+  const dl=(x,b,d=1)=>isFinite(x)&&isFinite(b)?(x-b>=0?'+':'')+(x-b).toFixed(d).replace('.',','):'';
+  const row=(lab,u,get,d=1,hint='')=>`<tr><th>${lab}${u?` <span class="u">${u}</span>`:''}${hint?`<div class="hint">${hint}</div>`:''}</th>${R.map((r,i)=>{ const v=get(r), b=get(R[0]);
+    return `<td>${f(v,d)}${i&&isFinite(v)&&isFinite(b)&&Math.abs(v-b)>=Math.pow(10,-d)/2?`<span class="aed">${dl(v,b,d)}</span>`:''}</td>`; }).join('')}</tr>`;
+  const sec=t=>`<tr class="aesec"><td colspan="${R.length+1}">${t}</td></tr>`;
+  const head=`<thead><tr><th></th>${A.cfg.map((c,i)=>`<th style="color:${AE_COL[i]}">Config ${i+1}<div class="hint">${esc(c.pk)} · ${f(num(c.frh),1)} / ${f(num(c.rrh),1)}</div></th>`).join('')}</tr></thead>`;
+  const tile=(l,v,dv,h)=>`<div class="ctile"><div class="lbl">${l}</div><div class="big">${v}</div><div class="delta">${h}${dv?` · <b>${dv}</b>`:''}</div></div>`;
+  const r0=R[0], rN=R[R.length-1], last=R.length>1;
+  const dt=(k,d=1)=>last?`Config ${R.length}: ${f(rN[k],d)} (${dl(rN[k],r0[k],d)})`:'';
+  return `${R.some(r=>r.out)?`<div class="note warn">Altezze fuori dall'intervallo calcolato (ant. −5…55, post. 5…75 mm): uso il valore al bordo.</div>`:''}
+  <div class="ctiles">
+    ${tile('Centro di rollio post.', f(r0.rcR,1,' mm'), '', 'da terra, Config 1'+(last?' · '+dt('rcR'):''))}
+    ${tile('Anti-lift post.', f(r0.alP,0,' %'), '', 'in frenata'+(last?' · '+dt('alP',0):''))}
+    ${tile('Anti-squat post.', f(r0.asP,0,' %'), '', 'in trazione'+(last?' · '+dt('asP',0):''))}
+    ${tile('Anti-dive ant.', f(r0.adP,0,' %'), '', 'in frenata'+(last?' · '+dt('adP',0):''))}
+  </div>
+  <div class="tbl-wrap"><table class="aetab">${head}<tbody>
+    ${sec('Anteriore')}
+    ${row('Centro di rollio da terra','mm',r=>r.rcF)}${row('Centro di rollio dal piano di rif.','mm',r=>r.rcFr)}
+    ${row('Angolo anti-dive','°',r=>r.ad,2,'rispetto al suolo')}${row('Anti-dive','%',r=>r.adP,0)}
+    ${sec('Posteriore')}
+    ${row('Centro di rollio da terra','mm',r=>r.rcR)}${row('Centro di rollio dal piano di rif.','mm',r=>r.rcRr)}
+    ${row('Angolo anti-lift','°',r=>r.al,2,'contatto a terra → centro istantaneo')}${row('Anti-lift','%',r=>r.alP,0)}
+    ${row('Angolo anti-squat','°',r=>r.as,2,'centro ruota → centro istantaneo')}${row('Anti-squat','%',r=>r.asP,0)}
+    ${sec('Assetto')}
+    ${row('Rake','mm',r=>r.rake)}${row('Beccheggio','°',r=>r.th,2)}${row('Asse di rollio','°',r=>r.axis,2,'+ = più alto dietro')}${row('Baricentro da terra','mm',r=>r.h,0)}
+    ${sec(`In frenata a ${f(num(A.gB),2)} g`)}
+    ${row('Affondamento ant.','mm',r=>r.bDive,1,'con anti')}${row('Affondamento ant. senza anti','mm',r=>r.bDive0)}
+    ${row('Sollevamento post.','mm',r=>r.bRise,1,'con anti')}${row('Sollevamento post. senza anti','mm',r=>r.bRise0)}
+    ${row('Beccheggio in frenata','°',r=>r.bPitch,2)}
+    ${sec(`In accelerazione a ${f(num(A.gA),2)} g`)}
+    ${row('Abbassamento post.','mm',r=>r.aSquat,1,'con anti-squat')}${row('Abbassamento post. senza anti','mm',r=>r.aSquat0)}
+    ${row('Sollevamento ant.','mm',r=>r.aRise)}${row('Beccheggio in accelerazione','°',r=>r.aPitch,2)}
+    ${R[0].dyn?sec(`A ${f(R[0].dyn.V,0)} km/h (altezze dinamiche, mappa aero)`)+row('Altezza dinamica ant.','mm',r=>r.dyn&&r.dyn.f)+row('Altezza dinamica post.','mm',r=>r.dyn&&r.dyn.r)
+      +row('Centro di rollio ant. da terra','mm',r=>r.dyn&&r.dyn.rcF)+row('Centro di rollio post. da terra','mm',r=>r.dyn&&r.dyn.rcR)
+      +row('Anti-dive','%',r=>r.dyn&&r.dyn.adP,0)+row('Anti-lift','%',r=>r.dyn&&r.dyn.alP,0)+row('Anti-squat','%',r=>r.dyn&&r.dyn.asP,0):''}
+  </tbody></table></div>
+  <h3 class="aeh">Andamento con l'altezza</h3>
+  <div class="kincharts">${aeCharts(A)}</div>
+  <h3 class="aeh">Tutti gli attacchi posteriori</h3>
+  ${aeAll(A)}`;
+}
+// grafico a più linee (una per configurazione), x = altezza dell'asse
+function aeChart(title, unit, xs, series, marks){
+  const W=320, H=170, Lm=44, Rm=8, T=10, B=26, ys=series.flatMap(s=>s.map(p=>p.y)).filter(isFinite); if(!ys.length) return '';
+  let y0=Math.min(...ys), y1=Math.max(...ys); if(y1-y0<2){ const mm=(y0+y1)/2; y0=mm-1; y1=mm+1; }
+  const raw=(y1-y0)/4, mag=Math.pow(10,Math.floor(Math.log10(raw))), stp=[1,2,2.5,5,10].map(m=>m*mag).find(m=>m>=raw);
+  y0=Math.floor(y0/stp)*stp; y1=Math.ceil(y1/stp)*stp; const nd=Math.max(0,-Math.floor(Math.log10(stp)+1e-9));
+  const x0=xs[0], x1=xs[xs.length-1], X=x=>Lm+(x-x0)/(x1-x0)*(W-Lm-Rm), Y=y=>T+(y1-y)/(y1-y0)*(H-T-B);
+  const ticks=[]; for(let v=y0; v<=y1+stp/2; v+=stp) ticks.push(v);
+  const xt=[]; for(let x=Math.ceil(x0/10)*10;x<=x1;x+=10) xt.push(x);
+  const path=s=>s.filter(p=>isFinite(p.y)).map((p,i)=>(i?'L':'M')+X(p.x).toFixed(1)+' '+Y(p.y).toFixed(1)).join('');
+  return `<figure class="kchart"><figcaption>${title} <span class="u">${unit}</span></figcaption>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${title} in funzione dell'altezza">
+    ${ticks.map(v=>`<line class="g" x1="${Lm}" x2="${W-Rm}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ax" x="${Lm-5}" y="${Y(v)+3.5}" text-anchor="end">${(Math.abs(v)<stp/1e3?0:v).toFixed(nd)}</text>`).join('')}
+    ${xt.map(x=>`<text class="ax" x="${X(x)}" y="${H-8}" text-anchor="middle">${x}</text>`).join('')}<text class="ax" x="${W-Rm}" y="${H-B-4}" text-anchor="end">${marks.xLab}</text>
+    ${series.map((s,i)=>`<path d="${path(s)}" fill="none" stroke="${AE_COL[i]}" stroke-width="2" ${i?'stroke-dasharray="6 3"':''}/>`).join('')}
+    ${marks.pts.map((p,i)=>isFinite(p.x)&&isFinite(p.y)&&p.x>=x0&&p.x<=x1?`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="4.5" fill="${AE_COL[i]}" stroke="var(--bg)" stroke-width="2"><title>Config ${i+1}</title></circle>`:'').join('')}
+    </svg></figure>`;
+}
+function aeCharts(A){
+  const xsR=[]; for(let x=5;x<=75;x+=1) xsR.push(x); const xsF=[]; for(let x=-5;x<=55;x+=1) xsF.push(x);
+  const R=A.cfg.map(cf=>aeCalc(cf,A,true));
+  const ser=(xs,fn)=>A.cfg.map(cf=>xs.map(x=>({x, y:fn(cf,x)})));
+  const rr=(cf,rh,k)=>{ const c=aeCalc({...cf, rrh:String(rh)},A,true); return c?c[k]:NaN; };
+  const ff=(cf,fh,k)=>{ const c=aeCalc({...cf, frh:String(fh)},A,true); return c?c[k]:NaN; };
+  const step=xs=>xs.filter((x,i)=>i%2===0);
+  const xR=step(xsR), xF=step(xsF);
+  const ptsR=k=>R.map((r,i)=>({x:num(A.cfg[i].rrh), y:r[k]})), ptsF=k=>R.map((r,i)=>({x:num(A.cfg[i].frh), y:r[k]}));
+  const lab={xLab:'altezza post. mm'}, labF={xLab:'altezza ant. mm'};
+  return aeChart('Centro di rollio post. da terra','mm',xR,ser(xR,(cf,x)=>rr(cf,x,'rcR')),{...lab,pts:ptsR('rcR')})
+    +aeChart('Anti-lift post.','%',xR,ser(xR,(cf,x)=>rr(cf,x,'alP')),{...lab,pts:ptsR('alP')})
+    +aeChart('Anti-squat post.','%',xR,ser(xR,(cf,x)=>rr(cf,x,'asP')),{...lab,pts:ptsR('asP')})
+    +aeChart('Centro di rollio ant. da terra','mm',xF,ser(xF,(cf,x)=>ff(cf,x,'rcF')),{...labF,pts:ptsF('rcF')})
+    +aeChart('Anti-dive ant.','%',xF,ser(xF,(cf,x)=>ff(cf,x,'adP')),{...labF,pts:ptsF('adP')});
+}
+function aeAll(A){
+  const base=A.cfg[0], f=(x,d=1)=>isFinite(x)?x.toFixed(d).replace('.',','):'–';
+  const rows=Object.keys(PICKUP).map(pk=>({pk, r:aeCalc({...base, pk},A,true)})).filter(o=>o.r);
+  const key={rc:o=>-o.r.rcR, al:o=>-o.r.alP, as:o=>-o.r.asP, pk:null}[A.sort];
+  if(key) rows.sort((a,b)=>key(a)-key(b));
+  const sel=new Set(A.cfg.map(c=>c.pk)), cur=A.cfg[0].pk;
+  const th=(k,l)=>`<th><button type="button" class="aesort${A.sort===k?' on':''}" data-aesort="${k}">${l}${A.sort===k?' ▾':''}</button></th>`;
+  return `<div class="muted aeallh">Con le altezze della Config 1 (${f(num(base.frh))} / ${f(num(base.rrh))} mm). Tocca una riga per metterla nell'ultima configurazione.</div>
+  <div class="tbl-wrap"><table class="aetab aeall"><thead><tr>${th('pk','Attacco')}${th('rc','Centro rollio post. mm')}${th('al','Anti-lift %')}${th('as','Anti-squat %')}<th>Manuale <span class="u">RC / lift / squat</span></th></tr></thead><tbody>
+  ${rows.map(o=>{ const t=PICKUP[o.pk]; return `<tr class="${sel.has(o.pk)?'aesel':''}${o.pk===cur?' aecur':''}" data-aepick="${o.pk}" tabindex="0"><th>${o.pk}${o.pk==='BE23'?' <span class="u">STD</span>':''}</th><td>${f(o.r.rcR)}</td><td>${f(o.r.alP,0)}</td><td>${f(o.r.asP,0)}</td><td class="muted">${f(t[0])} / ${f(t[1])}° / ${f(t[2])}°</td></tr>`; }).join('')}
+  </tbody></table></div>`;
+}
+function aeRefresh(){ const o=$('#aeOut'); if(o) o.innerHTML=aeOut(); }
+document.addEventListener('input', e=>{ const el=e.target; if(!el.dataset||!el.dataset.ae||el.tagName==='SELECT'||!S.calc||!S.calc.anti) return;
+  const A=S.calc.anti, i=el.dataset.ai; if(i!=null) A.cfg[+i][el.dataset.ae]=el.value; else A[el.dataset.ae]=el.value;
+  clearTimeout(aeRefresh.t); aeRefresh.t=setTimeout(aeRefresh,250); });
+document.addEventListener('change', e=>{ const el=e.target; if(el.tagName==='SELECT'&&el.dataset&&el.dataset.ae==='pk'&&S.calc&&S.calc.anti){ S.calc.anti.cfg[+el.dataset.ai].pk=el.value; aeRefresh(); } });
+document.addEventListener('click', e=>{ const t=e.target.closest&&e.target.closest('[data-aeadd],[data-aedel],[data-aesort],[data-aepick]'); if(!t||!S.calc||!S.calc.anti) return;
+  const A=S.calc.anti;
+  if(t.dataset.aeadd&&A.cfg.length<4){ A.cfg.push({...A.cfg[A.cfg.length-1]}); render(); }
+  else if(t.dataset.aedel){ A.cfg.splice(+t.dataset.aedel,1); render(); }
+  else if(t.dataset.aesort){ A.sort=t.dataset.aesort; aeRefresh(); }
+  else if(t.dataset.aepick){ const k=A.cfg.length>1?A.cfg.length-1:(A.cfg.push({...A.cfg[0]}),1); A.cfg[k].pk=t.dataset.aepick; render(); }
+});
+document.addEventListener('keydown', e=>{ if(e.key==='Enter'&&e.target.dataset&&e.target.dataset.aepick) e.target.click(); });
+
+/* =================== AMMORTIZZATORI F4 T-421 — Andreani Formula Light (manuale §5.5) =================== */
+// Curve forza [N] / velocità stelo [mm/s] lette dai grafici del manuale (pag. 103–104, "indicative" secondo Tatuus).
+// Click: 0 = tutto chiuso (più duro). Compressione 0–12, estensione 0–16. I click mancanti nei grafici sono interpolati,
+// sotto C2 / R2 si usa la curva C2 / R2 (fuori dai dati del manuale).
+const DMP_V = [0,25,50,75,100,150,200,300];
+const DMP_C = {   // compressione
+  2:[0,380,652,920,1175,1625,1935,2330], 3:[0,340,560,755,960,1370,1725,2220], 4:[0,320,500,650,800,1120,1440,2040],
+  5:[0,312,488,625,745,1000,1270,1820],  6:[0,305,480,603,720,960,1170,1640],  10:[0,265,442,568,680,880,1060,1470],
+  11:[0,245,425,553,662,860,1038,1450],  12:[0,212,403,533,645,840,1015,1430] };
+const DMP_R = {   // estensione (valori assoluti)
+  2:[0,540,1050,1410,1740,2330,2920,4320], 3:[0,490,1010,1360,1700,2290,2875,4250], 4:[0,450,950,1310,1660,2250,2830,4180],
+  5:[0,410,905,1250,1610,2175,2765,4055],  6:[0,345,850,1190,1560,2100,2700,3930], 10:[0,250,710,1075,1420,2050,2620,3730],
+  13:[0,210,575,945,1340,1980,2560,3640], 16:[0,180,485,820,1200,1820,2380,3430] };
+const DMP_MAX = {C:12, R:16};
+const DMP_COL = ['var(--accent)','#f5a524'];
+// Convenzione del team sulla F4: click contati da TUTTO APERTO (0 = più morbido). Il manuale conta da tutto chiuso:
+// click manuale = massimo − click team (compressione 12, estensione 16).
+const dmpMan = (kind, v) => { const n=num(v); return isFinite(n)?DMP_MAX[kind]-n:NaN; };
+// curva di un click qualsiasi (anche frazionario), interpolando tra i click misurati
+function dmpCurve(kind, click){
+  const T=kind==='C'?DMP_C:DMP_R, ks=Object.keys(T).map(Number).sort((a,b)=>a-b);
+  let c=num(click); if(!isFinite(c)) return null; c=Math.max(ks[0],Math.min(ks[ks.length-1],c));
+  let i=ks.findIndex(k=>k>=c); if(ks[i]===c) return T[c].slice(); const a=ks[i-1], b=ks[i], f=(c-a)/(b-a);
+  return T[a].map((v,j)=>v+(T[b][j]-v)*f);
+}
+const dmpF = (curve, v) => lerp(DMP_V, curve, Math.min(300, Math.max(0, v)));     // N alla velocità stelo v [mm/s]
+// coefficienti [N·s/m]: bassa velocità = retta per l'origine sui punti 0–50 mm/s; alta = pendenza 100–300 mm/s
+function dmpCoef(curve){ if(!curve) return {ls:NaN, hs:NaN};
+  const ls=(25*curve[1]+50*curve[2])/(25*25+50*50)*1000, hs=(curve[7]-curve[4])/(300-100)*1000; return {ls, hs}; }
+
+function dmpState(){
+  const c=S.calc; if(c.dmp) return c.dmp;
+  const ses=curSession(), st=ses?ses.setup:BASE_SETUP, a2=k=>{ const v=avg2(st[k]); return isFinite(v)?String(v):''; };
+  const pick={bF:a2('bumpF'), rF:a2('rebF'), bR:a2('bumpR'), rR:a2('rebR'), sF:String(avg2(st.springF)||'700'), sR:String(avg2(st.springR)||'900')};
+  return (c.dmp={a:{...pick}, b:{...pick}});
+}
+// calcolo per una configurazione di click e molle
+function dmpCalc(cf){
+  const ses=curSession(), st=ses?ses.setup:BASE_SETUP, ve=vehicle(st);
+  const m=mechModel({...S.calc.a, springF:cf.sF, springR:cf.sR}, ve);
+  const g=9.81*1000, o={};
+  const WF=ve.M*ve.fF, WR=ve.M-WF, ms={F:(WF-2*ve.muF)/2, R:(WR-2*ve.muR)/2}, mu={F:ve.muF, R:ve.muR};
+  const MR={F:ve.MRF, R:ve.MRR}, T={F:ve.TF, R:ve.TR};
+  ['F','R'].forEach(ax=>{
+    const cb=dmpCurve('C',dmpMan('C',cf['b'+ax])), cr=dmpCurve('R',dmpMan('R',cf['r'+ax])); if(!cb||!cr) return;
+    const kb=dmpCoef(cb), kr=dmpCoef(cr), mr=MR[ax], mr2=mr*mr;
+    const kw=m['kw'+ax]*g, kv=m['kv'+ax]*g, kt=m['kt'+ax]*g;                 // N/m: molla a ruota, con gomma in serie, gomma
+    const ccB=2*Math.sqrt(kv*ms[ax]), ccW=2*Math.sqrt((kw+kt)*mu[ax]);       // smorzamento critico vettura / ruota
+    const w={bLS:kb.ls/mr2, rLS:kr.ls/mr2, bHS:kb.hs/mr2, rHS:kr.hs/mr2};   // coefficienti alla ruota
+    o[ax]={cb, cr, mr, kw, kv, kt, ms:ms[ax], mu:mu[ax], ...w, dLS:{b:kb.ls, r:kr.ls}, dHS:{b:kb.hs, r:kr.hs},
+      zBb:w.bLS/ccB, zBr:w.rLS/ccB, zB:(w.bLS+w.rLS)/2/ccB, zWb:w.bHS/ccW, zWr:w.rHS/ccW, zW:(w.bHS+w.rHS)/2/ccW,
+      ratio:kr.ls/kb.ls, fB:Math.sqrt(kv/ms[ax])/(2*Math.PI), fW:Math.sqrt((kw+kt)/mu[ax])/(2*Math.PI),
+      roll:(w.bLS+w.rLS)/2*T[ax]*T[ax]/2/1e6, ccB, ccW };                  // rollio: N·m·s/rad (T in mm)
+  });
+  if(o.F&&o.R){ o.rollBal=o.F.roll/(o.F.roll+o.R.roll)*100; o.stiffBal=isFinite(m.KF)&&isFinite(m.KR)?m.KF/(m.KF+m.KR)*100:NaN; o.lltd=m.lltd; }
+  o.m=m; return o;
+}
+// click che dà lo stesso coefficiente alla ruota per lo smorzamento critico con la nuova molla
+function dmpMatch(kind, cTarget){ let best=null;
+  for(let c=0;c<=DMP_MAX[kind];c++){ const k=dmpCoef(dmpCurve(kind,c)).ls, d=Math.abs(k-cTarget); if(!best||d<best.d) best={c:DMP_MAX[kind]-c,d,k}; } return best; }
+
+function renderDamperCalc(){
+  const D=dmpState();
+  const ci=(s,k,max)=>`<input type="text" inputmode="numeric" id="dm_${s}_${k}" data-dm="${k}" data-ds="${s}" value="${esc(D[s][k])}" aria-label="click">`;
+  const cs=(s,k)=>`<select id="dm_${s}_${k}" data-dm="${k}" data-ds="${s}">${SPRINGS.map(o=>`<option ${String(o)===String(D[s][k])?'selected':''}>${o}</option>`).join('')}</select>`;
+  const rows=[
+    ['Compressione ant. <span class="u">click 0–12 da aperto</span>', ci('a','bF'), ci('b','bF')],
+    ['Estensione ant. <span class="u">click 0–16 da aperto</span>', ci('a','rF'), ci('b','rF')],
+    ['Compressione post. <span class="u">click 0–12 da aperto</span>', ci('a','bR'), ci('b','bR')],
+    ['Estensione post. <span class="u">click 0–16 da aperto</span>', ci('a','rR'), ci('b','rR')],
+    ['Molla ant. <span class="u">lb/in</span>', cs('a','sF'), cs('b','sF')],
+    ['Molla post. <span class="u">lb/in</span>', cs('a','sR'), cs('b','sR')]];
+  return `<div class="panel"><h2>Ammortizzatori</h2>${srcBar()}
+    <div class="cwide"><div class="cin"><div class="tbl-wrap"><table class="dmin"><thead><tr><th></th><th style="color:${DMP_COL[0]}">Attuale</th><th style="color:${DMP_COL[1]}">Modifica</th></tr></thead><tbody>
+      ${rows.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table></div>
+      <div class="muted dmhint">Click contati da tutto aperto, come li conta il team: 0 = più morbido, più click = più duro. Valori presi dal turno (media sinistra/destra).</div></div>
+      <div id="dmOut">${dmpOut()}</div></div>
+    <div class="note">Curve Andreani Formula Light dal manuale T-421 §5.5 (pag. 103–104), lette dai grafici: Tatuus le indica come indicative. Il manuale conta i click da tutto chiuso: qui sono convertiti (click manuale = 12 − click da aperto in compressione, 16 − click in estensione; es. C10 / R12 del manuale = 2 / 4 da aperto). Click non presenti nei grafici interpolati; oltre il C2 / R2 del manuale (più di 10 / 14 click da aperto) si usa quella curva.
+      Coefficiente a bassa velocità = retta per l'origine 0–50 mm/s allo stelo; ad alta velocità = pendenza 100–300 mm/s. Alla ruota: coefficiente / rapporto² (1,1 ant., 1,23 post.); velocità alla ruota = velocità stelo × rapporto.
+      <b>ζ vettura</b> = coefficiente a bassa velocità / 2√(rigidezza con gomma × massa sospesa per ruota); <b>ζ ruota</b> = coefficiente ad alta velocità / 2√((molla a ruota + gomma) × massa non sospesa). ζ = 1 è lo smorzamento critico.
+      Le curve Andreani del manuale hanno molta forza a bassissima velocità (fino a 25 mm/s), per cui lo ζ vettura esce sopra 1 con quasi tutti i click: il valore assoluto dipende da come si definisce la "bassa velocità", conta soprattutto il confronto tra assi, tra click e tra configurazioni.
+      Ripartizione smorzamento a rollio = (coefficiente medio comp./est. × carreggiata²) ant. / totale, da confrontare con la ripartizione della rigidezza a rollio: più smorzamento davanti in ingresso curva = transitorio più sottosterzante.
+      Masse, molle, rapporti, carreggiate e gomme da Parametri vettura e dal turno.</div>
+  </div>`;
+}
+function dmpOut(){
+  const D=dmpState(), A=dmpCalc(D.a), B=dmpCalc(D.b);
+  if(!A.F||!A.R||!B.F||!B.R) return `<div class="note warn">Inserisci tutti i click (compressione 0–12, estensione 0–16).</div>`;
+  const f=(x,d=2)=>isFinite(x)?x.toFixed(d).replace('.',','):'–';
+  const dl=(x,y,d=2)=>isFinite(x)&&isFinite(y)&&Math.abs(y-x)>=Math.pow(10,-d)/2?`<span class="aed">${y-x>=0?'+':''}${(y-x).toFixed(d).replace('.',',')}</span>`:'';
+  const zc=z=>!isFinite(z)?'':z<0.5?'lo':z>1?'hi':'';
+  const band=(z,lo,hi)=>!isFinite(z)?'':z<lo?'dz-lo':z>hi?'dz-hi':'dz-ok';
+  const tile=(l,ax,k,lo,hi,h)=>`<div class="ctile"><div class="lbl">${l}</div><div class="big">${f(A[ax][k])}</div><div class="delta">${h}${Math.abs(B[ax][k]-A[ax][k])>=0.005?` · modifica <b>${f(B[ax][k])}</b>`:''}</div></div>`;
+  const row=(lab,u,get,d=2,hint='')=>`<tr><th>${lab}${u?` <span class="u">${u}</span>`:''}${hint?`<div class="hint">${hint}</div>`:''}</th>${['F','R'].map(ax=>{ const a=get(A,ax), b=get(B,ax);
+    return `<td>${f(a,d)}</td><td>${f(b,d)}${dl(a,b,d)}</td>`; }).join('')}</tr>`;
+  const sec=t=>`<tr class="aesec"><td colspan="5">${t}</td></tr>`;
+  const one=(lab,u,get,d=1)=>`<tr><th>${lab}${u?` <span class="u">${u}</span>`:''}</th><td colspan="2">${f(get(A),d)}</td><td colspan="2">${f(get(B),d)}${dl(get(A),get(B),d)}</td></tr>`;
+  return `<div class="ctiles">
+      ${tile('ζ vettura ant.','F','zB',0.5,1,'bassa velocità, media comp./est.')}
+      ${tile('ζ vettura post.','R','zB',0.5,1,'bassa velocità, media comp./est.')}
+      ${tile('ζ ruota ant.','F','zW',0.25,0.6,'alta velocità')}
+      ${tile('ζ ruota post.','R','zW',0.25,0.6,'alta velocità')}
+      <div class="ctile"><div class="lbl">Smorzamento a rollio</div><div class="big">${f(A.rollBal,1)} %</div><div class="delta">ant. · rigidezza a rollio ${f(A.stiffBal,1)} %${Math.abs(B.rollBal-A.rollBal)>=0.05?` · modifica <b>${f(B.rollBal,1)} %</b>`:''}</div></div>
+    </div>
+    <div class="tbl-wrap"><table class="aetab dmtab"><thead><tr><th></th><th colspan="2">Anteriore</th><th colspan="2">Posteriore</th></tr>
+      <tr class="dmsub"><th></th><th style="color:${DMP_COL[0]}">Attuale</th><th style="color:${DMP_COL[1]}">Modifica</th><th style="color:${DMP_COL[0]}">Attuale</th><th style="color:${DMP_COL[1]}">Modifica</th></tr></thead><tbody>
+      ${sec('Vettura (bassa velocità)')}
+      ${row('ζ compressione','',(o,ax)=>o[ax].zBb)}${row('ζ estensione','',(o,ax)=>o[ax].zBr)}${row('ζ medio','',(o,ax)=>o[ax].zB)}
+      ${row('Estensione / compressione','',(o,ax)=>o[ax].ratio,2,'allo stelo, bassa velocità')}
+      ${row('Frequenza propria','Hz',(o,ax)=>o[ax].fB,2,'con gomma')}
+      ${sec('Ruota (alta velocità)')}
+      ${row('ζ compressione','',(o,ax)=>o[ax].zWb)}${row('ζ estensione','',(o,ax)=>o[ax].zWr)}${row('ζ medio','',(o,ax)=>o[ax].zW)}
+      ${row('Frequenza ruota','Hz',(o,ax)=>o[ax].fW,1)}
+      ${sec('Coefficienti')}
+      ${row('Stelo comp. bassa vel.','N·s/m',(o,ax)=>o[ax].dLS.b,0)}${row('Stelo comp. alta vel.','N·s/m',(o,ax)=>o[ax].dHS.b,0)}
+      ${row('Stelo est. bassa vel.','N·s/m',(o,ax)=>o[ax].dLS.r,0)}${row('Stelo est. alta vel.','N·s/m',(o,ax)=>o[ax].dHS.r,0)}
+      ${row('Ruota comp. bassa vel.','N·s/m',(o,ax)=>o[ax].bLS,0)}${row('Ruota est. bassa vel.','N·s/m',(o,ax)=>o[ax].rLS,0)}
+      ${row('Smorzamento critico vettura','N·s/m',(o,ax)=>o[ax].ccB,0)}${row('Smorzamento critico ruota','N·s/m',(o,ax)=>o[ax].ccW,0)}
+      ${sec('Rollio')}
+      ${one('Smorzamento a rollio ant.','%',o=>o.rollBal)}${one('Rigidezza a rollio ant.','%',o=>o.stiffBal)}${one('LLTD','%',o=>o.lltd)}
+    </tbody></table></div>
+    ${dmpSpring(A,B)}
+    <h3 class="aeh">Forza alla ruota</h3>
+    <div class="kincharts">${dmpChart('Anteriore','F',A,B)}${dmpChart('Posteriore','R',A,B)}${dmpZChart(A)}</div>`;
+}
+// cambio molla: click che mantengono lo ζ vettura dell'Attuale con le molle della Modifica
+function dmpSpring(A,B){
+  const D=dmpState(), out=[];
+  ['F','R'].forEach(ax=>{ if(String(D.a['s'+ax])===String(D.b['s'+ax])) return;
+    const k=Math.sqrt(B[ax].kv/A[ax].kv)*Math.sqrt(B[ax].ms/A[ax].ms);
+    const mb=dmpMatch('C', A[ax].dLS.b*k), mr=dmpMatch('R', A[ax].dLS.r*k);
+    out.push(`<li><b>${ax==='F'?'Anteriore':'Posteriore'}</b> ${esc(D.a['s'+ax])} → ${esc(D.b['s'+ax])} lb/in: per tenere lo stesso ζ vettura servono <b>${k>1?'+':''}${((k-1)*100).toFixed(0)} %</b> di smorzamento →
+      compressione <b>C${mb.c}</b> (ora C${esc(D.a['b'+ax])}), estensione <b>R${mr.c}</b> (ora R${esc(D.a['r'+ax])}).
+      <button type="button" class="btn sm" data-dmapply="${ax}" data-b="${mb.c}" data-r="${mr.c}">Metti nella Modifica</button></li>`); });
+  return out.length?`<div class="dmspring"><h3 class="aeh">Cambio molla → click equivalenti</h3><ul>${out.join('')}</ul></div>`
+    :`<div class="muted dmhint">Cambia la molla nella colonna Modifica per vedere i click che mantengono lo stesso smorzamento.</div>`;
+}
+function dmpChart(title, ax, A, B){
+  const W=320, H=200, Lm=46, Rm=8, T=10, Bm=26, MR=A[ax].mr;
+  const vs=[]; for(let v=0; v<=300; v+=10) vs.push(v);                       // velocità alla ruota mm/s
+  const ser=o=>({c:vs.map(v=>({x:v, y:dmpF(o[ax].cb, v/MR)/MR})), r:vs.map(v=>({x:-v, y:-dmpF(o[ax].cr, v/MR)/MR}))});
+  const sA=ser(A), sB=ser(B), all=[...sA.c,...sA.r,...sB.c,...sB.r].map(p=>p.y);
+  const y0=Math.floor(Math.min(...all)/500)*500, y1=Math.ceil(Math.max(...all)/500)*500, x0=-300, x1=300;
+  const X=x=>Lm+(x-x0)/(x1-x0)*(W-Lm-Rm), Y=y=>T+(y1-y)/(y1-y0)*(H-T-Bm);
+  const path=s=>s.map((p,i)=>(i?'L':'M')+X(p.x).toFixed(1)+' '+Y(p.y).toFixed(1)).join('');
+  const st=Math.max(500,Math.ceil((y1-y0)/6/500)*500), ty=[]; for(let v=y0; v<=y1; v+=st) ty.push(v);
+  return `<figure class="kchart"><figcaption>${title} <span class="u">N alla ruota · mm/s alla ruota</span></figcaption>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Forza ammortizzatore alla ruota, ${title}">
+    ${ty.map(v=>`<line class="g" x1="${Lm}" x2="${W-Rm}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ax" x="${Lm-5}" y="${Y(v)+3.5}" text-anchor="end">${v}</text>`).join('')}
+    <line class="g" x1="${X(0)}" x2="${X(0)}" y1="${T}" y2="${H-Bm}"/>
+    ${[-300,-150,0,150,300].map(x=>`<text class="ax" x="${X(x)}" y="${H-8}" text-anchor="middle">${x}</text>`).join('')}
+    <text class="ax" x="${Lm+4}" y="${T+10}">estensione</text><text class="ax" x="${W-Rm-4}" y="${H-Bm-6}" text-anchor="end">compressione</text>
+    ${[[sA,0],[sB,1]].map(([s,i])=>`<path d="${path(s.c)}" fill="none" stroke="${DMP_COL[i]}" stroke-width="2" ${i?'stroke-dasharray="6 3"':''}/><path d="${path(s.r)}" fill="none" stroke="${DMP_COL[i]}" stroke-width="2" ${i?'stroke-dasharray="6 3"':''}/>`).join('')}
+    </svg><div class="kleg"><span><i class="sw" style="border-color:${DMP_COL[0]}"></i>Attuale C${esc(dmpState().a['b'+ax])} / R${esc(dmpState().a['r'+ax])}</span><span><i class="sw dash" style="border-color:${DMP_COL[1]}"></i>Modifica C${esc(dmpState().b['b'+ax])} / R${esc(dmpState().b['r'+ax])}</span></div></figure>`;
+}
+// ζ vettura in funzione del click, con le molle dell'Attuale
+function dmpZChart(A){
+  const W=320, H=200, Lm=40, Rm=8, T=10, Bm=26, ser=[];
+  ['F','R'].forEach(ax=>['C','R'].forEach(kind=>{ const n=DMP_MAX[kind], pts=[];
+    for(let c=0;c<=n;c++){ const k=dmpCoef(dmpCurve(kind,n-c)).ls/(A[ax].mr*A[ax].mr); pts.push({x:c, y:k/A[ax].ccB}); }
+    ser.push({ax, kind, pts, cur:num(dmpState().a[(kind==='C'?'b':'r')+ax])}); }));
+  const ys=ser.flatMap(s=>s.pts.map(p=>p.y)), y0=Math.floor(Math.min(...ys,0.4)*10)/10, y1=Math.ceil(Math.max(...ys,1)*10)/10;
+  const X=x=>Lm+x/16*(W-Lm-Rm), Y=y=>T+(y1-y)/(y1-y0)*(H-T-Bm);
+  const col={F:'var(--accent)', R:'#f5a524'}, ty=[]; const stp=(y1-y0)>2?0.5:0.2; for(let v=Math.ceil(y0/stp)*stp; v<=y1+1e-9; v+=stp) ty.push(+v.toFixed(1));
+  return `<figure class="kchart"><figcaption>ζ vettura per click <span class="u">molle attuali</span></figcaption>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Rapporto di smorzamento della vettura in funzione del click">
+    <line x1="${Lm}" x2="${W-Rm}" y1="${Y(1)}" y2="${Y(1)}" stroke="var(--muted)" stroke-dasharray="2 3"/><text class="ax" x="${Lm+4}" y="${Y(1)-3}">ζ = 1</text>
+    ${ty.map(v=>`<line class="g" x1="${Lm}" x2="${W-Rm}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ax" x="${Lm-5}" y="${Y(v)+3.5}" text-anchor="end">${v.toFixed(1).replace('.',',')}</text>`).join('')}
+    ${[0,2,4,6,8,10,12,14,16].map(x=>`<text class="ax" x="${X(x)}" y="${H-8}" text-anchor="middle">${x}</text>`).join('')}<text class="ax" x="${W-Rm}" y="${H-Bm-4}" text-anchor="end">click da aperto</text>
+    ${ser.map(s=>`<path d="${s.pts.map((p,i)=>(i?'L':'M')+X(p.x).toFixed(1)+' '+Y(p.y).toFixed(1)).join('')}" fill="none" stroke="${col[s.ax]}" stroke-width="2" ${s.kind==='R'?'stroke-dasharray="6 3"':''}/>
+      ${isFinite(s.cur)?`<circle cx="${X(Math.min(s.cur,DMP_MAX[s.kind]))}" cy="${Y(lerp(s.pts.map(p=>p.x),s.pts.map(p=>p.y),s.cur))}" r="4.5" fill="${col[s.ax]}" stroke="var(--bg)" stroke-width="2"><title>${s.ax==='F'?'Ant.':'Post.'} ${s.kind==='C'?'comp.':'est.'} click ${s.cur}</title></circle>`:''}`).join('')}
+    </svg><div class="kleg"><span><i class="sw" style="border-color:var(--accent)"></i>ant.</span><span><i class="sw" style="border-color:#f5a524"></i>post.</span><span><i class="sw dash" style="border-color:var(--muted)"></i>estensione</span></div></figure>`;
+}
+function dmpRefresh(){ const o=$('#dmOut'); if(o) o.innerHTML=dmpOut(); }
+document.addEventListener('input', e=>{ const el=e.target; if(!el.dataset||!el.dataset.dm||!S.calc||!S.calc.dmp) return;
+  S.calc.dmp[el.dataset.ds][el.dataset.dm]=el.value; clearTimeout(dmpRefresh.t); dmpRefresh.t=setTimeout(dmpRefresh, el.tagName==='SELECT'?0:250); });
+document.addEventListener('change', e=>{ const el=e.target; if(el.tagName==='SELECT'&&el.dataset&&el.dataset.dm&&S.calc&&S.calc.dmp){ S.calc.dmp[el.dataset.ds][el.dataset.dm]=el.value; dmpRefresh(); } });
+document.addEventListener('click', e=>{ const t=e.target.closest&&e.target.closest('[data-dmapply]'); if(!t||!S.calc||!S.calc.dmp) return;
+  const ax=t.dataset.dmapply, b=S.calc.dmp.b; b['b'+ax]=t.dataset.b; b['r'+ax]=t.dataset.r;
+  ['b','r'].forEach(k=>{ const el=$('#dm_b_'+k+ax); if(el) el.value=b[k+ax]; }); dmpRefresh(); });
 /* ---------- backup e installazione (versione app) ---------- */
 document.addEventListener('click', e=>{
   if(e.target.id!=='expData') return;
