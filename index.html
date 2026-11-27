@@ -420,6 +420,52 @@ details.pyro .pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));g
 .dmin input,.dmin select{width:100%;min-width:64px}.dmin tbody th{text-align:left;font-weight:500;text-transform:none;letter-spacing:0}.dmhint{font-size:12px;margin-top:6px}
 .dmtab tr.dmsub th{font-size:10px}.ctile .big.dz-ok{color:var(--accent)}.ctile .big.dz-lo,.ctile .big.dz-hi{color:#f5a524}
 .dmspring ul{margin:6px 0 0;padding-left:18px;display:grid;gap:8px}.dmspring li{line-height:1.5}.dmspring .btn{margin-left:6px}
+
+/* ===== Prima / Dopo / Δ ===== */
+.pddlist{display:grid;gap:6px;margin:4px 0 12px;max-width:860px}
+.tech>.pddt,.ctiles>.pddt{grid-column:span 2}@media (max-width:560px){.tech>.pddt,.ctiles>.pddt{grid-column:1/-1}}
+.pdd-c b{white-space:normal}.pdd3 .pdd-c b{word-break:keep-all;overflow-wrap:normal}
+.pddh{font:700 12px var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--chg);margin-bottom:2px}
+.pddhead,.pdd{display:grid;grid-template-columns:minmax(150px,1fr) repeat(3,minmax(92px,128px));gap:6px;align-items:stretch}
+.pddhead span{font:600 11px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center}
+.pdd-l{display:flex;align-items:center;font-weight:600;font-size:14px;line-height:1.25;padding:4px 0}
+.pdd-c{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:6px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;text-align:center}
+.pdd-c .k{display:none;font:600 10px var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pdd-c b{font:700 16px var(--f-num);color:var(--fg);overflow-wrap:anywhere}
+.pdd-c.now{border-color:var(--fg-dim,#8fa3c7);background:var(--surface-2,var(--surface))}.pdd-c.now b{color:var(--fg);font-size:17px}
+.pdd-c.dl b{font-size:17px;color:var(--fg)}.pdd-c.dl{border-color:var(--chg);border-width:2px}
+.pdd-c.dl.ne b{color:var(--chg)}.pdd-c.dl.z{border-color:var(--line);border-width:1px}.pdd-c.dl.z b{color:var(--muted)}
+.pdd-c.dl.us{border-color:#5aa9ff;background:rgba(90,169,255,.12)}.pdd-c.dl.us b,.pdd-c.dl.us .sn{color:#7dbbff}
+.pdd-c.dl.os{border-color:#ff6b81;background:rgba(255,107,129,.12)}.pdd-c.dl.os b,.pdd-c.dl.os .sn{color:#ff8a9b}
+.pdd-c .sn{display:block;font:600 10.5px var(--f-body);letter-spacing:.02em;margin-top:2px}
+.ar{font-style:normal;font-size:.7em;margin-right:4px;vertical-align:.12em;opacity:.85}
+.pddg{font:700 11px var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:10px 0 0;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.pddg:first-of-type{margin-top:2px}.pdd-l .sd{font-weight:500;color:var(--muted);font-size:12.5px;margin-left:2px}
+.pddt.same{padding:10px 12px;gap:4px;opacity:.85}.pddsame{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}.pddsame b{font:700 18px var(--f-num);color:var(--fg)}.pddsame span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.tech>.pddt.same,.ctiles>.pddt.same{grid-column:auto}
+.pdd.same .pdd-c.now{border-color:var(--line);background:var(--surface)}.pdd.same .pdd-c.now b{color:var(--fg)}.pdd.same .pdd-l{color:var(--muted);font-weight:500}
+@media (max-width:620px){
+  .pddhead{display:none}.pdd{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+  .pdd-l{grid-column:1/-1;padding:6px 0 0}.pdd-c .k{display:block}.pdd-c b{font-size:15px}
+}
+.pddt{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:10px 12px;display:grid;gap:8px;min-width:0;align-content:start}
+.pddt.ch{border-color:var(--chg);border-left-width:3px}.pddt>.lbl{line-height:1.3}
+.pdd3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.pdd3 .pdd-c{padding:5px 6px}.pdd3 .pdd-c .k{display:block}.pdd3 .pdd-c b{font-size:15px}
+
+.pddn{font-size:12px;color:var(--muted);line-height:1.4}
+.was{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;font:500 12.5px var(--f-body)}
+.was .wb,.was .wd{display:inline-flex;align-items:baseline;gap:5px;border:1px solid var(--line);border-radius:3px;padding:2px 7px;background:var(--surface)}
+.was .k{font:600 10px var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.was b{font:700 13.5px var(--f-num);color:var(--fg)}.was .wd{border-color:var(--chg)}.was .wd b{color:var(--fg)}.was .wd.ne b{color:var(--chg)}
+.rbw{display:block;font:500 11.5px var(--f-body);color:var(--muted)}.rbw .k{text-transform:uppercase;font-size:10px;letter-spacing:.06em}
+.rbd{display:block;font:700 12.5px var(--f-num);color:var(--fg)}
+td.tdl,table.mres td:last-child{font:700 14px var(--f-num)}td.tdl.up{color:var(--accent)}td.tdl.dn{color:#f5a524}td.tdl.z{color:var(--muted);font-weight:400}
+table.mres td.dchg{color:var(--chg);font-weight:700;font-size:14px}
+table.aetab .aed{display:inline-block;margin-top:3px;font:700 12.5px var(--f-num);border:1px solid var(--line);border-radius:3px;padding:1px 6px;color:var(--chg)}
+table.aetab .aed.up{color:var(--accent)}table.aetab .aed.dn{color:#f5a524}table.aetab .aed.z{color:var(--muted);font-weight:400}
+.rpdd{margin-top:6px}.rpdd .pddg{margin-top:6px}.rpdd .pdd-l{font-size:13px}.rpdd .pdd-c b{font-size:14px}.rpdd .pdd-c{padding:4px 8px}
+table.rtab td.rdl{font:700 14px var(--f-num)}table.rtab td.rdl.up{color:var(--accent)}table.rtab td.rdl.dn{color:#f5a524}
 .aeglob{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0}
 .aecfgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:14px}
 .aecfg{border:1px solid var(--line);border-top:3px solid var(--c);border-radius:4px;padding:10px;display:grid;gap:6px;background:var(--surface);min-width:0}
@@ -513,7 +559,7 @@ table.rss tbody tr:not(.rss-sec):nth-child(even){background:rgba(127,140,160,.06
 table.rss tr.rss-sec td{text-align:left;font:700 11px var(--f-num,inherit);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);padding:14px 10px 5px;border-left:0;border-bottom:1px solid var(--line);background:none}
 table.rss td.na{color:var(--line)}
 table.rss td.chg{background:rgba(61,139,255,.13);color:var(--accent);font-weight:700}
-table.rss td .was{display:block;font:400 10.5px var(--f-body,inherit);color:var(--muted)}
+table.rss td .was{display:flex;font:400 10.5px var(--f-body,inherit);color:var(--muted);margin-top:3px}table.rss td .was .wb,table.rss td .was .wd{padding:1px 5px}table.rss td .was b{font-size:12px}
 table.rss .lr i{font-style:normal;color:var(--muted);margin:0 6px}
 .rs-foot{font-size:12px;margin-top:8px}
 .rss-two{display:none}
@@ -522,7 +568,7 @@ table.rss .lr i{font-style:normal;color:var(--muted);margin:0 6px}
   :root{--bg:#fff;--surface:#fff;--surface-2:#eef2f6;--line:#cfd7e1;--fg:#111;--muted:#555;--accent:#0a6fb0;--accent-2:#b35c00;--accent-ink:#fff}
   body{background:#fff!important;color:#111} header,.controls,.tabs,.repact,.toast,#garage{display:none!important}
   .panel{border:0!important;box-shadow:none!important;background:#fff!important} .rsec{break-inside:avoid}
-  @page{size:A4;margin:9mm} html{background:#fff!important} .rsheets>.rsec-h{display:none!important}
+  @page{size:A4;margin:9mm} :root,html{color-scheme:light!important} html{background:#fff!important} .rsheets>.rsec-h{display:none!important}
   .rss-one{display:none!important} .rss-two{display:grid!important;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
   .rsheet{break-inside:avoid;page-break-inside:avoid} .rs-head{padding:8px 12px!important;gap:12px!important;margin-bottom:6px!important;grid-template-columns:1.2fr 1fr!important}
   .rs-car{min-height:0!important} .rs-img{max-height:150px;width:auto!important;max-width:100%!important} .rs-f4{max-height:95px}
@@ -617,7 +663,7 @@ body.garage-open{overflow:hidden}
       <div class="logo"><img id="logoImg" alt="Motorsport Performance Academy" src="data:image/png;base64,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"></div>
       <div class="titlebar">
         <h1>Engineer <span>Workbook</span></h1>
-        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 27/11 · 12:15</div>
+        <div class="sync" id="sync">Avvio…</div><div class="sync" id="appver">versione 27/11 · 16:00</div>
       </div>
       <div class="teamsw" role="group" aria-label="Team">
         <button type="button" data-team="mpa" aria-pressed="true">MPA</button>
@@ -1544,17 +1590,15 @@ function techBlock(st, ref, refName){
 function rollBalTable(m, p){
   const f=x=>isFinite(x)?x.toFixed(1):'–';
   const cell=k=>{ const ch=p&&f(p[k])!==f(m[k]);
-    return `<td class="${ch?'rbch':''}">${p&&ch?`<span class="rbw">${f(p[k])} →</span> `:''}<b>${f(m[k])}</b></td>`; };
+    return `<td class="${ch?'rbch':''}">${p&&ch?`<span class="rbw"><span class="k">Prima</span> ${f(p[k])}</span><b>${f(m[k])}</b><span class="rbd">Δ ${pddAr(pddDelta(+f(p[k]),+f(m[k]),1))}${pddDelta(+f(p[k]),+f(m[k]),1).t}</span>`:`<b>${f(m[k])}</b>`}</td>`; };
   const rows=[['Solo barre','arb','arbT'],['Solo molle','spr','sprT'],['Totale barre + molle','sus','tot']];
   return `<table class="rbt"><thead><tr><th>% ant.</th><th>Senza gomma</th><th>Con gomma</th></tr></thead><tbody>
     ${rows.map(([l,a,b],i)=>`<tr class="${i===2?'rbtot':''}"><td>${l}</td>${cell(a)}${cell(b)}</tr>`).join('')}</tbody></table>`;
 }
 // riquadro confronto "prima → dopo" con differenza; v può essere un numero o una coppia [ant, post]
-function cmpTile(label, va, vb, dd, unit){
+function cmpTile(label, va, vb, dd, unit, sense){
   const A=[].concat(va), B=[].concat(vb), f=x=>isFinite(x)?x.toFixed(dd):'–';
-  const ch=A.some((x,i)=>f(x)!==f(B[i]));
-  const dl=A.map((x,i)=>{ const v=(+f(B[i]))-(+f(x)); return isFinite(v)?(v>0?'+':'')+v.toFixed(dd):'–'; }).join(' / ');
-  return `<div class="${ch?'cmpch':''}"><div class="lbl">${label}</div><div class="tv">${A.map(f).join(' / ')} → ${B.map(f).join(' / ')} ${unit}</div><div class="cmpd">${ch?'Δ '+dl:'invariato'}</div></div>`;
+  return pddTile(label, va, vb, dd, unit, '', sense);
 }
 function mechTrend(d){
   if(!isFinite(d)||Math.abs(d)<0.03) return '<span class="chip">tendenza invariata</span>';
@@ -1582,18 +1626,15 @@ function renderCompare(){
       ${cmpTile('Rake statico / dinamico', [ma.rakeS,ma.rakeD], [mb.rakeS,mb.rakeD], 1, 'mm')}
     </div></div>
     <div class="cmpgrp"><div class="cmph">Bilancio meccanico ${mechTrend(mb.lltd-ma.lltd)}</div><div class="tech">
-      ${cmpTile('LLTD (trasferimento carico) ant.', ma.lltd, mb.lltd, 1, '%')}
+      ${cmpTile('LLTD (trasferimento carico) ant.', ma.lltd, mb.lltd, 1, '%', 1)}
       <div class="rbbox"><div class="lbl">Mech roll balance</div>${rollBalTable(mb, ma)}</div>
       ${cmpTile('Target caldo ant. / post.', [ma.pF,ma.pR], [mb.pF,mb.pR], 2, 'bar')}
       ${cmpTile('Gradiente di rollio', ma.grad, mb.grad, 2, '°/g')}
-      <div class="${Math.abs((mb.cgEq||0)-(ma.cgEq||0))>0.05?'cmpch':''}"><div class="lbl">LLTD equivalente camber</div><div class="tv">${cgF(ma.cgEq,1,true)} → ${cgF(mb.cgEq,1,true)} pt · LLTD + camber ${cgF(ma.lltd+ma.cgEq,1)} → ${cgF(mb.lltd+mb.cgEq,1)} %</div><div class="cmpd">${camTrend(mb.cgBal-ma.cgBal)}</div></div>
-      ${cmpTile('Rigidezza verticale ant.', ma.vpct, mb.vpct, 1, '%')}
+      ${pddTile('LLTD equivalente camber', ma.cgEq, mb.cgEq, 1, 'pt', `LLTD + camber ${cgF(ma.lltd+ma.cgEq,1)} → ${cgF(mb.lltd+mb.cgEq,1)} % · ${camTrend(mb.cgBal-ma.cgBal)}`, 1)}
+      ${cmpTile('Rigidezza verticale ant.', ma.vpct, mb.vpct, 1, '%', 1)}
       ${cmpTile('Frequenze ant. / post.', [ma.fqF,ma.fqR], [mb.fqF,mb.fqR], 2, 'Hz')}
     </div></div>`}
-    ${rows.length?`<div class="tbl-wrap"><table class="cmp"><thead><tr><th>Parametro</th><th>${esc(a.name)}</th><th>${esc(b.name)}</th></tr></thead><tbody>
-      ${rows.map(({f,sd})=>{ const va=sd==null?a.setup[f.k]:(a.setup[f.k]||[])[sd], vb=sd==null?b.setup[f.k]:(b.setup[f.k]||[])[sd]; const ch=norm(va)!==norm(vb);
-        return `<tr class="${ch?'chg':''}"><td>${esc(dLabel({f,sd}))}</td><td>${fmtVal(f,va)}</td><td>${fmtVal(f,vb)}</td></tr>`;}).join('')}
-    </tbody></table></div>`:`<div class="note">Nessuna differenza tra ${esc(a.name)} e ${esc(b.name)}.</div>`}
+    ${rows.length?pddList(pddItems(a.setup,b.setup,S.cmp.all), `Setup · ${esc(a.name)} → ${esc(b.name)}`, {heads:[`Prima · ${esc(a.name)}`,`Dopo · ${esc(b.name)}`]}):`<div class="note">Nessuna differenza tra ${esc(a.name)} e ${esc(b.name)}.</div>`}
     ${(a.notes||b.notes)?`<div class="grid3">${[a,b].map(s=>`<div class="note"><b>${esc(s.name)}</b><br>${esc(s.notes||'–').replace(/\n/g,'<br>')}</div>`).join('')}</div>`:''}
   </div>`;
 }
@@ -1869,7 +1910,7 @@ function mechOut(){
   const A=mechModel(c.a,ve), B=mechModel(c.b,ve);
   const fx=(x,d)=>isFinite(x)?x.toFixed(d):'–';
   const dl=(x,y,d)=>isFinite(x)&&isFinite(y)?((y-x>0?'+':'')+(y-x).toFixed(d)):'–';
-  const tile=(l,k,d,u,hint)=>`<div class="ctile"><div class="lbl">${l}</div><div class="big">${fx(B[k],d)}<small>${u}</small></div><div class="delta">${hint??`prima ${fx(A[k],d)} · ${dl(A[k],B[k],d)}`}</div></div>`;
+  const tile=(l,k,d,u,hint)=>pddTile(l, A[k], B[k], d, u, hint, {lltd:1, vPct:1}[k]);
   const row=(l,k,d,u='')=>`<tr><td>${l}${u?` <span class="u">${u}</span>`:''}</td><td>${fx(A[k],d)}</td><td>${fx(B[k],d)}</td><td class="${isFinite(A[k])&&isFinite(B[k])&&Math.abs(B[k]-A[k])>Math.pow(10,-d)/2?'dchg':''}">${dl(A[k],B[k],d)}</td></tr>`;
   const pair=(l,kf,kr,d,u)=>row(l+' ant.',kf,d,u)+row(l+' post.',kr,d,u);
   const sec=t=>`<tr class="sec"><td colspan="4">${t}</td></tr>`;
@@ -1881,11 +1922,11 @@ function mechOut(){
     <div class="ctile rbbox"><div class="lbl">Mech roll balance</div>${rollBalTable({arb:B.pArb,spr:B.pSpr,sus:B.pSus,arbT:B.pArbT,sprT:B.pSprT,tot:B.pTot},{arb:A.pArb,spr:A.pSpr,sus:A.pSus,arbT:A.pArbT,sprT:A.pSprT,tot:A.pTot})}</div>
     ${tile('Trasferimento laterale (LLTD)','lltd',1,'% ant.')}
     ${(()=>{ if(typeof camBal!=='function') return ''; const st0=ses?ses.setup:BASE_SETUP, ay=num(cgV().ayRef), ea=camBal(st0,ve,A,ay,{F:c.a.camF,R:c.a.camR}).eq, eb=camBal(st0,ve,B,ay,{F:c.b.camF,R:c.b.camR}).eq;
-      return `<div class="ctile"><div class="lbl">LLTD equivalente camber</div><div class="big">${cgF(eb,1,true)}<small>pt</small></div><div class="delta">prima ${cgF(ea,1,true)} · LLTD + camber ${cgF(B.lltd+eb,1)} %</div></div>`; })()}
+      return pddTile('LLTD equivalente camber', ea, eb, 1, 'pt', `LLTD + camber ${cgF(A.lltd+ea,1)} → ${cgF(B.lltd+eb,1)} %`, 1); })()}
     ${tile('Gradiente di rollio','grad',2,'°/g')}
     ${tile('Rigidezza verticale','vPct',1,'% ant.')}
   </div>
-  <div class="tbl-wrap"><table class="mres"><thead><tr><th>Parametro</th><th>Attuale</th><th>Modifica</th><th>Δ</th></tr></thead><tbody>
+  <div class="tbl-wrap"><table class="mres"><thead><tr><th>Parametro</th><th>Prima <span class="u">attuale</span></th><th>Dopo <span class="u">modifica</span></th><th>Δ</th></tr></thead><tbody>
     ${sec('Rollio')}
     ${pair('Molle','sF','sR',0,'kg·m/°')}${pair('Barra','aF','aR',0,'kg·m/°')}${pair('Gomme','tF','tR',0,'kg·m/°')}
     ${pair('Totale asse','KF','KR',0,'kg·m/°')}
@@ -2035,8 +2076,8 @@ function onSetupField(el){
       if(inp){ if(inp.value!==txt){ inp.value=txt; onSetupField(inp); } } else { const arr=Array.isArray(ses.setup[ck])?[...ses.setup[ck]]:[ses.setup[ck],ses.setup[ck]]; arr[+sd]=txt; ses.setup[ck]=arr; } } }
   const prev=prevSession(ev,ses);
   if(prev){ const pv=f.lr?(prev.setup[k]||[])[+sd]:prev.setup[k]; const cell=$('#c_'+k+(f.lr?'_'+sd:'')); const ch=norm(el.value)!==norm(pv);
-    if(k==='bladeF'||k==='bladeR'||gtArb){ const c2=$('#c_'+k), ax=(k==='bladeF'||k==='arbF')?'F':'R', a1=gtArb?gtPosLR(ses.setup[k]):bladeLR(ax,ses.setup[k]), p1=gtArb?gtPosLR(prev.setup[k]):bladeLR(ax,prev.setup[k]), ch2=a1.join()!==p1.join(); if(c2){ c2.classList.toggle('chg',ch2); c2.querySelector('.was').innerHTML=ch2?'prima '+p1.join(' / '):''; } }
-    else if(cell){ cell.classList.toggle('chg',ch); cell.querySelector('.was').innerHTML=ch?'prima '+fmtVal(f,pv):''; } }
+    if(k==='bladeF'||k==='bladeR'||gtArb){ const c2=$('#c_'+k), ax=(k==='bladeF'||k==='arbF')?'F':'R', a1=gtArb?gtPosLR(ses.setup[k]):bladeLR(ax,ses.setup[k]), p1=gtArb?gtPosLR(prev.setup[k]):bladeLR(ax,prev.setup[k]), ch2=a1.join()!==p1.join(); if(c2){ c2.classList.toggle('chg',ch2); c2.querySelector('.was').innerHTML=ch2?pddWas(p1.join(' / '),pddDelta(p1.join('/'),a1.join('/'))):''; } }
+    else if(cell){ cell.classList.toggle('chg',ch); cell.querySelector('.was').innerHTML=ch?pddWas(fmtVal(f,pv),pddField(f,pv,el.value)):''; } }
   $('#sesSummary').innerHTML=sessionSummary(ev,ses);
   updateChips(ev);
   updateCwSum(ses.setup);
@@ -2121,7 +2162,7 @@ function bladeCell(f, st, prev){
   const ch=sd=>pv&&v[sd]!==pv[sd];
   return `<div class="fx${ch(0)||ch(1)?' chg':''}" id="c_${f.k}">
     <label class="fl" for="sf_${f.k}_0">Posizione barra <span class="u">Sx · Dx</span></label>
-    <div class="fi"><div class="bl2">${sel(0)}${sel(1)}</div><span class="was">${ch(0)||ch(1)?'prima '+pv.join(' / '):''}</span></div></div>`;
+    <div class="fi"><div class="bl2">${sel(0)}${sel(1)}</div><span class="was">${ch(0)||ch(1)?pddWas(pv.join(' / '),pddDelta(pv.join('/'),v.join('/'))):''}</span></div></div>`;
 }
 // camber con gli shim sulla stessa riga, a destra (F4)
 function camShimCell(f, st, prev, sd, label){
@@ -2131,8 +2172,8 @@ function camShimCell(f, st, prev, sd, label){
   return `<div class="fx${ch?' chg':''}" id="c_${f.k}_${sd}">
     <label class="fl csl" for="sf_${f.k}_${sd}"><span>${esc(label||f.l)} <span class="u">°</span></span><span class="csr">Shim <span class="u">mm</span></span></label>
     <div class="fi"><div class="cs2">${fieldInput(f,v,sd)}
-      <div class="sh${chw?' chg':''}" id="c_${sk}_${sd}"><label for="sf_${sk}_${sd}">Shim <span class="u">mm</span></label>${fieldInput(sf,w,sd)}<span class="was">${chw?'prima '+fmtVal(sf,pw):''}</span></div></div>
-      <span class="was">${ch?'prima '+fmtVal(f,pv):''}</span></div></div>`;
+      <div class="sh${chw?' chg':''}" id="c_${sk}_${sd}"><label for="sf_${sk}_${sd}">Shim <span class="u">mm</span></label>${fieldInput(sf,w,sd)}<span class="was">${chw?pddWas(fmtVal(sf,pw),pddField(sf,pw,w)):''}</span></div></div>
+      <span class="was">${ch?pddWas(fmtVal(f,pv),pddField(f,pv,v)):''}</span></div></div>`;
 }
 function cellHTML(f, st, prev, sd, label){
   if(S.car==='f4'&&(f.k==='camberF'||f.k==='camberR')&&sd!=null) return camShimCell(f, st, prev, sd, label);
@@ -2143,7 +2184,7 @@ function cellHTML(f, st, prev, sd, label){
   const ch = prev && norm(v)!==norm(pv);
   return `<div class="fx${ch?' chg':''}" id="c_${f.k}${sd!=null?'_'+sd:''}">
     <label class="fl" for="sf_${f.k}${sd!=null?'_'+sd:''}">${esc(label||f.l)}${f.u?` <span class="u">${esc(f.u)}</span>`:''}</label>
-    <div class="fi">${fieldInput(f,v,sd)}<span class="was">${ch?'prima '+fmtVal(f,pv):''}</span></div></div>`;
+    <div class="fi">${fieldInput(f,v,sd)}<span class="was">${ch?pddWas(fmtVal(f,pv),pddField(f,pv,v)):''}</span></div></div>`;
 }
 function cornerPanel(c, st, prev){
   const rows = CORNER_FIELDS[c.ax].map(([k,l])=>cellHTML(SFK[k], st, prev, c.sd, l)).join('');
@@ -2458,7 +2499,7 @@ function sessionSummary(ev, ses){
   let ch='';
   if(prev){
     const d=diffs(prev.setup, ses.setup);
-    ch = d.length ? `<div class="chglist"><span class="lbl">${d.length} modifiche rispetto a ${esc(prev.name)}</span>${d.map(x=>`<span class="chgi"><b>${esc(dLabel(x))}</b> ${fmtVal(x.f,x.from)} → <span class="to">${fmtVal(x.f,x.to)}</span></span>`).join('')}</div>`
+    ch = d.length ? pddList(pddItems(prev.setup, ses.setup), `${d.length} ${d.length===1?'modifica':'modifiche'} rispetto a ${esc(prev.name)}`)
       : `<div class="note">Nessuna modifica rispetto a ${esc(prev.name)}: cambia un valore e lo vedi evidenziato, anche sulla vettura.</div>`;
   } else ch = `<div class="note">Setup base di inizio giornata. Crea un nuovo turno: copia questi valori e mostra solo le modifiche.</div>`;
   return ch + techBlock(ses.setup, prev?base.setup:null, base.name);
@@ -2574,7 +2615,7 @@ function gtPosCell(f, st, prev){
   const ch=pv&&v.join()!==pv.join();
   return `<div class="fx${ch?' chg':''}" id="c_${f.k}">
     <label class="fl" for="sf_${f.k}_0">Posizione barra <span class="u">Sx · Dx</span></label>
-    <div class="fi"><div class="bl2">${sel(0)}${sel(1)}</div><span class="was">${ch?'prima '+pv.join(' / '):''}</span></div></div>`;
+    <div class="fi"><div class="bl2">${sel(0)}${sel(1)}</div><span class="was">${ch?pddWas(pv.join(' / '),pddDelta(pv.join('/'),v.join('/'))):''}</span></div></div>`;
 }
 function axleInfoGT(ax, st){
   if(ax==='F') return `Barra ${gtBarTxt(st,'F')} · dive plane ${st.dive||'–'}`;
@@ -2616,13 +2657,13 @@ function compareTilesGT(a, b, d){
     : dRoll>0 ? '<span class="chip warn">più sottosterzo in percorrenza</span>' : '<span class="chip warn">più sovrasterzo in percorrenza</span>';
   return `<div class="cmpgrp"><div class="cmph">Bilancio aerodinamico <span class="muted">· ${d.length} modifiche</span></div><div class="tech">
     ${cmpTile('Rake', r(a), r(b), 1, 'mm')}
-    <div class="${norm(a.rw)!==norm(b.rw)?'cmpch':''}"><div class="lbl">Ala posteriore</div><div class="tv">${esc(a.rw||'–')}° → ${esc(b.rw||'–')}°</div></div>
-    <div class="${norm(a.dive)!==norm(b.dive)?'cmpch':''}"><div class="lbl">Dive plane</div><div class="tv">${esc(a.dive||'–')} → ${esc(b.dive||'–')}</div></div>
+    ${pddTileTxt('Ala posteriore', a.rw?esc(a.rw)+'°':'–', b.rw?esc(b.rw)+'°':'–', pddDelta(a.rw,b.rw,null,'°'))}
+    ${pddTileTxt('Dive plane', esc(a.dive||'–'), esc(b.dive||'–'), pddDelta(a.dive,b.dive))}
   </div></div>
   <div class="cmpgrp"><div class="cmph">Bilancio meccanico ${trend}</div><div class="tech">
     <div class="rbbox"><div class="lbl">Mech roll balance</div>${rollBalTable(mb, ma)}${ma.missing||mb.missing?`<div class="rbnote">${ARB_GT_NOTE}</div>`:''}</div>
-    <div class="${arbCh?'cmpch':''}"><div class="lbl">Barre · posizione Sx/Dx</div><div class="tv">ant. ${esc(gtBarTxt(a,'F'))} → ${esc(gtBarTxt(b,'F'))}<br>post. ${esc(gtBarTxt(a,'R'))} → ${esc(gtBarTxt(b,'R'))}</div></div>
-    ${cmpTile('Rigidezza verticale ant.', ma.pct, mb.pct, 1, '%')}
+    ${pddTileTxt('Barre · posizione Sx/Dx ant. / post.', esc(gtBarTxt(a,'F'))+' / '+esc(gtBarTxt(a,'R')), esc(gtBarTxt(b,'F'))+' / '+esc(gtBarTxt(b,'R')), pddDelta(gtBarTxt(a,'F')+gtBarTxt(a,'R'), gtBarTxt(b,'F')+gtBarTxt(b,'R')))}
+    ${cmpTile('Rigidezza verticale ant.', ma.pct, mb.pct, 1, '%', 1)}
     ${cmpTile('Frequenze ant. / post.', [ma.fqF,ma.fqR], [mb.fqF,mb.fqR], 2, 'Hz')}
     ${cmpTile('Ripartizione freno ant.', num(a.bias), num(b.bias), 1, '%')}
   </div></div>`;
@@ -2704,12 +2745,12 @@ function mechOutGT(){
   const tile=(l,v,h)=>`<div class="ctile"><div class="lbl">${l}</div><div class="big">${v}</div><div class="delta">${h}</div></div>`;
   return `<div class="ctiles">
       <div class="ctile rbbox"><div class="lbl">Mech roll balance</div>${rollBalTable(rb(B),rb(A))}${A.arbMissing||B.arbMissing?`<div class="rbnote">${ARB_GT_NOTE.replace('Calcolatore › Parametri vettura','Parametri vettura qui a sinistra')}</div>`:''}</div>
-      ${tile('Frequenza ant.', f(B.fqF,2)+' Hz', 'prima '+f(A.fqF,2))}
-      ${tile('Frequenza post.', f(B.fqR,2)+' Hz', 'prima '+f(A.fqR,2))}
-      ${tile('Rigidezza verticale', f(B.pct)+' % ant.', 'prima '+f(A.pct))}
+      ${pddTile('Frequenza ant.', A.fqF, B.fqF, 2, 'Hz')}
+      ${pddTile('Frequenza post.', A.fqR, B.fqR, 2, 'Hz')}
+      ${pddTile('Rigidezza verticale', A.pct, B.pct, 1, '% ant.', '', 1)}
       ${tile('Δ altezza a parità di regolazione', `${f(drhF)} / ${f(drhR)} mm`, 'ant. / post., positivo = sale')}
     </div>
-    <div class="tbl-wrap"><table class="mres"><thead><tr><th>Parametro</th><th>Attuale</th><th>Modifica</th><th>Δ</th></tr></thead><tbody>
+    <div class="tbl-wrap"><table class="mres"><thead><tr><th>Parametro</th><th>Prima <span class="u">attuale</span></th><th>Dopo <span class="u">modifica</span></th><th>Δ</th></tr></thead><tbody>
       ${row('Rigidezza a ruota ant.','kwF',0,'N/mm')}${row('Rigidezza a ruota post.','kwR',0,'N/mm')}
       ${row('Con gomma ant.','krF',0,'N/mm')}${row('Con gomma post.','krR',0,'N/mm')}
       ${row('Rigidezza verticale % ant. senza gomma','pctW',1,'%')}${row('Rigidezza verticale % ant. con gomma','pct',1,'%')}
@@ -3437,7 +3478,7 @@ function repDays(car=S.car){
     g.best=best?best.s:NaN; g.bestTurn=best?best.t.name:''; g.tyres=[...new Set([...g.runs.map(sesTyre), ...g.turni.map(t=>t.setup&&t.setup.tyre).filter(Boolean)])];
     g.id=g.date+'|'+g.track; return g; }).sort((a,b)=>b.date.localeCompare(a.date)||a.track.localeCompare(b.track));
 }
-function repChanges(a,b){ if(!a||!b) return []; return diffs(a,b).map(x=>{ const va=x.sd==null?a[x.f.k]:(a[x.f.k]||[])[x.sd], vb=x.sd==null?b[x.f.k]:(b[x.f.k]||[])[x.sd]; return {l:dLabel(x), a:fmtVal(x.f,va), b:fmtVal(x.f,vb)}; }); }
+function repChanges(a,b){ if(!a||!b) return []; return diffs(a,b).map(x=>{ const va=x.sd==null?a[x.f.k]:(a[x.f.k]||[])[x.sd], vb=x.sd==null?b[x.f.k]:(b[x.f.k]||[])[x.sd]; return {l:dLabel(x), a:fmtVal(x.f,va), b:fmtVal(x.f,vb), d:pddField(x.f,va,vb)}; }); }
 function renderReport(){
   useSchema(S.car);
   const days=repDays(), g=RP.day&&days.find(d=>d.id===RP.day);
@@ -3514,7 +3555,7 @@ function repVal(f, st){
 function repCell(f, st, prev){
   if(!f) return '<td class="na">—</td>';
   const v=repVal(f,st), pv=prev?repVal(f,prev):null, ch=prev&&pv!==v;
-  return `<td class="${ch?'chg':''}">${v}${ch?`<span class="was">era ${pv}</span>`:''}</td>`;
+  return `<td class="${ch?'chg':''}">${v}${ch?`<span class="was">${pddWas(pv,pddDelta(pv.replace(/<[^>]+>/g,''),v.replace(/<[^>]+>/g,'')))}</span>`:''}</td>`;
 }
 function repTable(M, st, prev){
   return `<table class="rss"><thead><tr><th></th><th>Anteriore</th><th>Posteriore</th></tr></thead><tbody>
@@ -3556,7 +3597,7 @@ const REP_EN={
  'Attacco sospensione':'Rear wishbone pickup','Rampe diff. (drive/coast)':'Diff ramps (drive/coast)','Facce frizione':'Friction faces','Precarico diff.':'Diff preload','Controllo trazione':'Traction control','Rapporto pedale':'Pedal ratio',
  'Montata':'Fitted','Nessuna':'Removed','Sì':'Yes','No':'No','Asciutta':'Dry','Umida':'Damp','Bagnata':'Wet','invariato':'unchanged','giri':'turns','% ant.':'% front',
  'caldo':'hot','freddo':'cold','esclusa dalla correzione':'excluded from correction','chip = scarto dal target':'chip = deviation from target',
- 'click da aperto':'clicks from open','Camber':'Camber','UMP':'UMP','Dive plane':'Dive plane','ABS':'ABS','Sprint':'Sprint','Endurance':'Endurance','Ant. Sx':'FL','Ant. Dx':'FR','Post. Sx':'RL','Post. Dx':'RR','Sx':'L','Dx':'R'
+ 'click da aperto':'clicks from open','Sx · Dx':'L · R','invariato':'unchanged','più sottosterzo':'more understeer','più sovrasterzo':'more oversteer','Altro':'Other','Prima':'Before','Dopo':'After','cambiato':'changed','inizio':'start','fine':'end','Camber':'Camber','UMP':'UMP','Dive plane':'Dive plane','ABS':'ABS','Sprint':'Sprint','Endurance':'Endurance','Ant. Sx':'FL','Ant. Dx':'FR','Post. Sx':'RL','Post. Dx':'RR','Sx':'L','Dx':'R'
 };
 const REP_EN_DAY={'lunedì':'Monday','martedì':'Tuesday','mercoledì':'Wednesday','giovedì':'Thursday','venerdì':'Friday','sabato':'Saturday','domenica':'Sunday'};
 const REP_EN_MON={gennaio:'January',febbraio:'February',marzo:'March',aprile:'April',maggio:'May',giugno:'June',luglio:'July',agosto:'August',settembre:'September',ottobre:'October',novembre:'November',dicembre:'December'};
@@ -3570,6 +3611,8 @@ function repEnText(raw){
   const lead=raw.match(/^\s*/)[0], trail=raw.match(/\s*$/)[0], t=raw.trim(); if(!t) return raw;
   let o=repEnLabel(t), m;
   if(o==null&&(m=t.match(/^era (.*)$/))) o='prev. '+repEnText(m[1]);
+  if(o==null&&(m=t.match(/^Prima · (.*)$/))) o='Before · '+m[1];
+  if(o==null&&(m=t.match(/^Dopo · (.*)$/))) o='After · '+m[1];
   if(o==null&&(m=t.match(/^(\d+) run pressioni$/))) o=`${m[1]} pressure run${m[1]==='1'?'':'s'}`;
   if(o==null&&(m=t.match(/^(\d+) modifiche setup in giornata$/))) o=`${m[1]} setup change${m[1]==='1'?'':'s'} during the day`;
   if(o==null&&(m=t.match(/^\+(\d+) altre$/))) o=`+${m[1]} more`;
@@ -3640,13 +3683,13 @@ function renderRepDay(g){
     </div>
     ${tur.length?`<section class="rsec"><h3>Turni</h3><ol class="rturns">${tur.map(t=>{ const ch=repChanges(t.prev&&t.prev.setup,t.setup), ls=lapSec(t.lap), isBest=isFinite(ls)&&ls===g.best;
       return `<li><div class="rtime">${hm(t.created)}</div><div class="rbody"><div class="rtop"><b>${esc(t.name)}</b>${t.lap?`<span class="lap ${isBest?'is-best':''}">${esc(t.lap)}</span>`:''}${t.temps?`<span class="muted">${esc(t.temps)} °C</span>`:''}${t.setup&&t.setup.tyre?`<span class="chip">${esc(t.setup.tyre)}</span>`:''}</div>
-        ${ch.length?`<div class="rchg">${ch.slice(0,8).map(c=>`<span><i>${esc(c.l)}</i> ${c.a} → <b>${c.b}</b></span>`).join('')}${ch.length>8?`<span class="muted">+${ch.length-8} altre</span>`:''}</div>`:`<div class="muted rnone">${t.prev?'nessuna modifica':'setup di partenza'}</div>`}
+        ${ch.length?pddList(pddItems(t.prev&&t.prev.setup,t.setup),'',{cls:'rpdd'}):`<div class="muted rnone">${t.prev?'nessuna modifica':'setup di partenza'}</div>`}
         ${(t.notes||'').trim()?`<div class="rnote rep-free">${(()=>{ const n=t.notes.trim(), l=n.split('\n')[0], cut=l.length>160?l.slice(0,160):l; return esc(cut)+(cut!==n?' …':''); })()}</div>`:''}</div></li>`; }).join('')}</ol></section>`:''}
     ${tur.length?`<section class="rsec rsheets"><div class="rsec-h"><h3>Setup sheet</h3><div class="seg rs-tabs">${tur.map((t,i)=>`<button type="button" data-repsheet="${i}" aria-pressed="${(RP.sheet??0)===i}">${esc(t.name)}</button>`).join('')}</div></div>
       ${tur.map((t,i)=>repSheet(t,i,g)).join('')}</section>`:''}
     ${g.runs.length?`<section class="rsec"><h3>Pressioni · freddo → caldo</h3><div class="rpxs">${g.runs.map((r,i)=>repPressCard(r,i+1)).join('')}</div></section>`:''}
     ${chart?`<section class="rsec"><h3>Temperature</h3><div class="tvlegend"><span><i class="sw tt"></i>T pista</span><span><i class="sw ta"></i>T aria</span></div><div class="tvchart rch">${chart}</div></section>`:''}
-    ${total.length?`<section class="rsec"><h3>Setup · inizio → fine giornata</h3><div class="tbl-wrap"><table class="rtab"><thead><tr><th>Parametro</th><th>Inizio</th><th>Fine</th></tr></thead><tbody>${total.map(c=>`<tr><td>${esc(c.l)}</td><td>${c.a}</td><td><b>${c.b}</b></td></tr>`).join('')}</tbody></table></div></section>`:''}
+    ${total.length?`<section class="rsec"><h3>Setup · inizio → fine giornata</h3>${pddList(pddItems(startSetup,endSetup),'',{cls:'rpdd',heads:['Inizio','Fine']})}</section>`:''}
     ${noted.length?`<section class="rsec"><h3>Note e feedback pilota</h3>${noted.map(n=>`<div class="rfeed"><div class="rtime">${hm(n.when)}<br><span>${esc(n.who)}</span></div><div class="rep-free">${esc(n.txt).replace(/\n/g,'<br>')}</div></div>`).join('')}</section>`:''}
   </article>`;
 }
@@ -4116,12 +4159,12 @@ function camOutHTML(st, ve, A, B, ca, cb){
   const tot=(b,M)=>M.lltd+b.eq;
   return `<details class="cgbox"><summary>Dettaglio camber in curva e grip <span class="muted">· a ${cgF(ay,1)} g, media curva dx/sx · taratura dal pirometro</span></summary>
     <div class="ctiles">
-      <div class="ctile"><div class="lbl">Camber ruota esterna ant. / post.</div><div class="big">${cgF(bb.camOF)} / ${cgF(bb.camOR)}<small>°</small></div><div class="delta">prima ${cgF(ba.camOF)} / ${cgF(ba.camOR)}</div></div>
-      <div class="ctile"><div class="lbl">Grip da camber ant. / post.</div><div class="big">${cgF(bb.gF,1)} / ${cgF(bb.gR,1)}<small>%</small></div><div class="delta">prima ${cgF(ba.gF,1)} / ${cgF(ba.gR,1)}</div></div>
-      <div class="ctile"><div class="lbl">Bilancio da camber <span class="muted">vs camber standard −4 / −3</span></div><div class="big">${cgF(bb.eq,1,true)}<small>punti LLTD equiv.</small></div><div class="delta">prima ${cgF(ba.eq,1,true)} · ${camTrend(bb.bal-ba.bal)}</div></div>
-      <div class="ctile"><div class="lbl">LLTD + effetto camber</div><div class="big">${cgF(tot(bb,B),1)}<small>% ant. equiv.</small></div><div class="delta">prima ${cgF(tot(ba,A),1)} · solo LLTD ${cgF(B.lltd,1)}</div></div>
+      ${pddTile('Camber ruota esterna ant. / post.', [ba.camOF,ba.camOR], [bb.camOF,bb.camOR], 2, '°')}
+      ${pddTile('Grip da camber ant. / post.', [ba.gF,ba.gR], [bb.gF,bb.gR], 1, '%')}
+      ${pddTile('Bilancio da camber <span class="muted">vs camber standard −4 / −3</span>', ba.eq, bb.eq, 1, 'punti LLTD equiv.', camTrend(bb.bal-ba.bal), 1)}
+      ${pddTile('LLTD + effetto camber', tot(ba,A), tot(bb,B), 1, '% ant. equiv.', `solo LLTD ${cgF(A.lltd,1)} → ${cgF(B.lltd,1)}`, 1)}
     </div>
-    <div class="tbl-wrap"><table class="mres"><thead><tr><th>Parametro</th><th>Attuale</th><th>Modifica</th><th>Δ</th></tr></thead><tbody>
+    <div class="tbl-wrap"><table class="mres"><thead><tr><th>Parametro</th><th>Prima <span class="u">attuale</span></th><th>Dopo <span class="u">modifica</span></th><th>Δ</th></tr></thead><tbody>
       ${sec('Rollio e escursione')}
       ${row('Rollio sospensione ant.',b=>b.dx.F.phS,b=>b.dx.F.phS,2,'°')}${row('Rollio sospensione post.',b=>b.dx.R.phS,b=>b.dx.R.phS,2,'°')}
       ${row('Rollio gomme ant.',b=>b.dx.F.phT,b=>b.dx.F.phT,2,'°')}${row('Rollio gomme post.',b=>b.dx.R.phT,b=>b.dx.R.phT,2,'°')}
@@ -4276,7 +4319,7 @@ function aeOut(){
   const f=(x,d=1,u='')=>isFinite(x)?x.toFixed(d).replace('.',',')+u:'–';
   const dl=(x,b,d=1)=>isFinite(x)&&isFinite(b)?(x-b>=0?'+':'')+(x-b).toFixed(d).replace('.',','):'';
   const row=(lab,u,get,d=1,hint='')=>`<tr><th>${lab}${u?` <span class="u">${u}</span>`:''}${hint?`<div class="hint">${hint}</div>`:''}</th>${R.map((r,i)=>{ const v=get(r), b=get(R[0]);
-    return `<td>${f(v,d)}${i&&isFinite(v)&&isFinite(b)&&Math.abs(v-b)>=Math.pow(10,-d)/2?`<span class="aed">${dl(v,b,d)}</span>`:''}</td>`; }).join('')}</tr>`;
+    const D=pddDelta(isFinite(b)?+b.toFixed(d):NaN,isFinite(v)?+v.toFixed(d):NaN,d); return `<td>${f(v,d)}${i&&isFinite(v)&&isFinite(b)?`<span class="aed ${pddCls(D)}">Δ ${D.t}</span>`:''}</td>`; }).join('')}</tr>`;
   const sec=t=>`<tr class="aesec"><td colspan="${R.length+1}">${t}</td></tr>`;
   const head=`<thead><tr><th></th>${A.cfg.map((c,i)=>`<th style="color:${AE_COL[i]}">Config ${i+1}<div class="hint">${esc(c.pk)} · ${f(num(c.frh),1)} / ${f(num(c.rrh),1)}</div></th>`).join('')}</tr></thead>`;
   const tile=(l,v,dv,h)=>`<div class="ctile"><div class="lbl">${l}</div><div class="big">${v}</div><div class="delta">${h}${dv?` · <b>${dv}</b>`:''}</div></div>`;
@@ -4448,7 +4491,7 @@ function renderDamperCalc(){
     ['Molla ant. <span class="u">lb/in</span>', cs('a','sF'), cs('b','sF')],
     ['Molla post. <span class="u">lb/in</span>', cs('a','sR'), cs('b','sR')]];
   return `<div class="panel"><h2>Ammortizzatori</h2>${srcBar()}
-    <div class="cwide"><div class="cin"><div class="tbl-wrap"><table class="dmin"><thead><tr><th></th><th style="color:${DMP_COL[0]}">Attuale</th><th style="color:${DMP_COL[1]}">Modifica</th></tr></thead><tbody>
+    <div class="cwide"><div class="cin"><div class="tbl-wrap"><table class="dmin"><thead><tr><th></th><th style="color:${DMP_COL[0]}">Prima <span class="u">attuale</span></th><th style="color:${DMP_COL[1]}">Dopo <span class="u">modifica</span></th></tr></thead><tbody>
       ${rows.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table></div>
       <div class="muted dmhint">Click contati da tutto aperto, come li conta il team: 0 = più morbido, più click = più duro. Valori presi dal turno (media sinistra/destra).</div></div>
       <div id="dmOut">${dmpOut()}</div></div>
@@ -4467,20 +4510,20 @@ function dmpOut(){
   const dl=(x,y,d=2)=>isFinite(x)&&isFinite(y)&&Math.abs(y-x)>=Math.pow(10,-d)/2?`<span class="aed">${y-x>=0?'+':''}${(y-x).toFixed(d).replace('.',',')}</span>`:'';
   const zc=z=>!isFinite(z)?'':z<0.5?'lo':z>1?'hi':'';
   const band=(z,lo,hi)=>!isFinite(z)?'':z<lo?'dz-lo':z>hi?'dz-hi':'dz-ok';
-  const tile=(l,ax,k,lo,hi,h)=>`<div class="ctile"><div class="lbl">${l}</div><div class="big">${f(A[ax][k])}</div><div class="delta">${h}${Math.abs(B[ax][k]-A[ax][k])>=0.005?` · modifica <b>${f(B[ax][k])}</b>`:''}</div></div>`;
+  const tile=(l,ax,k,lo,hi,h)=>pddTile(l, A[ax][k], B[ax][k], 2, '', h);
   const row=(lab,u,get,d=2,hint='')=>`<tr><th>${lab}${u?` <span class="u">${u}</span>`:''}${hint?`<div class="hint">${hint}</div>`:''}</th>${['F','R'].map(ax=>{ const a=get(A,ax), b=get(B,ax);
-    return `<td>${f(a,d)}</td><td>${f(b,d)}${dl(a,b,d)}</td>`; }).join('')}</tr>`;
-  const sec=t=>`<tr class="aesec"><td colspan="5">${t}</td></tr>`;
-  const one=(lab,u,get,d=1)=>`<tr><th>${lab}${u?` <span class="u">${u}</span>`:''}</th><td colspan="2">${f(get(A),d)}</td><td colspan="2">${f(get(B),d)}${dl(get(A),get(B),d)}</td></tr>`;
+    const D=pddDelta(isFinite(a)?+a.toFixed(d):NaN,isFinite(b)?+b.toFixed(d):NaN,d); return `<td>${f(a,d)}</td><td><b>${f(b,d)}</b></td><td class="tdl ${pddCls(D)}">${isFinite(a)&&isFinite(b)?D.t:'–'}</td>`; }).join('')}</tr>`;
+  const sec=t=>`<tr class="aesec"><td colspan="7">${t}</td></tr>`;
+  const one=(lab,u,get,d=1)=>{ const a=get(A), b=get(B), D=pddDelta(isFinite(a)?+a.toFixed(d):NaN,isFinite(b)?+b.toFixed(d):NaN,d); return `<tr><th>${lab}${u?` <span class="u">${u}</span>`:''}</th><td colspan="2">${f(a,d)}</td><td colspan="2"><b>${f(b,d)}</b></td><td colspan="2" class="tdl ${pddCls(D)}">${isFinite(a)&&isFinite(b)?D.t:'–'}</td></tr>`; };
   return `<div class="ctiles">
       ${tile('ζ vettura ant.','F','zB',0.5,1,'bassa velocità, media comp./est.')}
       ${tile('ζ vettura post.','R','zB',0.5,1,'bassa velocità, media comp./est.')}
       ${tile('ζ ruota ant.','F','zW',0.25,0.6,'alta velocità')}
       ${tile('ζ ruota post.','R','zW',0.25,0.6,'alta velocità')}
-      <div class="ctile"><div class="lbl">Smorzamento a rollio</div><div class="big">${f(A.rollBal,1)} %</div><div class="delta">ant. · rigidezza a rollio ${f(A.stiffBal,1)} %${Math.abs(B.rollBal-A.rollBal)>=0.05?` · modifica <b>${f(B.rollBal,1)} %</b>`:''}</div></div>
+      ${pddTile('Smorzamento a rollio', A.rollBal, B.rollBal, 1, '% ant.', `rigidezza a rollio ${f(A.stiffBal,1)} → ${f(B.stiffBal,1)} % · effetto sul transitorio`, 1)}
     </div>
-    <div class="tbl-wrap"><table class="aetab dmtab"><thead><tr><th></th><th colspan="2">Anteriore</th><th colspan="2">Posteriore</th></tr>
-      <tr class="dmsub"><th></th><th style="color:${DMP_COL[0]}">Attuale</th><th style="color:${DMP_COL[1]}">Modifica</th><th style="color:${DMP_COL[0]}">Attuale</th><th style="color:${DMP_COL[1]}">Modifica</th></tr></thead><tbody>
+    <div class="tbl-wrap"><table class="aetab dmtab"><thead><tr><th></th><th colspan="3">Anteriore</th><th colspan="3">Posteriore</th></tr>
+      <tr class="dmsub"><th></th><th>Prima</th><th>Dopo</th><th>Δ</th><th>Prima</th><th>Dopo</th><th>Δ</th></tr></thead><tbody>
       ${sec('Vettura (bassa velocità)')}
       ${row('ζ compressione','',(o,ax)=>o[ax].zBb)}${row('ζ estensione','',(o,ax)=>o[ax].zBr)}${row('ζ medio','',(o,ax)=>o[ax].zB)}
       ${row('Estensione / compressione','',(o,ax)=>o[ax].ratio,2,'allo stelo, bassa velocità')}
@@ -4555,6 +4598,85 @@ document.addEventListener('change', e=>{ const el=e.target; if(el.tagName==='SEL
 document.addEventListener('click', e=>{ const t=e.target.closest&&e.target.closest('[data-dmapply]'); if(!t||!S.calc||!S.calc.dmp) return;
   const ax=t.dataset.dmapply, b=S.calc.dmp.b; b['b'+ax]=t.dataset.b; b['r'+ax]=t.dataset.r;
   ['b','r'].forEach(k=>{ const el=$('#dm_b_'+k+ax); if(el) el.value=b[k+ax]; }); dmpRefresh(); });
+
+/* =================== PRIMA / DOPO / Δ — presentazione unica delle modifiche (F4 e GT4) =================== */
+// numero all'inizio del valore + eventuale suffisso testuale uguale ("1.5out", "5°", "-3.5")
+function pddNum(v){ if(typeof v==='number') return isFinite(v)?{n:v,s:'',d:Math.min(3,(String(v).split('.')[1]||'').length)}:null;
+  const m=String(v??'').trim().replace(',', '.').match(/^([+-]?\d+(?:\.(\d+))?)\s*(.*)$/); return m?{n:+m[1], s:m[3], d:(m[2]||'').length}:null; }
+// Δ tra due valori: {t testo, s segno (−1/0/1), z invariato}
+function pddDelta(a, b, dd, unit){
+  const A=pddNum(a), B=pddNum(b);
+  if(A&&B&&A.s===B.s){ const d=B.n-A.n, dec=dd??Math.min(3,Math.max(A.d??0,B.d??0)), r=+d.toFixed(dec);
+    if(r===0) return {t:'=', s:0, z:true};
+    return {t:(r>0?'+':'−')+Math.abs(r).toFixed(dec)+(B.s?' '+B.s:'')+(unit&&!B.s?' '+unit:''), s:Math.sign(r), z:false}; }
+  const same=String(a??'').trim()===String(b??'').trim();
+  return {t:same?'=':'cambiato', s:0, z:same};
+}
+const pddFmt = (v,dd) => typeof v==='number' ? (isFinite(v)?v.toFixed(dd):'–') : (v===''||v==null?'–':String(v));
+const pddCls = (d, sense) => d.z?'z':(sense&&d.s)?(d.s*sense>0?'us':'os'):d.s>0?'up':d.s<0?'dn':'ne';
+const pddAr = d => d.z?'':d.s>0?'<i class="ar" aria-hidden="true">▲</i>':d.s<0?'<i class="ar" aria-hidden="true">▼</i>':'';
+const pddSense = (d, sense) => !d.z&&sense&&d.s ? `<span class="sn">${d.s*sense>0?'più sottosterzo':'più sovrasterzo'}</span>` : '';
+// riga completa: etichetta | Prima | Dopo | Δ   (a, b già formattati in HTML; d = risultato di pddDelta)
+function pddRow(label, a, b, d, extra=''){
+  return `<div class="pdd${d.z?' same':''}">
+    <div class="pdd-l">${label}${extra}</div>
+    <div class="pdd-c"><span class="k">Prima</span><b>${a}</b></div>
+    <div class="pdd-c now"><span class="k">Dopo</span><b>${b}</b></div>
+    <div class="pdd-c dl ${pddCls(d)}"><span class="k">Δ</span><b>${pddAr(d)}${d.t}</b></div></div>`;
+}
+// riquadro (tile) con titolo e le tre caselle; va/vb numeri o coppie [ant, post]
+function pddTile(label, va, vb, dd, unit, note, sense){
+  const A=[].concat(va), B=[].concat(vb), f=x=>pddFmt(x,dd);
+  const ds=A.map((x,i)=>pddDelta(isFinite(x)?+(+x).toFixed(dd):NaN, isFinite(B[i])?+(+B[i]).toFixed(dd):NaN, dd));
+  const z=ds.every(d=>d.z), bad=A.some(x=>!isFinite(x))||B.some(x=>!isFinite(x));
+  const lab=`<div class="lbl">${label}${unit?` <span class="u">${unit}</span>`:''}</div>`;
+  if(z&&!bad) return `<div class="pddt same">${lab}<div class="pddsame"><b>${B.map(f).join(' / ')}</b><span>invariato</span></div>${note?`<div class="pddn">${note}</div>`:''}</div>`;
+  const one=ds.length===1?ds[0]:null;
+  const dt=bad?'–':one?pddAr(one)+one.t:ds.map(x=>pddAr(x)+x.t).join(' / ');
+  return `<div class="pddt ch">${lab}
+    <div class="pdd3"><div class="pdd-c"><span class="k">Prima</span><b>${A.map(f).join(' / ')}</b></div>
+    <div class="pdd-c now"><span class="k">Dopo</span><b>${B.map(f).join(' / ')}</b></div>
+    <div class="pdd-c dl ${one?pddCls(one,sense):'ne'}"><span class="k">Δ</span><b>${dt}</b>${one?pddSense(one,sense):''}</div></div>
+    ${note?`<div class="pddn">${note}</div>`:''}</div>`;
+}
+// sotto un campo del foglio turno: Prima … · Δ …
+function pddWas(prevTxt, d){ return `<span class="wb"><span class="k">Prima</span> <b>${prevTxt}</b></span><span class="wd ${pddCls(d)}"><span class="k">Δ</span> <b>${pddAr(d)}${d.t}</b></span>`; }
+// Δ di un campo del setup (usa unità del campo)
+function pddField(f, a, b){ if(f&&/^camber[FR]$/.test(f.k)){ const m=x=>{ const n=num(x); return isFinite(n)?-Math.abs(n):x; }; a=m(a); b=m(b); }
+  const u=f&&f.u&&!/click/.test(f.u)?f.u:''; return pddDelta(a, b, null, /lb\/in|N\/mm|mm|kg|bar|%|°|Nm|l$/.test(u)?u:''); }
+// voci di confronto tra due setup: sinistra e destra uguali → una riga "Sx · Dx"
+const PDD_GROUPS=[['ant','Anteriore'],['post','Posteriore'],['gomme','Gomme'],['freni','Freni'],['pesi','Pesi'],['diff','Differenziale'],['el','Elettronica'],['info','Vettura']];
+function pddItems(a, b, all){
+  const out=[], A=a||{}, B=b||{};
+  SF.forEach(f=>{
+    if(f.lr){ const va=[0,1].map(i=>(A[f.k]||[])[i]), vb=[0,1].map(i=>(B[f.k]||[])[i]), ch=[0,1].map(i=>norm(va[i])!==norm(vb[i]));
+      if(!all&&!ch[0]&&!ch[1]) return;
+      if(norm(va[0])===norm(va[1])&&norm(vb[0])===norm(vb[1])) out.push({f, sd:'lr', from:va[0], to:vb[0], z:!ch[0]});
+      else [0,1].forEach(i=>{ if(all||ch[i]) out.push({f, sd:i, from:va[i], to:vb[i], z:!ch[i]}); });
+    } else { const va=A[f.k], vb=B[f.k], z=norm(va)===norm(vb); if(all||!z) out.push({f, sd:null, from:va, to:vb, z}); }
+  });
+  return out;
+}
+const pddLabel = x => esc(x.f.l)+(x.sd==='lr'?' <span class="sd">Sx · Dx</span>':x.sd!=null?` <span class="sd">${SIDE[x.sd]}</span>`:'');
+const pddVal = (f, v) => (Array.isArray(v) ? v.map(x=>fmtVal(f,x)).join(' / ') : fmtVal(f, v)).replace(/ click da aperto/g,' click');
+// elenco raggruppato per zona; opts: {heads: nomi delle colonne Prima / Dopo, cls}
+function pddList(items, title, opts={}){
+  if(!items.length) return '';
+  const h=opts.heads||['Prima','Dopo'];
+  const groups=PDD_GROUPS.map(([g,t])=>({t, it:items.filter(x=>x.f.g===g)})).filter(x=>x.it.length);
+  const other=items.filter(x=>!PDD_GROUPS.some(([g])=>g===x.f.g)); if(other.length) groups.push({t:'Altro', it:other});
+  return `<div class="pddlist ${opts.cls||''}">${title?`<div class="pddh">${title}</div>`:''}
+    <div class="pddhead" aria-hidden="true"><span></span><span>${h[0]}</span><span>${h[1]}</span><span>Δ</span></div>
+    ${groups.map(gr=>`<div class="pddg">${esc(gr.t)}</div>`+gr.it.map(x=>pddRow(pddLabel(x), pddVal(x.f,x.from), pddVal(x.f,x.to), x.z?{t:'=',z:true,s:0}:pddField(x.f,x.from,x.to))).join('')).join('')}</div>`;
+}
+// riquadro con valori testuali già formattati
+function pddTileTxt(label, a, b, d, note){
+  if(d.z) return `<div class="pddt same"><div class="lbl">${label}</div><div class="pddsame"><b>${b}</b><span>invariato</span></div>${note?`<div class="pddn">${note}</div>`:''}</div>`;
+  return `<div class="pddt${d.z?'':' ch'}"><div class="lbl">${label}</div>
+    <div class="pdd3"><div class="pdd-c"><span class="k">Prima</span><b>${a}</b></div>
+    <div class="pdd-c now"><span class="k">Dopo</span><b>${b}</b></div>
+    <div class="pdd-c dl ${pddCls(d)}"><span class="k">Δ</span><b>${pddAr(d)}${d.t}</b></div></div>${note?`<div class="pddn">${note}</div>`:''}</div>`;
+}
 /* ---------- backup e installazione (versione app) ---------- */
 document.addEventListener('click', e=>{
   if(e.target.id!=='expData') return;
